@@ -90,8 +90,18 @@ namespace TheTieSilincer.Models
 
                 Console.SetCursorPosition(player.Y, player.X);
 
-                Console.WriteLine(sb.ToString());
-           
+                // Console.WriteLine(sb.ToString());
+
+                Console.WriteLine(@"    ^    ");
+                 
+                Console.WriteLine(new string(' ',player.Y)+ "    o    ");
+                 
+                Console.WriteLine(new string(' ', player.Y) + @"   |o|   ");
+                 
+                Console.WriteLine(new string(' ', player.Y) + @"/\\\o///\");
+                 
+                Console.WriteLine(new string(' ', player.Y) + @"  </o\>  ");
+
             }
 
         }
