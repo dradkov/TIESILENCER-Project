@@ -89,8 +89,14 @@ namespace TheTieSilincer.Core
             }
             else if (userDirection.Key == ConsoleKey.Spacebar)
             {
-                this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.Y,
-                    this.player.Ship.Position.X + 3));
+                this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X+2
+                    ,
+                    this.player.Ship.Position.Y + 1));
+
+                this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X+2
+                    ,
+                    this.player.Ship.Position.Y + 7));
+
             }
 
             if (userDirection.Key == ConsoleKey.RightArrow || userDirection.Key == ConsoleKey.DownArrow
