@@ -3,16 +3,39 @@ using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Core
 {
+    using System.Threading;
     using TheTieSilincer.Models;
 
     public class Engine
     {
+        private Game game;
+        private bool GameOver = false;
         public static int currentPossition = 0;
-        public void Run()
+
+        public Engine()
         {
-            ShowWelcomeScreen();           
-            Field.LevelBuild();
- 
+            game = new Game();
+        }
+        
+
+        public void Run()
+        {           
+            ShowWelcomeScreen();
+            game.InitialiseSettings();
+
+            while (!GameOver)
+            {
+
+                game.Clear();
+               // game.CheckCollisions();
+                game.Draw();
+                game.Update();
+                 
+                //Field.LevelBuild();
+                 //Thread.Sleep(100);
+              
+            }
+            
         }
         private static void ShowWelcomeScreen()
         {
@@ -46,11 +69,12 @@ namespace TheTieSilincer.Core
                     break;
                 }
 
+
                 WelcomeMenu.WelcomeScreen(currentPossition);
                 Console.Clear();
             }
         }
     }
 
-  
+
 }

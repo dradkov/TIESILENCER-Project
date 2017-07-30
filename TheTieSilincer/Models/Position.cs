@@ -8,7 +8,7 @@
             this.Y = y;
         }
 
-        public int X { get; protected set; }
-        public int Y { get; protected set; }
+        public int X { get;  set; }
+        public int Y { get;  set; }
     }
 }

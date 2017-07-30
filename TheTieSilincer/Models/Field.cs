@@ -18,36 +18,37 @@ namespace TheTieSilincer.Models
 
             };
 
-            
+
 
             Console.SetWindowSize(100, 30);
-            Console.SetBufferSize(100, 60); 
-          
+            Console.SetBufferSize(100, 60);
+
 
 
 
             var movement = 0;
 
 
-            var player = new Position(0,0);
+            var player = new Position(0, 0);
 
 
             Console.SetCursorPosition(player.Y, player.X);
 
 
-            var sb  =new StringBuilder();
-            sb.AppendLine(@"    ^    ");
-            sb.AppendLine(@"    o    ");
-            sb.AppendLine(@"   |o|   ");
-            sb.AppendLine(@"/\\\o///\");
-            sb.AppendLine(@"  </o\>  ");
+           // var sb = new StringBuilder();
+           // sb.AppendLine(@"    ^    ");
+           // sb.AppendLine(@"    o    ");
+           // sb.AppendLine(@"   |o|   ");
+           // sb.AppendLine(@"/\\\o///\");
+           // sb.AppendLine(@"  </o\>  ");
 
 
-            Console.WriteLine(sb.ToString());
+            //Console.WriteLine(sb.ToString());
 
             while (true)
-            {
+            { 
                 var userDirection = Console.ReadKey();
+
                 if (userDirection.Key == ConsoleKey.RightArrow)
                 {
                     movement = 0;
@@ -83,24 +84,29 @@ namespace TheTieSilincer.Models
                     player = nextPosition;
 
                 }
-
+                
 
                 Console.Clear();
 
 
-                Console.SetCursorPosition(player.Y, player.X);
+                Console.SetCursorPosition(player.Y+4, player.X);
 
-                // Console.WriteLine(sb.ToString());
+                Console.WriteLine(@"^");
 
-                Console.WriteLine(@"    ^    ");
-                 
-                Console.WriteLine(new string(' ',player.Y)+ "    o    ");
-                 
-                Console.WriteLine(new string(' ', player.Y) + @"   |o|   ");
-                 
-                Console.WriteLine(new string(' ', player.Y) + @"/\\\o///\");
-                 
-                Console.WriteLine(new string(' ', player.Y) + @"  </o\>  ");
+                Console.SetCursorPosition(player.Y + 4, player.X+1);
+                Console.WriteLine("o");
+
+                Console.SetCursorPosition(player.Y + 3, player.X + 2);
+
+                Console.WriteLine(@"|o|");
+
+                Console.SetCursorPosition(player.Y, player.X + 3);
+
+                Console.WriteLine( @"/\\\o///\");
+
+                Console.SetCursorPosition(player.Y , player.X + 4);
+
+                Console.WriteLine( @"  </o\>  ");
 
             }
 
