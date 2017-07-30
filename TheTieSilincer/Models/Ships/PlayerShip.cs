@@ -77,8 +77,15 @@ namespace TheTieSilincer.Models
         {
             for (int i = 0; i < this.Bullets.Count; i++)
             {
-                Console.SetCursorPosition(this.Bullets[i].Position.Y, this.Bullets[i].Position.X);
-                Console.WriteLine("^");
+                if (CheckBulletPosition(i))
+                {
+                    Console.SetCursorPosition(this.Bullets[i].Position.Y, this.Bullets[i].Position.X);
+
+                    Console.WriteLine("^");
+                }
+
+
+
             }
         }
 
@@ -88,11 +95,11 @@ namespace TheTieSilincer.Models
             {
                 Bullet currentBullet = this.Bullets[i];
                 currentBullet.UpdatePosition();
-               // if(currentBullet.Position.X == 0)
-               // {
-               //     this.Bullets.RemoveAt(i);
-               //     i--;
-               // }
+                // if(currentBullet.Position.X == 0)
+                // {
+                //     this.Bullets.RemoveAt(i);
+                //     i--;
+                // }
 
             }
 
@@ -103,13 +110,22 @@ namespace TheTieSilincer.Models
             for (int i = 0; i < this.Bullets.Count; i++)
             {
                 Bullet currentBullet = this.Bullets[i];
-                if(currentBullet.PreviousPosition != null)
+                if (currentBullet.PreviousPosition != null)
                 {
-                    Console.SetCursorPosition(currentBullet.PreviousPosition.Y, currentBullet.PreviousPosition.X);
-                    Console.WriteLine(" ");
+                    if (CheckBulletPosition(i))
+                    {
+                        Console.SetCursorPosition(currentBullet.PreviousPosition.Y, currentBullet.PreviousPosition.X);
+                        Console.WriteLine(" ");
+                    }
                 }
 
             }
+        }
+
+        private bool CheckBulletPosition(int i)
+        {
+            return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
+                                      || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
         }
 
         public override void UpdateShip()

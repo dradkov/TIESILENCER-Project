@@ -32,7 +32,7 @@ namespace TheTieSilincer.Core
                 game.Update();
                  
                 //Field.LevelBuild();
-                 //Thread.Sleep(100);
+                 Thread.Sleep(1);
               
             }
             
