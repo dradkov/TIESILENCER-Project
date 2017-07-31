@@ -66,46 +66,51 @@ namespace TheTieSilincer.Core
 
         public void ReadPlayerInput()
         {
-            //if(Console.KeyAvailable)
-            //{
-            ConsoleKeyInfo userDirection = Console.ReadKey();
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo userDirection = Console.ReadKey();
+
+                while (Console.KeyAvailable)
+                {
+                    Console.ReadKey(true);
+                }
 
 
-            if (userDirection.Key == ConsoleKey.RightArrow)
-            {
-                movement = 0;
-            }
-            else if (userDirection.Key == ConsoleKey.LeftArrow)
-            {
-                movement = 1;
-            }
-            else if (userDirection.Key == ConsoleKey.DownArrow)
-            {
-                movement = 2;
-            }
-            else if (userDirection.Key == ConsoleKey.UpArrow)
-            {
-                movement = 3;
-            }
-            else if (userDirection.Key == ConsoleKey.Spacebar)
-            {
-                this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X+2
-                    ,
-                    this.player.Ship.Position.Y + 1));
+                if (userDirection.Key == ConsoleKey.RightArrow)
+                {
+                    movement = 0;
+                }
+                else if (userDirection.Key == ConsoleKey.LeftArrow)
+                {
+                    movement = 1;
+                }
+                else if (userDirection.Key == ConsoleKey.DownArrow)
+                {
+                    movement = 2;
+                }
+                else if (userDirection.Key == ConsoleKey.UpArrow)
+                {
+                    movement = 3;
+                }
+                else if (userDirection.Key == ConsoleKey.Spacebar)
+                {
+                    this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X + 2
+                        ,
+                        this.player.Ship.Position.Y + 1));
 
-                this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X+2
-                    ,
-                    this.player.Ship.Position.Y + 7));
+                    this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X + 2
+                        ,
+                        this.player.Ship.Position.Y + 7));
 
-            }
+                }
 
-            if (userDirection.Key == ConsoleKey.RightArrow || userDirection.Key == ConsoleKey.DownArrow
-                || userDirection.Key == ConsoleKey.UpArrow || userDirection.Key == ConsoleKey.LeftArrow)
-            {
-                Position nextDirection = directions[movement];
-                this.player.Ship.InBounds(nextDirection);
+                if (userDirection.Key == ConsoleKey.RightArrow || userDirection.Key == ConsoleKey.DownArrow
+                    || userDirection.Key == ConsoleKey.UpArrow || userDirection.Key == ConsoleKey.LeftArrow)
+                {
+                    Position nextDirection = directions[movement];
+                    this.player.Ship.InBounds(nextDirection);
+                }
             }
-            // }
 
             // }
 

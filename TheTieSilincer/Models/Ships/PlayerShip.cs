@@ -77,12 +77,20 @@ namespace TheTieSilincer.Models
         {
             for (int i = 0; i < this.Bullets.Count; i++)
             {
-                if (CheckBulletPosition(i))
+                //if (CheckBulletPosition(i))
+                //{
+                if (this.Bullets[i].Position.X == 0)
+                {
+                    Bullets.RemoveAt(i);
+                    i--;
+                }
+                else
                 {
                     Console.SetCursorPosition(this.Bullets[i].Position.Y, this.Bullets[i].Position.X);
-
-                    Console.WriteLine("^");
+                    Console.WriteLine($"^");
                 }
+
+              //  }
 
 
 
@@ -95,12 +103,6 @@ namespace TheTieSilincer.Models
             {
                 Bullet currentBullet = this.Bullets[i];
                 currentBullet.UpdatePosition();
-                // if(currentBullet.Position.X == 0)
-                // {
-                //     this.Bullets.RemoveAt(i);
-                //     i--;
-                // }
-
             }
 
         }
@@ -112,11 +114,11 @@ namespace TheTieSilincer.Models
                 Bullet currentBullet = this.Bullets[i];
                 if (currentBullet.PreviousPosition != null)
                 {
-                    if (CheckBulletPosition(i))
-                    {
-                        Console.SetCursorPosition(currentBullet.PreviousPosition.Y, currentBullet.PreviousPosition.X);
-                        Console.WriteLine(" ");
-                    }
+                   // if (CheckBulletPosition(i))
+                   // {
+                       Console.SetCursorPosition(currentBullet.PreviousPosition.Y, currentBullet.PreviousPosition.X);
+                       Console.WriteLine(" ");
+                    // }
                 }
 
             }
