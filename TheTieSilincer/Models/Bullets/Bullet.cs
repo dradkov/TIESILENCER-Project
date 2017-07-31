@@ -9,9 +9,9 @@ namespace TheTieSilincer.Models.Bullets
             this.Position = new Position(x, y);
         }
 
-        public Position Position { get; set; }
+        public Position Position { get; protected set; }
 
-        public Position PreviousPosition { get; set; }
+        public Position PreviousPosition { get; protected set; }
 
         public abstract void UpdatePosition();
 

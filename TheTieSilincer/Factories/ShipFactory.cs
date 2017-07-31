@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
 
@@ -23,7 +20,7 @@ namespace TheTieSilincer.Factories
 
             EnemyShip ship = (EnemyShip)Activator.CreateInstance(typeOfShip);
 
-            ship.Position = GenerateRandomShipPosition();
+            ship.SetPosition(GenerateRandomShipPosition());
 
             return ship;
         }

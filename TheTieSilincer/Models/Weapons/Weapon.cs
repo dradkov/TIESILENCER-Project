@@ -10,7 +10,7 @@ namespace TheTieSilincer.Models.Weapons
             this.Bullets = new List<Bullet>();
         }
 
-        public List<Bullet> Bullets { get; set; }
+        public List<Bullet> Bullets { get; protected set; }
 
         public abstract void AddBullets(int x, int y);
 

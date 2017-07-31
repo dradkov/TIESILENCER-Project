@@ -1,5 +1,4 @@
-﻿using System;
-using TheTieSilincer.Models.Bullets;
+﻿using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Models.Weapons
 {

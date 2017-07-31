@@ -1,7 +1,5 @@
 ﻿using System;
 using TheTieSilincer.Models;
-using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Models.Ships;
 
 namespace TheTieSilincer.Core
 {

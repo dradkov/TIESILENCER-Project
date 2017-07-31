@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Models.Weapons;
+﻿using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
 {
     public abstract class Ship
     {
-        protected Ship()
+        public Weapon Weapon { get; protected set; }
+
+        public Position Position { get;  protected set; }
+
+        public Position PreviousPosition { get; protected set; }
+
+        public void SetPosition(Position pos)
         {
-            this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
+            this.Position = pos;
         }
-
-        public Weapon Weapon { get; set; }
-
-        public Position Position { get; set; }
-
-        public Position PreviousPosition { get; set; }
 
         public abstract void UpdateShip();
 

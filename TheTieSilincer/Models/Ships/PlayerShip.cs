@@ -1,5 +1,4 @@
 ﻿using System;
-using TheTieSilincer.Models.Bullets;
 using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
@@ -9,6 +8,7 @@ namespace TheTieSilincer.Models
         public PlayerShip()
         {
             this.Weapon = new PlayerWeapon();
+            this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
         }
 
         public override void ClearShip()
