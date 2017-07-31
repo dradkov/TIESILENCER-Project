@@ -21,6 +21,7 @@ namespace TheTieSilincer.Core
         public void Run()
         {           
             ShowWelcomeScreen();
+            ScreenSelection(currentPossition);
             game.InitialiseSettings();
 
             while (!GameOver)
@@ -36,6 +37,28 @@ namespace TheTieSilincer.Core
               
             }
             
+        }
+        private static void ScreenSelection(int currentPossition)
+        {
+            switch (currentPossition)//TODO Add back functionality
+            {
+                case 0://NEW CHARACTER CREATION
+                    WelcomeMenu.CreateNewPlayer();
+                    break;
+
+                case 1://LOAD CHARACTER SCREEN
+                    WelcomeMenu.LoadCharacters(0);
+                    break;
+
+                case 2://HIGHSCORES SCREEN
+                    WelcomeMenu.CreateNewPlayer();
+                    break;
+
+                case 3:
+                    Console.Beep(4250, 300);
+                    Environment.Exit(0);
+                    break;
+            }
         }
         private static void ShowWelcomeScreen()
         {

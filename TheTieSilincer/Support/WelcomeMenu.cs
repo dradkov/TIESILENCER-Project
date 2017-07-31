@@ -59,7 +59,38 @@ namespace TheTieSilincer.Support
             Console.SetCursorPosition(0, 0);
         }
 
-        
+        public static void CreateNewPlayer()
+        {
+            Console.Clear();
+            Console.CursorVisible = true;
+            Console.Clear();
+            Console.CursorVisible = true;
+            DrawBox(35, 10, 30, 10, '@');
+            Console.SetCursorPosition(45, 12);
+            Console.Write("HERO NAME:");
+            Console.SetCursorPosition(36, 15);
+            Console.Write(new string('_', 28));
+            Console.SetCursorPosition(39, 17);
+            Console.Write("Press enter to start!");
+            Console.SetCursorPosition(37, 14);
+            var name = Console.ReadLine().Trim();
+
+
+            Console.CursorVisible = false;
+            GameService.CreateCharacter(name);
+        }
+
+        public static void LoadCharacters(int position)
+        {
+
+
+
+        }
+
+        public static void ShowHighscores()
+        {
+
+        }
 
         private static void DrawBox(int col, int row, int width, int hight, char ch, ConsoleColor consolecolor = ConsoleColor.White)
         {
