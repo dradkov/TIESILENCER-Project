@@ -12,6 +12,7 @@ namespace TheTieSilincer.Models.Ships
         {       
         }
 
+        public abstract void AddBullets();
         
 
        

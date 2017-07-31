@@ -11,7 +11,7 @@ namespace TheTieSilincer.Core
     {
         private ShipFactory shipFactory;
         private List<EnemyShip> ships;
-        private int shipAddNumber = 3;
+        private int shipAddNumber = 2;
 
         public ShipManager()
         {
@@ -29,10 +29,14 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
+            if(ships.Count == 0)
+            {
+                GenerateShips();
+            }
             for (int i = 0; i < ships.Count; i++)
             {
                 var currentShip = ships[i];
-                if (!InBounds(currentShip))
+                if (!currentShip.InBounds())
                 {
                     ships.RemoveAt(i);
                     i--;
@@ -68,15 +72,6 @@ namespace TheTieSilincer.Core
             }
         }
 
-        public bool InBounds(EnemyShip ship)
-        {
-            if(ship.Position.X == Console.WindowHeight - 2 )
-            {
-                return false;
-            }
-
-            return true;
-        }
 
         public bool CheckForOverlappingCoords(int x, int y)
         {

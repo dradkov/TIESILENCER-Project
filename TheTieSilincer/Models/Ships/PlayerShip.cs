@@ -1,56 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Models
 {
     public class PlayerShip : Ship
     {
+        public PlayerShip()
+        {
+           
+        }
         public override void ClearShip()
         {
             if (PreviousPosition != null)
             {
                 Console.SetCursorPosition(PreviousPosition.Y + 4, PreviousPosition.X);
-
                 Console.WriteLine(" ");
-
                 Console.SetCursorPosition(PreviousPosition.Y + 4, PreviousPosition.X + 1);
                 Console.WriteLine(" ");
-
                 Console.SetCursorPosition(PreviousPosition.Y + 3, PreviousPosition.X + 2);
-
                 Console.WriteLine("   ");
-
                 Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X + 3);
-
                 Console.WriteLine("         ");
-
                 Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X + 4);
-
                 Console.WriteLine("         ");
             }
-
-
         }
 
         public override void DrawShip()
         {
-
             Console.SetCursorPosition(Position.Y + 4, Position.X);
-
             Console.WriteLine(@"^");
-
             Console.SetCursorPosition(Position.Y + 4, Position.X + 1);
             Console.WriteLine("o");
-
             Console.SetCursorPosition(Position.Y + 3, Position.X + 2);
-
             Console.WriteLine(@"|o|");
-
             Console.SetCursorPosition(Position.Y, Position.X + 3);
-
             Console.WriteLine(@"/\\\o///\");
-
             Console.SetCursorPosition(Position.Y, Position.X + 4);
-
             Console.WriteLine(@"  </o\>  ");
         }
 
@@ -77,23 +64,15 @@ namespace TheTieSilincer.Models
         {
             for (int i = 0; i < this.Bullets.Count; i++)
             {
-                //if (CheckBulletPosition(i))
-                //{
-                if (this.Bullets[i].Position.X == 0)
+                if (!Bullets[i].InBounds())
                 {
                     Bullets.RemoveAt(i);
                     i--;
                 }
                 else
                 {
-                    Console.SetCursorPosition(this.Bullets[i].Position.Y, this.Bullets[i].Position.X);
-                    Console.WriteLine($"^");
+                    this.Bullets[i].DrawBullet();
                 }
-
-              //  }
-
-
-
             }
         }
 
@@ -114,11 +93,7 @@ namespace TheTieSilincer.Models
                 Bullet currentBullet = this.Bullets[i];
                 if (currentBullet.PreviousPosition != null)
                 {
-                   // if (CheckBulletPosition(i))
-                   // {
-                       Console.SetCursorPosition(currentBullet.PreviousPosition.Y, currentBullet.PreviousPosition.X);
-                       Console.WriteLine(" ");
-                    // }
+                    this.Bullets[i].ClearBullet();
                 }
 
             }
@@ -128,8 +103,6 @@ namespace TheTieSilincer.Models
         {
             return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
                                       || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
-
-            
         }
 
         public override void UpdateShip()

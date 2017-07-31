@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -10,9 +11,12 @@ namespace TheTieSilincer.Models.Ships
     {
         // \(|X|)/
         //    V
+        private int time = 2;
+        private double bulletTime = 2;
+
         public WeaselShip()
         {
-
+            
         }
 
         public override void ClearShip()
@@ -23,30 +27,56 @@ namespace TheTieSilincer.Models.Ships
                 Console.WriteLine(@"       ");
                 Console.SetCursorPosition(this.PreviousPosition.Y + 3, this.PreviousPosition.X + 1);
                 Console.WriteLine(" ");
+                this.Bullets.ForEach(v => v.ClearBullet());
             }
 
         }
 
         public override void DrawShip()
         {
+           if(bulletTime % 2 == 0)
+           {
+               AddBullets();
+               time++;
+           }
+            
             Console.SetCursorPosition(this.Position.Y, this.Position.X);
             Console.WriteLine(@"\(|X|)/");
             Console.SetCursorPosition(this.Position.Y+3, this.Position.X+1);
             Console.WriteLine("V");
+            this.Bullets.RemoveAll(v => !v.InBounds());
+            this.Bullets.ForEach(v => v.DrawBullet());
+
+            bulletTime += 0.25 ;
         }
 
         public override void UpdateShip()
         {
-            this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-            this.Position.X++;
-            
-        }
+            this.Bullets.ForEach(v => v.UpdatePosition());
+            if(time % 2 == 0)
+            {
+                this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
+                this.Position.X++;
+               
+            }
+            time++;
 
+
+        }
 
         public override bool InBounds(Position nextDirection)
         {
-            throw new NotImplementedException();
+            if (Position.X == Console.WindowHeight - 2)
+            {
+                return false;
+            }
+
+            return true;
         }
 
+        public override void AddBullets()
+        {
+            this.Bullets.Add(new WeaselBullet(this.Position.X + 2, this.Position.Y + 3));
+        }
     }
 }

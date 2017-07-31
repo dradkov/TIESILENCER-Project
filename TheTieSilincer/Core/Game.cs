@@ -1,5 +1,6 @@
 ﻿using System;
 using TheTieSilincer.Models;
+using TheTieSilincer.Models.Bullets;
 using TheTieSilincer.Models.Ships;
 
 namespace TheTieSilincer.Core
@@ -101,11 +102,11 @@ namespace TheTieSilincer.Core
                 }
                 else if (userDirection.Key == ConsoleKey.Spacebar)
                 {
-                    this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X + 2
+                    this.player.Ship.Bullets.Add(new PlayerBullet(this.player.Ship.Position.X + 2
                         ,
                         this.player.Ship.Position.Y + 1));
 
-                    this.player.Ship.Bullets.Add(new Bullet(this.player.Ship.Position.X + 2
+                    this.player.Ship.Bullets.Add(new PlayerBullet(this.player.Ship.Position.X + 2
                         ,
                         this.player.Ship.Position.Y + 7));
 

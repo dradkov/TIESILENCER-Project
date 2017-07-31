@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Models
 {
@@ -23,6 +24,6 @@ namespace TheTieSilincer.Models
 
         public abstract void ClearShip();
 
-        public abstract bool InBounds(Position nextDirection);
+        public abstract bool InBounds(Position nextDirection = null);
     }
 }

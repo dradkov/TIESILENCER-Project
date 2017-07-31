@@ -46,7 +46,9 @@
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\ShipManager.cs" />
     <Compile Include="Factories\ShipFactory.cs" />
-    <Compile Include="Models\Bullet.cs" />
+    <Compile Include="Models\Bullets\Bullet.cs" />
+    <Compile Include="Models\Bullets\PlayerBullet.cs" />
+    <Compile Include="Models\Bullets\WeaselBullet.cs" />
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\PilotName.cs" />
     <Compile Include="Models\Player.cs" />
