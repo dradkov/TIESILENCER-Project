@@ -8,14 +8,11 @@ namespace TheTieSilincer.Models.Ships
 {
     public abstract class EnemyShip : Ship
     {
-        protected Random rndGen;
-
         protected EnemyShip()
-        {
-            this.rndGen = new Random();
+        {       
         }
 
-        public abstract void GenerateRandomPosition();
+        
 
        
     }

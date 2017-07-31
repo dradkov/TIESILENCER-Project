@@ -12,7 +12,7 @@ namespace TheTieSilincer.Models.Ships
         //    V
         public WeaselShip()
         {
-            GenerateRandomPosition();
+
         }
 
         public override void ClearShip()
@@ -42,13 +42,6 @@ namespace TheTieSilincer.Models.Ships
             
         }
 
-        public override void GenerateRandomPosition()
-        {
-            int x = this.rndGen.Next(0);
-            int y = this.rndGen.Next(5, Console.WindowHeight - 1);
-
-            this.Position = new Position(x, y);
-        }
 
         public override bool InBounds(Position nextDirection)
         {
