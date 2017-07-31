@@ -1,20 +1,23 @@
 ﻿using System;
 using TheTieSilincer.Models;
+using TheTieSilincer.Models.Ships;
 
 namespace TheTieSilincer.Core
 {
     public class Game
     {
+        private ShipManager shipManager;
         private Player player;
         private int movement;
         private Position[] directions;
 
         public Game()
         {
+            this.shipManager = new ShipManager();
             this.player = new Player();
             AddDirections();
-
-
+            this.shipManager.GenerateShips();
+            
         }
 
         private void AddDirections()
@@ -33,6 +36,7 @@ namespace TheTieSilincer.Core
         {
             this.player.Ship.ClearShip();
             this.player.Ship.ClearBullets();
+            this.shipManager.ClearShips();
         }
 
         public void CheckCollisions()
@@ -44,6 +48,7 @@ namespace TheTieSilincer.Core
         {
             this.player.Ship.UpdateBullets();
             ReadPlayerInput();
+            this.shipManager.UpdateShips();
 
         }
 
@@ -51,6 +56,7 @@ namespace TheTieSilincer.Core
         {
             this.player.Ship.DrawShip();
             this.player.Ship.DrawBullets();
+            this.shipManager.DrawShips();
         }
 
         public void InitialiseSettings()
