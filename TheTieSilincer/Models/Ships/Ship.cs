@@ -7,7 +7,7 @@ namespace TheTieSilincer.Models
     {
         protected Ship()
         {
-            this.Position = new Position(0, 0);
+            this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
             this.Bullets = new List<Bullet>();
         }
 
