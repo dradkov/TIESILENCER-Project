@@ -11,8 +11,8 @@ namespace TheTieSilincer.Models.Ships
     {
         // \(|X|)/
         //    V
-        private int time = 2;
-        private double bulletTime = 2;
+        private double movementTime = 0;
+        private double bulletTime = 0;
 
         public WeaselShip()
         {
@@ -37,7 +37,7 @@ namespace TheTieSilincer.Models.Ships
            if(bulletTime % 2 == 0)
            {
                AddBullets();
-               time++;
+               
            }
             
             Console.SetCursorPosition(this.Position.Y, this.Position.X);
@@ -53,15 +53,14 @@ namespace TheTieSilincer.Models.Ships
         public override void UpdateShip()
         {
             this.Bullets.ForEach(v => v.UpdatePosition());
-            if(time % 2 == 0)
+            if(movementTime % 2 == 0)
             {
                 this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                 this.Position.X++;
                
             }
-            time++;
 
-
+            movementTime += 0.50;
         }
 
         public override bool InBounds(Position nextDirection)
