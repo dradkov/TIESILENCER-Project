@@ -6,7 +6,7 @@ namespace TheTieSilincer.Models
     {
         protected Ship()
         {
-            this.Position = new Position(0, 0);
+            this.Position = new Position(50, 45);
             this.Bullets = new List<Bullet>();
         }
 
