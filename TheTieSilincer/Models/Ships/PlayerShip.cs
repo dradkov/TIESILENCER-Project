@@ -61,7 +61,7 @@ namespace TheTieSilincer.Models
             var nextPosition = new Position
                 (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y);
 
-            if (nextPosition.X >= Console.BufferHeight || nextPosition.Y >= Console.BufferHeight ||
+            if (nextPosition.X > Console.WindowHeight - 7 || nextPosition.Y > Console.WindowWidth - 9 ||
                 nextPosition.X < 0 || nextPosition.Y < 0)
             {
                 return false;
@@ -128,6 +128,8 @@ namespace TheTieSilincer.Models
         {
             return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
                                       || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
+
+            
         }
 
         public override void UpdateShip()

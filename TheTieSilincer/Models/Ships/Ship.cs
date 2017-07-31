@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TheTieSilincer.Models
 {
@@ -6,7 +7,7 @@ namespace TheTieSilincer.Models
     {
         protected Ship()
         {
-            this.Position = new Position(50, 45);
+            this.Position = new Position(0, 0);
             this.Bullets = new List<Bullet>();
         }
 

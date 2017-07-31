@@ -9,8 +9,6 @@ namespace TheTieSilincer.Core
         private int movement;
         private Position[] directions;
 
-
-
         public Game()
         {
             this.player = new Player();
@@ -59,8 +57,11 @@ namespace TheTieSilincer.Core
         {
             Console.Clear();
             Console.CursorVisible = false;
-            Console.SetWindowSize(100, 30);
-            Console.SetBufferSize(100, 60);
+            Console.WindowHeight = 30;
+            Console.WindowWidth = 100;
+            Console.BufferWidth = Console.WindowWidth;
+            Console.BufferHeight = Console.WindowHeight;
+
             player.Ship.DrawShip();
         }
 

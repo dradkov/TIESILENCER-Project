@@ -19,10 +19,12 @@ namespace TheTieSilincer.Core
         
 
         public void Run()
-        {           
+        {
+            game.InitialiseSettings();
             ShowWelcomeScreen();
             ScreenSelection(currentPossition);
-            game.InitialiseSettings();
+            Console.Clear();
+            
 
             while (!GameOver)
             {
@@ -89,7 +91,7 @@ namespace TheTieSilincer.Core
                 else if (pressedKey.Key == ConsoleKey.Enter)
                 {
                     isSelecting = false;
-                    break;
+                
                 }
 
 
