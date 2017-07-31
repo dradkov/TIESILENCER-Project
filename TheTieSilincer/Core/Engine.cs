@@ -96,7 +96,7 @@ namespace TheTieSilincer.Core
 
 
                 WelcomeMenu.WelcomeScreen(currentPossition);
-                Console.Clear();
+                //Console.Clear();
             }
         }
     }
