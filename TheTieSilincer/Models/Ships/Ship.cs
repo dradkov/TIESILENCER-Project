@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TheTieSilincer.Models.Bullets;
+using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
 {
@@ -9,10 +10,9 @@ namespace TheTieSilincer.Models
         protected Ship()
         {
             this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
-            this.Bullets = new List<Bullet>();
         }
 
-        public List<Bullet> Bullets { get; set; }
+        public Weapon Weapon { get; set; }
 
         public Position Position { get; set; }
 

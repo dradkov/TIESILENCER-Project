@@ -25,7 +25,6 @@ namespace TheTieSilincer.Core
             ScreenSelection(currentPossition);
             Console.Clear();
             
-
             while (!GameOver)
             {
 

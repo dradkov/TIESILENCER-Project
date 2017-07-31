@@ -19,13 +19,11 @@ namespace TheTieSilincer.Models.Bullets
 
         public abstract bool InBounds();
 
-
         public virtual void ClearBullet()
         {
             Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X);
             Console.WriteLine(" ");
         }
-
 
     }
 }

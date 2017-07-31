@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using TheTieSilincer.Models.Bullets;
+using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
 {
@@ -8,8 +8,9 @@ namespace TheTieSilincer.Models
     {
         public PlayerShip()
         {
-           
+            this.Weapon = new PlayerWeapon();
         }
+
         public override void ClearShip()
         {
             if (PreviousPosition != null)
@@ -62,47 +63,25 @@ namespace TheTieSilincer.Models
 
         public void DrawBullets()
         {
-            for (int i = 0; i < this.Bullets.Count; i++)
-            {
-                if (!Bullets[i].InBounds())
-                {
-                    Bullets.RemoveAt(i);
-                    i--;
-                }
-                else
-                {
-                    this.Bullets[i].DrawBullet();
-                }
-            }
+            this.Weapon.DrawBullets();
         }
 
         public void UpdateBullets()
         {
-            for (int i = 0; i < this.Bullets.Count; i++)
-            {
-                Bullet currentBullet = this.Bullets[i];
-                currentBullet.UpdatePosition();
-            }
-
+            this.Weapon.UpdateBullets();
         }
 
         public void ClearBullets()
         {
-            for (int i = 0; i < this.Bullets.Count; i++)
-            {
-                Bullet currentBullet = this.Bullets[i];
-                if (currentBullet.PreviousPosition != null)
-                {
-                    this.Bullets[i].ClearBullet();
-                }
-
-            }
+            this.Weapon.ClearBullets();
         }
 
         private bool CheckBulletPosition(int i)
         {
-            return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
-                                      || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
+            //  return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
+            //  || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
+
+            return false;
         }
 
         public override void UpdateShip()

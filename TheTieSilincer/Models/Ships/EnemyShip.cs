@@ -10,11 +10,10 @@ namespace TheTieSilincer.Models.Ships
     {
         protected EnemyShip()
         {       
+
         }
 
-        public abstract void AddBullets();
-        
-
-       
+        public abstract void GenerateBullets();
+               
     }
 }

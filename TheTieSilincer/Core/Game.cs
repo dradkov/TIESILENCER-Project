@@ -25,7 +25,7 @@ namespace TheTieSilincer.Core
         {
             directions = new Position[]
            {
-               new Position(0,1), //moving right
+               new Position(0,1), // moving right
                 new Position( 0,-1), // moving left
                 new Position( 1,0), // moving down
                 new Position(-1,0), // moving up
@@ -83,7 +83,6 @@ namespace TheTieSilincer.Core
                     Console.ReadKey(true);
                 }
 
-
                 if (userDirection.Key == ConsoleKey.RightArrow)
                 {
                     movement = 0;
@@ -102,14 +101,10 @@ namespace TheTieSilincer.Core
                 }
                 else if (userDirection.Key == ConsoleKey.Spacebar)
                 {
-                    this.player.Ship.Bullets.Add(new PlayerBullet(this.player.Ship.Position.X + 2
-                        ,
-                        this.player.Ship.Position.Y + 1));
-
-                    this.player.Ship.Bullets.Add(new PlayerBullet(this.player.Ship.Position.X + 2
-                        ,
-                        this.player.Ship.Position.Y + 7));
-
+                    this.player.Ship.Weapon.AddBullets(this.player.Ship.Position.X + 2,                      
+                        this.player.Ship.Position.Y + 1);
+                    this.player.Ship.Weapon.AddBullets(this.player.Ship.Position.X + 2,
+                        this.player.Ship.Position.Y + 7);
                 }
 
                 if (userDirection.Key == ConsoleKey.RightArrow || userDirection.Key == ConsoleKey.DownArrow
@@ -119,8 +114,6 @@ namespace TheTieSilincer.Core
                     this.player.Ship.InBounds(nextDirection);
                 }
             }
-
-            // }
 
         }
     }
