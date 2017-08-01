@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using TheTieSilincer.Enums;
 using TheTieSilincer.Factories;
 using TheTieSilincer.Models.Ships;
 
@@ -9,13 +10,20 @@ namespace TheTieSilincer.Core
     public class ShipManager
     {
         private ShipFactory shipFactory;
+        private WeaponFactory weaponFactory;
+
+        private List<string> shipTypes;
+
         private List<EnemyShip> ships;
         private int shipAddNumber = 1;
 
         public ShipManager()
         {
             this.shipFactory = new ShipFactory();
+            this.weaponFactory = new WeaponFactory();
             this.ships = new List<EnemyShip>();
+            this.shipTypes = Enum.GetValues(typeof(ShipType)).OfType<string>().ToList();
+
             EnemyShip ship = this.shipFactory.CreateShip("MotherShip");
             ships.Add(ship);
         }
@@ -30,7 +38,7 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
-            if(ships.Count == 0)
+            if(ships.Count == 1)
             {
                 GenerateShips();
             }
@@ -77,7 +85,7 @@ namespace TheTieSilincer.Core
 
         public bool CheckForOverlappingCoords(int x, int y)
         {
-            int overlap = 7;
+            int overlap = 17;
 
             if(ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
             {

@@ -10,6 +10,8 @@ namespace TheTieSilincer.Models
 
         public Position PreviousPosition { get; protected set; }
 
+        public int Health { get; set; }
+
         public void SetPosition(Position pos)
         {
             this.Position = pos;

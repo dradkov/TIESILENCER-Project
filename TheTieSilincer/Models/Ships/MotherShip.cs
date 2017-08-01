@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TheTieSilincer.Models.Weapons;
+using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -13,19 +15,13 @@ namespace TheTieSilincer.Models.Ships
         //           WW
         //
 
-        private Position[] positions;
         private bool goLeft = false;
         private int yInterval = 17;
 
         public MotherShip()
         {
             this.Position = new Position(0, Console.WindowWidth / 3 + 2);
-            this.positions = new Position[2]
-            {
-                new Position(0, Console.WindowWidth / 3 + 2),
-                new Position(0, Console.WindowWidth / 3 + 2)
-            };
-
+            this.Weapon = new MSWeapon();
         }
 
         public override void ClearShip()
@@ -42,6 +38,7 @@ namespace TheTieSilincer.Models.Ships
                 Console.WriteLine("  ");
             }
 
+            this.Weapon.ClearBullets();
         }
 
         public override void DrawShip()
@@ -55,16 +52,31 @@ namespace TheTieSilincer.Models.Ships
             Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
             Console.WriteLine("WW");
 
+            this.GenerateBullets();
+            this.Weapon.DrawBullets();
         }
 
         public override void GenerateBullets()
         {
+            if(yInterval == 17 || yInterval == 27)
+            {
+                this.Weapon.AddBullets(this.Position.X + 2, this.Position.Y - 1);
+                this.Weapon.AddBullets(this.Position.X + 2, this.Position.Y + 10);
+                this.Weapon.AddBullets(this.Position.X + 3, this.Position.Y + 2);
+                this.Weapon.AddBullets(this.Position.X + 3, this.Position.Y + 7);
+            }
 
         }
 
         public override bool InBounds(Position nextDirection = null)
         {
-            return true;
+            if (Position.Y < Constants.WindowWidth - 2 && Position.Y > 0)
+            {
+                return true;
+               
+            }
+           
+            return false;
         }
 
         public override void UpdateShip()
@@ -101,7 +113,9 @@ namespace TheTieSilincer.Models.Ships
                 }
             }
 
-           // MovementTime += 0.50;
+            // MovementTime += 0.50;
+
+            this.Weapon.UpdateBullets();
 
         }
     }

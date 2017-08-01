@@ -21,10 +21,10 @@ namespace TheTieSilincer.Models.Ships
                 Console.SetCursorPosition(this.PreviousPosition.Y, this.PreviousPosition.X);
                 Console.WriteLine(@"       ");
                 Console.SetCursorPosition(this.PreviousPosition.Y + 3, this.PreviousPosition.X + 1);
-                Console.WriteLine(" ");
-
-                this.Weapon.ClearBullets();
+                Console.WriteLine(" ");                
             }
+
+            this.Weapon.ClearBullets();
         }
 
         public override void DrawShip()

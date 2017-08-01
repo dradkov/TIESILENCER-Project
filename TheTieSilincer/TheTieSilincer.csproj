@@ -45,8 +45,12 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\ShipManager.cs" />
+    <Compile Include="Enums\ShipType.cs" />
+    <Compile Include="Enums\WeaponType.cs" />
     <Compile Include="Factories\ShipFactory.cs" />
+    <Compile Include="Factories\WeaponFactory.cs" />
     <Compile Include="Models\Bullets\Bullet.cs" />
+    <Compile Include="Models\Bullets\MSBullet.cs" />
     <Compile Include="Models\Bullets\PlayerBullet.cs" />
     <Compile Include="Models\Bullets\WeaselBullet.cs" />
     <Compile Include="Models\Field.cs" />
@@ -58,6 +62,7 @@
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Ships\Ship.cs" />
     <Compile Include="Models\Ships\WeaselShip.cs" />
+    <Compile Include="Models\Weapons\MSWeapon.cs" />
     <Compile Include="Models\Weapons\PlayerWeapon.cs" />
     <Compile Include="Models\Weapons\Weapon.cs" />
     <Compile Include="Models\Weapons\WeaselWeapon.cs" />
@@ -71,7 +76,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Enums\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
