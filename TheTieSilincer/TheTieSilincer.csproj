@@ -63,7 +63,9 @@
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\PilotName.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Satellite\Satellite.cs" />
     <Compile Include="Models\Ships\EnemyShip.cs" />
+    <Compile Include="Models\Ships\KamikazeShip.cs" />
     <Compile Include="Models\Ships\MotherShip.cs" />
     <Compile Include="Models\Ships\PlayerShip.cs" />
     <Compile Include="Models\Position.cs" />
@@ -81,7 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

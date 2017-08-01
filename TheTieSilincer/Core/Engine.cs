@@ -1,6 +1,6 @@
 ﻿using System;
-using TheTieSilincer.Data;
-using TheTieSilincer.Models.Models;
+//using TheTieSilincer.Data;
+//using TheTieSilincer.Models.Models;
 using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Core
@@ -26,8 +26,8 @@ namespace TheTieSilincer.Core
             ShowWelcomeScreen();
             ScreenSelection(currentPossition);
             Console.Clear();
-            TheTieSilincerContext context = new TheTieSilincerContext();
-            context.Database.Initialize(true);
+           // TheTieSilincerContext context = new TheTieSilincerContext();
+            //context.Database.Initialize(true);
             //PlayerDb textPlayer = new PlayerDb("ASDA", "AASA");
             //context.PlayerDbs.Add(textPlayer);
             //context.SaveChanges();
@@ -36,7 +36,7 @@ namespace TheTieSilincer.Core
             {
 
                 game.Clear();
-               // game.CheckCollisions();
+                game.CheckCollisions();
                 game.Draw();
                 game.Update();
                  

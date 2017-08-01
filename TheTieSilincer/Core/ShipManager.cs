@@ -15,22 +15,35 @@ namespace TheTieSilincer.Core
         private List<string> shipTypes;
 
         private List<EnemyShip> ships;
-        private int shipAddNumber = 1;
+        private int shipAddNumber = 2;
+
+        public List<EnemyShip> Ships
+        {
+            get
+            {
+                return ships;
+            }
+
+            set
+            {
+                ships = value;
+            }
+        }
 
         public ShipManager()
         {
             this.shipFactory = new ShipFactory();
             this.weaponFactory = new WeaponFactory();
-            this.ships = new List<EnemyShip>();
+            this.Ships = new List<EnemyShip>();
             this.shipTypes = Enum.GetValues(typeof(ShipType)).OfType<string>().ToList();
 
             EnemyShip ship = this.shipFactory.CreateShip("MotherShip");
-            ships.Add(ship);
+            Ships.Add(ship);
         }
 
         public void UpdateShips()
         {
-            foreach (var ship in ships)
+            foreach (var ship in Ships)
             {
                 ship.UpdateShip();
             }
@@ -38,16 +51,16 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
-            if(ships.Count == 1)
+            if(Ships.Count == 1)
             {
                 GenerateShips();
             }
-            for (int i = 0; i < ships.Count; i++)
+            for (int i = 0; i < Ships.Count; i++)
             {
-                var currentShip = ships[i];
+                var currentShip = Ships[i];
                 if (!currentShip.InBounds())
                 {
-                    ships.RemoveAt(i);
+                    Ships.RemoveAt(i);
                     i--;
                 }
                 else
@@ -59,7 +72,7 @@ namespace TheTieSilincer.Core
 
         public void ClearShips()
         {
-            foreach (var ship in ships)
+            foreach (var ship in Ships)
             {
                 ship.ClearShip();
             }
@@ -68,17 +81,25 @@ namespace TheTieSilincer.Core
         public void GenerateShips()
         {
             
+            //for (int i = 0; i < shipAddNumber; i++)
+            //{
+            //    EnemyShip ship = this.shipFactory.CreateShip("WeaselShip");
+            //    if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
+            //    {
+            //        i--;
+            //    }
+            //    else
+            //    {
+            //        this.Ships.Add(ship);
+            //    }              
+            //}
+
             for (int i = 0; i < shipAddNumber; i++)
             {
-                EnemyShip ship = this.shipFactory.CreateShip("WeaselShip");
-                if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
-                {
-                    i--;
-                }
-                else
-                {
-                    this.ships.Add(ship);
-                }              
+                EnemyShip ship1 = this.shipFactory.CreateShip("KamikazeShip");
+
+                this.Ships.Add(ship1);
+
             }
         }
 
@@ -87,7 +108,7 @@ namespace TheTieSilincer.Core
         {
             int overlap = 17;
 
-            if(ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
+            if(Ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
             {
                 return true;
             }

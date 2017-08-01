@@ -8,9 +8,6 @@ namespace TheTieSilincer.Models.Ships
         //   \^/
         //    V
 
-
-
-
         public void ListenPlayerShipCoords(Satellite satellite)
         {
             satellite.SendData2 -= PlayerShipSendCoords;
@@ -67,9 +64,7 @@ namespace TheTieSilincer.Models.Ships
             Console.WriteLine(@"\^/");
             Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 1);
             Console.WriteLine("V");
-
-            
-
+          
              
         }
 

@@ -11,6 +11,12 @@ namespace TheTieSilincer.Models
             this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
         }
 
+        public event EventHandler SendData;
+        public void StartSendingData()
+        {
+            this.SendData(this, EventArgs.Empty);
+
+        }
         public override void ClearShip()
         {
             if (PreviousPosition != null)

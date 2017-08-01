@@ -3,8 +3,11 @@ using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Core
 {
+    using TheTieSilincer.Models.Ships;
+
     public class Game
     {
+        private Satellite satellite;
         private ShipManager shipManager;
         private Player player;
         private int movement;
@@ -16,7 +19,9 @@ namespace TheTieSilincer.Core
             this.player = new Player();
             AddDirections();
             this.shipManager.GenerateShips();
-            
+
+            this.satellite = new Satellite();
+            this.satellite.ReceiveDataByPlayer(player.Ship);
         }
 
         private void AddDirections()
@@ -40,7 +45,24 @@ namespace TheTieSilincer.Core
 
         public void CheckCollisions()
         {
+            for (int i = 0; i < this.shipManager.Ships.Count; i++)
+            {
+                var ship = this.shipManager.Ships[i];
 
+                for (int j = 0; j < this.player.Ship.Weapon.Bullets.Count; j++)
+                {
+                    var bullet = this.player.Ship.Weapon.Bullets[j];
+                    if (bullet.Position.X - 3 < ship.Position.X && bullet.Position.X + 2 > ship.Position.X && bullet.Position.Y + 4 > ship.Position.Y && bullet.Position.Y - 4 < ship.Position.Y)
+                    {
+                        player.Ship.Weapon.Bullets.Remove(bullet);
+                        ship.ClearShip();
+                        shipManager.Ships.Remove(ship);
+
+
+                        break;
+                    }
+                }
+            }
         }
 
         public void Update()
@@ -48,6 +70,18 @@ namespace TheTieSilincer.Core
             this.player.Ship.UpdateBullets();
             ReadPlayerInput();
             this.shipManager.UpdateShips();
+
+            if (shipManager.Ships.Count > 0)
+            {
+                foreach (var ship in this.shipManager.Ships)
+                {
+                    if (ship.GetType() == typeof(KamikazeShip))
+                        (ship as KamikazeShip).ListenPlayerShipCoords(this.satellite);
+                }
+                this.player.Ship.StartSendingData();
+                this.satellite.StartSendingData();
+
+            }
 
         }
 
