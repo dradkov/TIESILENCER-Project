@@ -71,6 +71,12 @@ namespace TheTieSilincer.Core
             ReadPlayerInput();
             this.shipManager.UpdateShips();
 
+            TransmitMessages();
+
+        }
+
+        private void TransmitMessages()
+        {
             if (shipManager.Ships.Count > 0)
             {
                 foreach (var ship in this.shipManager.Ships)
@@ -82,7 +88,6 @@ namespace TheTieSilincer.Core
                 this.satellite.StartSendingData();
 
             }
-
         }
 
         public void Draw()
