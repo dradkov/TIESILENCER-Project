@@ -7,7 +7,9 @@
 
         }
 
-        public abstract void GenerateBullets();
+        public double MovementTime { get; protected set;  }
+
+        public abstract void GenerateBullets();   
                
     }
 }

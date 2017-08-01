@@ -53,6 +53,7 @@
     <Compile Include="Models\PilotName.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Ships\EnemyShip.cs" />
+    <Compile Include="Models\Ships\MotherShip.cs" />
     <Compile Include="Models\Ships\PlayerShip.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Ships\Ship.cs" />

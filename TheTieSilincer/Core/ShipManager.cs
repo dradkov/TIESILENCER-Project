@@ -10,12 +10,14 @@ namespace TheTieSilincer.Core
     {
         private ShipFactory shipFactory;
         private List<EnemyShip> ships;
-        private int shipAddNumber = 2;
+        private int shipAddNumber = 1;
 
         public ShipManager()
         {
             this.shipFactory = new ShipFactory();
             this.ships = new List<EnemyShip>();
+            EnemyShip ship = this.shipFactory.CreateShip("MotherShip");
+            ships.Add(ship);
         }
 
         public void UpdateShips()
@@ -57,6 +59,7 @@ namespace TheTieSilincer.Core
 
         public void GenerateShips()
         {
+            
             for (int i = 0; i < shipAddNumber; i++)
             {
                 EnemyShip ship = this.shipFactory.CreateShip("WeaselShip");

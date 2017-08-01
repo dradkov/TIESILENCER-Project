@@ -12,6 +12,8 @@ namespace TheTieSilincer.Models.Weapons
 
         public List<Bullet> Bullets { get; protected set; }
 
+        public double BulleTime { get; protected set; }
+
         public abstract void AddBullets(int x, int y);
 
         public abstract void DrawBullets();

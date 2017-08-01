@@ -20,8 +20,11 @@ namespace TheTieSilincer.Factories
 
             EnemyShip ship = (EnemyShip)Activator.CreateInstance(typeOfShip);
 
-            ship.SetPosition(GenerateRandomShipPosition());
-
+            if(ship.Position == null)
+            {
+                ship.SetPosition(GenerateRandomShipPosition());
+            }
+           
             return ship;
         }
 

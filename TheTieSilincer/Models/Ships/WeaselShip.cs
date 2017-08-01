@@ -7,7 +7,7 @@ namespace TheTieSilincer.Models.Ships
     {
         // \(|X|)/
         //    V
-        private double movementTime = 0;
+       // private double movementTime = 0;
 
         public WeaselShip()
         {
@@ -42,13 +42,13 @@ namespace TheTieSilincer.Models.Ships
         {
             this.Weapon.UpdateBullets();
 
-            if(movementTime % 2 == 0)
+            if(this.MovementTime % 2 == 0)
             {
                 this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                 this.Position.X++;           
             }
 
-            movementTime += 0.50;
+            this.MovementTime += 0.50;
         }
 
         public override bool InBounds(Position nextDirection)
