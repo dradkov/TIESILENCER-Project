@@ -15,7 +15,7 @@ namespace TheTieSilincer.Support
             Console.Write("NEW GAME");
 
             Console.SetCursorPosition(46, 10);
-            Console.Write("USE SAVE");
+            Console.Write("CREDITS");
 
             Console.SetCursorPosition(47, 15);
             Console.Write("SCORES");
@@ -80,10 +80,22 @@ namespace TheTieSilincer.Support
             GameService.CreateCharacter(name);
         }
 
-        public static void LoadCharacters(int position)
+        public static void Credits()
         {
 
 
+            Console.Clear();          
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(45, 12);
+            Console.Write("Jordan Karparov");
+            Console.SetCursorPosition(45, 14);
+            Console.Write("Valentin Parvanov");
+            Console.SetCursorPosition(45, 16);
+            Console.Write("Kristian Dimitrov");
+            Console.SetCursorPosition(45, 18);
+            Console.WriteLine("Dimitar Radkov");
+            var test = Console.ReadLine().Trim();
+    
 
         }
 
