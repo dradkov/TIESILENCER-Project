@@ -21,8 +21,17 @@ namespace TheTieSilincer.Models.Bullets
 
         public virtual void ClearBullet()
         {
-            Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X);
-            Console.WriteLine(" ");
+            if(this.PreviousPosition != null)
+            {
+                Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X);
+                Console.WriteLine(" ");
+            }
+            else
+            {
+                Console.SetCursorPosition(Position.Y, Position.X);
+                Console.WriteLine(" ");
+            }
+
         }
 
     }

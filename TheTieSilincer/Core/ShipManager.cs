@@ -82,7 +82,7 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
-            if (Ships.Count == 0)
+            if (Ships.Count == 1)
             {
                 GenerateShips();
             }

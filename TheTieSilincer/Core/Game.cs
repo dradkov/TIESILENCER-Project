@@ -14,6 +14,7 @@ namespace TheTieSilincer.Core
         private PlayerManager playerManager;
 
         private BulletCollision bulletCollision;
+        private ShipCollision shipCollision;
 
 
         public Game()
@@ -22,6 +23,7 @@ namespace TheTieSilincer.Core
             this.shipManager = new ShipManager();
             this.playerManager = new PlayerManager();
             this.bulletCollision = new BulletCollision(shipManager, playerManager);
+            this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
             this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));         
             this.satellite.ReceiveDataByPlayer(playerManager);
@@ -37,31 +39,8 @@ namespace TheTieSilincer.Core
 
         public void CheckForCollisions()
         {
-            this.bulletCollision.CheckPlayerBulletCollisions();
+            this.bulletCollision.CheckForCollisions();
         }
-
-        //   public void CheckCollisions()
-        //   {
-        //       for (int i = 0; i < this.shipManager.Ships.Count; i++)
-        //       {
-        //           var ship = this.shipManager.Ships[i];
-        //
-        //           for (int j = 0; j < this.player.Ship.Weapon.Bullets.Count; j++)
-        //           {
-        //               var bullet = this.player.Ship.Weapon.Bullets[j];
-        //               if (bullet.Position.X - 3 < ship.Position.X && bullet.Position.X + 2 >
-        //ship.Position.X && bullet.Position.Y + 4 > ship.Position.Y && bullet.Position.Y - 4 < ship.Position.Y)
-    //               {
-    //                   player.Ship.Weapon.Bullets.Remove(bullet);
-    //                   ship.ClearShip();
-    //                   shipManager.Ships.Remove(ship);
-    //
-    //
-    //                   break;
-    //               }
-    //           }
-    //       }
-    //   }
 
         public void Update()
         {

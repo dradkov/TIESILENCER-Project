@@ -13,6 +13,8 @@ namespace TheTieSilincer.Models
         public PlayerShip(List<Weapon> weapons) : base(weapons)
         {
             this.Position = new Position(Constants.WindowHeight - 8, Constants.WindowWidth / 3 + 5);
+            this.CollisionAOE = 3;
+            this.Armor = 999;
 
         }
 

@@ -10,12 +10,14 @@ namespace TheTieSilincer.Collisions
     {
         private PlayerManager playerManager;
 
+        private double distance;
+
         public BulletCollision(ShipManager shipManager , PlayerManager playerManager) : base(shipManager)
         {
             this.playerManager = playerManager;
         }
 
-        public void CheckPlayerBulletCollisions()
+        private void CheckPlayerBulletCollisions()
         {
             for (int x = 0; x < this.shipManager.Ships.Count; x++)
             {
@@ -26,7 +28,7 @@ namespace TheTieSilincer.Collisions
                     for (int y = 0; y < weapon.Bullets.Count; y++)
                     {
                         Bullet bullet = weapon.Bullets[y];
-                        double distance = Distance(bullet.Position, enemyShip.Position);
+                        distance = Distance(bullet.Position, enemyShip.Position);
 
                         if(IsHit(distance, enemyShip.CollisionAOE))
                         {
@@ -48,8 +50,33 @@ namespace TheTieSilincer.Collisions
 
         }
 
+        private void CheckEnemyBulletCollisions()
+        {
+            var playerShip = this.playerManager.Player.Ship;
 
-        public bool IsHit(double distance, int aoe)
+            foreach (var ship in this.shipManager.Ships)
+            {
+                foreach (var weapon in ship.Weapons)
+                {
+                    for (int i = 0; i < weapon.Bullets.Count; i++)
+                    {
+                        var currentBullet = weapon.Bullets[i];
+
+                        distance = Distance(currentBullet.Position, playerShip.Position);
+
+                        if (IsHit(distance, playerShip.CollisionAOE))
+                        {
+                            currentBullet.ClearBullet();
+                            weapon.Bullets.RemoveAt(i);
+                        }
+                    }
+
+                }
+            }
+        }
+
+
+        private bool IsHit(double distance, int aoe)
         {
             if(distance < aoe)
             {
@@ -62,7 +89,8 @@ namespace TheTieSilincer.Collisions
 
         public override void CheckForCollisions()
         {
-            throw new NotImplementedException();
+            CheckEnemyBulletCollisions();
+            CheckPlayerBulletCollisions();
         }
 
         public override bool Intersect()
