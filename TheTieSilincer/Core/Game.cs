@@ -58,7 +58,7 @@ namespace TheTieSilincer.Core
             this.shipManager.UpdateShips();
 
             // this.satellite.TransmitMessages();
-            satellite.TransmitMessages(playerManager, shipManager);
+            satellite.TransmitMessagesFromPlayerToShips(playerManager, shipManager);
         }
 
         public void Draw()

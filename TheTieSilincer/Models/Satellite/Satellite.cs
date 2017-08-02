@@ -49,7 +49,7 @@ public class Satellite
 
     }
 
-    public void TransmitMessages(PlayerManager playerManager, ShipManager shipManager)
+    public void TransmitMessagesFromPlayerToShips(PlayerManager playerManager, ShipManager shipManager)
     {
         if (shipManager.Ships.Count > 0)
         {
@@ -59,8 +59,21 @@ public class Satellite
 
             this.StartSendingData();
         }
-
-
     }
+
+
+    public void TransmitMessagesFromShipsToPlayer(ShipManager shipManager, PlayerManager playerManager)
+    {
+        if (shipManager.Ships.Count > 0)
+        {
+            shipManager.ListenPlayerShipCoords(this);
+
+            playerManager.Player.Ship.StartSendingData();
+
+            this.StartSendingData();
+        }
+    }
+
+
 }
 

@@ -19,6 +19,25 @@ namespace TheTieSilincer.Core
             this.AddDirections();
         }
 
+        //public void ListenEnemyShipsCoords(Satellite satellite)
+        //{
+        //    satellite.SendData2 -= EnemyShipsSendedCoords;
+        //    satellite.SendData2 += EnemyShipsSendedCoords;
+        //}
+
+        //public void EnemyShipsSendedCoords(object sender, EventArgs e)
+        //{
+        //    Position position = ((Satellite)sender).Position;
+
+        //    foreach (var ship in this.Ships)
+        //    {
+        //        if (ship.GetType() == typeof(KamikazeShip))
+        //        {
+        //            (ship as KamikazeShip).Pos = position;
+        //        }
+        //    }
+        //}
+
         private void AddDirections()
         {
             directions = new Position[]
@@ -27,7 +46,7 @@ namespace TheTieSilincer.Core
                 new Position( 0,-1), // moving left
                 new Position( 1,0), // moving down
                 new Position(-1,0), // moving up
-           
+        
            };
         }
 
@@ -109,6 +128,8 @@ namespace TheTieSilincer.Core
 
             
         }
+
+
 
 
     }
