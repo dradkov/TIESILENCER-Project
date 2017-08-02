@@ -59,8 +59,10 @@ namespace TheTieSilincer.Models
         {
             Position currPosition = this.Position;
             if (nextDirection == null) return false;
-             nextPosition = new Position
-                (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y);
+            nextPosition = new Position
+               (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y * 2);
+
+            // and do Game.SpawnObject(new Bullet() 
 
             if (nextPosition.X > Console.WindowHeight - 7 || nextPosition.Y > Console.WindowWidth - 9 ||
                 nextPosition.X < 0 || nextPosition.Y < 0)

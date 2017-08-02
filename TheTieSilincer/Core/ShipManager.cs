@@ -82,7 +82,7 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
-            if (Ships.Count == 1)
+            if (Ships.Count <= 1)
             {
                 GenerateShips();
             }
@@ -112,7 +112,7 @@ namespace TheTieSilincer.Core
 
         public void GenerateShips()
         {
-           
+            int a = 0;
             for (int i = 0; i < shipAddNumber; i++)
             {
                 EnemyShip ship = BuildEnemyShip(this.enemySh[rnd.Next(0, enemySh.Count)]);
@@ -120,11 +120,15 @@ namespace TheTieSilincer.Core
                 if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
                 {
                     i--;
+                    a++;
                 }
                 else
                 {
                     this.Ships.Add(ship);
-                }              
+                }
+
+                if (a == 50)
+                    break;
             }
        }
 

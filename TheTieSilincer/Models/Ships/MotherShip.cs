@@ -125,8 +125,6 @@ namespace TheTieSilincer.Models.Ships
                 }
             }
 
-            // MovementTime += 0.50;
-
         }
     }
 }

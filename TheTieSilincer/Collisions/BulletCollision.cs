@@ -33,18 +33,23 @@ namespace TheTieSilincer.Collisions
                         if(IsHit(distance, enemyShip.CollisionAOE))
                         {
                             this.shipManager.DecreaseArmor(enemyShip);
-                            if(!enemyShip.IsAlive())
-                            {
-                                this.shipManager.DestroyShip(enemyShip);
-                                
-                               // y--;
-                               // x--;
-                            }
-
                             bullet.ClearBullet();
                             weapon.Bullets.RemoveAt(y);
+                          //  y--;
+                                                       
                         }
                     }
+                }
+                if (!enemyShip.IsAlive())
+                {
+
+                    enemyShip.ClearShip(true); 
+
+
+                    this.shipManager.Ships.RemoveAt(x);
+
+
+                    x--;
                 }
             }
 
@@ -66,8 +71,9 @@ namespace TheTieSilincer.Collisions
 
                         if (IsHit(distance, playerShip.CollisionAOE))
                         {
-                            currentBullet.ClearBullet();
-                            weapon.Bullets.RemoveAt(i);
+                           currentBullet.ClearBullet();
+                           weapon.Bullets.RemoveAt(i);
+                           i--;
                         }
                     }
 

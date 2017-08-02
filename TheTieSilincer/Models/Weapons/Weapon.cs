@@ -9,11 +9,14 @@ namespace TheTieSilincer.Models.Weapons
         protected Weapon()
         {
             this.Bullets = new List<Bullet>();
+
         }
 
+       
         public List<Bullet> Bullets { get; protected set; }
-
-        public double MovementSpeed { get; protected set; }
+        
+        // Game.SpawnObject(new Bullet(.... 
+        public double ShootCooldown { get; protected set; }
 
         public abstract void AddBullets(int x, int y);
                  

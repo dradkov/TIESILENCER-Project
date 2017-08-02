@@ -11,6 +11,7 @@ namespace TheTieSilincer.Core
     {
         public Player Player { get; private set; }
         private int movement;
+        bool shooting;
         private Position[] directions;
         private Position nextDirection;
 
@@ -59,7 +60,7 @@ namespace TheTieSilincer.Core
         {
             this.Player.Ship.UpdateBullets();
             this.ReadPlayerInput();
-            this.Player.Ship.UpdateShip(nextDirection);       
+            this.Player.Ship.UpdateShip(nextDirection);
         }
 
         public void DrawPlayer()
@@ -71,7 +72,7 @@ namespace TheTieSilincer.Core
         public void ClearPlayer()
         {
             this.Player.Ship.ClearShip();
-            this.Player.Ship.ClearBullets();          
+            this.Player.Ship.ClearBullets();
         }
 
 
@@ -79,15 +80,10 @@ namespace TheTieSilincer.Core
         public void ReadPlayerInput()
         {
             ConsoleKeyInfo userDirection;
-
-            if (Console.KeyAvailable)
+            shooting = false;
+            while (Console.KeyAvailable)
             {
-                 userDirection = Console.ReadKey();
-
-                while (Console.KeyAvailable)
-                {
-                    Console.ReadKey(true);
-                }
+                userDirection = Console.ReadKey(true);
 
                 if (userDirection.Key == ConsoleKey.RightArrow)
                 {
@@ -105,32 +101,27 @@ namespace TheTieSilincer.Core
                 {
                     movement = 3;
                 }
-                else if (userDirection.Key == ConsoleKey.Spacebar)
+                if (userDirection.Key == ConsoleKey.Spacebar)
                 {
-                     this.Player.Ship.Weapons.ForEach(v=>v.AddBullets(this.Player.Ship.Position.X + 2,
-                         this.Player.Ship.Position.Y + 1));
-                     this.Player.Ship.Weapons.ForEach(v=>v.AddBullets(this.Player.Ship.Position.X + 2,
-                         this.Player.Ship.Position.Y + 7));
+                    shooting = true;
 
                     nextDirection = null;
-
-                    return;
                 }
 
-               // if (userDirection.Key == ConsoleKey.RightArrow || userDirection.Key == ConsoleKey.DownArrow
-               //     || userDirection.Key == ConsoleKey.UpArrow || userDirection.Key == ConsoleKey.LeftArrow)
-               // {
-                   nextDirection = directions[movement];
-                 // this.Player.Ship.InBounds(nextDirection);
-               // }
+                nextDirection = directions[movement];
+
+            }
+
+            if (shooting)
+            {
+                this.Player.Ship.Weapons.ForEach(v => v.AddBullets(this.Player.Ship.Position.X + 2,
+                    this.Player.Ship.Position.Y + 1));
+                this.Player.Ship.Weapons.ForEach(v => v.AddBullets(this.Player.Ship.Position.X + 2,
+                    this.Player.Ship.Position.Y + 7));
             }
 
 
-            
         }
-
-
-
 
     }
 }

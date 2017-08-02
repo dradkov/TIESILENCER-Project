@@ -25,7 +25,7 @@ namespace TheTieSilincer.Core
             this.bulletCollision = new BulletCollision(shipManager, playerManager);
             this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
-            this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));         
+            this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));
             this.satellite.ReceiveDataByPlayer(playerManager);
         }
 
@@ -67,8 +67,6 @@ namespace TheTieSilincer.Core
             Console.BufferHeight = Console.WindowHeight;
 
             this.playerManager.DrawPlayer();
-        }      
+        }
     }
 }
-
-

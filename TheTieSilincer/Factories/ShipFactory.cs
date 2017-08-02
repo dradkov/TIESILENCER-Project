@@ -18,7 +18,6 @@ namespace TheTieSilincer.Factories
         }
         public EnemyShip CreateEnemyShip(Type typeOfShip, List<Weapon> weapons)
         {
-           // Type typeOfShip = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(v => v.Name == type);
 
             EnemyShip ship = (EnemyShip)Activator.CreateInstance(typeOfShip, weapons);
 
@@ -41,10 +40,10 @@ namespace TheTieSilincer.Factories
 
         private Position GenerateRandomShipPosition()
         {
-            int x = 0;
-            int y = this.rndGen.Next(5, Console.WindowHeight - 1);
+            int y = 0;
+            int x = this.rndGen.Next(5, Console.WindowWidth - 20); 
 
-            Position pos = new Position(x, y);
+            Position pos = new Position(y, x);
 
             return pos;
         }

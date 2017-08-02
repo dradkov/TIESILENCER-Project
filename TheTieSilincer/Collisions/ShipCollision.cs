@@ -13,7 +13,7 @@ namespace TheTieSilincer.Collisions
         {
             throw new NotImplementedException();
         }
-
+        // sup let see
         public override bool Intersect()
         {
             throw new NotImplementedException();
