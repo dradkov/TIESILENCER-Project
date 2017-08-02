@@ -10,19 +10,22 @@ namespace TheTieSilincer.Core
 
     public class Engine
     {
-        private Game game;
         private bool GameOver = false;
         public static int currentPossition = 0;
 
         public Engine()
         {
-            game = new Game();
+            Game.Init();// yo i am back i smoke a cig show hacks, you have 2 pcs?
+            // mAd? should I do a BulletFactory => Game.BulletFactory.CreateBullet(?)?:X why? is it so hard?
+            // what do u mean? i am asking if it s right to do it, and will i save the bullets i add??? if there is not a list of them
+            // u suggested to remove List<Bullet> from ship classes
+            // no, just Game.AddObject()
         }
 
 
         public void Run()
         {
-            game.InitialiseSettings();
+            Game.InitialiseSettings();
             ShowWelcomeScreen();
             ScreenSelection(currentPossition);
             Console.Clear();
@@ -35,10 +38,10 @@ namespace TheTieSilincer.Core
             while (!GameOver)
             {
 
-                game.Clear();
-                game.CheckForCollisions();
-                game.Draw();
-                game.Update();
+                Game.Clear();
+                Game.CheckForCollisions();
+                Game.Draw();
+                Game.Update();
 
                 Thread.Sleep(100);
 
