@@ -22,7 +22,7 @@ namespace TheTieSilincer.Core
 
         private List<string> enemySh;
 
-        private int shipAddNumber = 15;
+        private int shipAddNumber = 3;
 
         private double spawnTime;
 
@@ -116,11 +116,11 @@ namespace TheTieSilincer.Core
             {
                 EnemyShip ship = BuildEnemyShip(this.enemySh[rnd.Next(0, enemySh.Count)]);
                
-               // if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
+                if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
                 {
-                 //   i--;
+                    i--;
                 }
-                //else
+                else
                 {
                     this.Ships.Add(ship);
                 }              
@@ -179,7 +179,7 @@ namespace TheTieSilincer.Core
 
         public bool CheckForOverlappingCoords(int x, int y)
         {
-            int overlap = 17;
+            int overlap = 7;
 
             if(Ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
             {
