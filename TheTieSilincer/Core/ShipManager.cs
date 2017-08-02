@@ -48,8 +48,8 @@ namespace TheTieSilincer.Core
 
         public void ListenPlayerShipCoords(Satellite satellite)
         {
-            satellite.SendData2 -= PlayerShipSendCoords;
-            satellite.SendData2 += PlayerShipSendCoords;
+            satellite.SendData -= PlayerShipSendCoords;
+            satellite.SendData += PlayerShipSendCoords;
         }
 
         public void PlayerShipSendCoords(object sender, EventArgs e)

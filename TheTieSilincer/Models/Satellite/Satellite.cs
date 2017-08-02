@@ -19,10 +19,10 @@ public class Satellite
          this.ShipManager = shipManager;
     }
 
-public event EventHandler SendData2;
+public event EventHandler SendData;
     public void StartSendingData()
     {
-        this.SendData2(this, EventArgs.Empty);
+        this.SendData(this, EventArgs.Empty);
     }
 
    
@@ -54,9 +54,9 @@ public event EventHandler SendData2;
 
     public void ReceiveDataByPlayer(PlayerManager playerManager)
     {
-        playerManager.Player.Ship.SendData -= PlayerShipSendCoords;
+        playerManager.SendData -= PlayerShipSendCoords;
 
-        playerManager.Player.Ship.SendData += PlayerShipSendCoords;
+        playerManager.SendData += PlayerShipSendCoords;
     }
 
     public void PlayerShipSendCoords(object sender, EventArgs e)
@@ -84,7 +84,7 @@ public event EventHandler SendData2;
         {
             shipManager.ListenPlayerShipCoords(this);
 
-            playerManager.Player.Ship.StartSendingData();
+            playerManager.StartSendingData();
 
             this.StartSendingData();
         }
@@ -95,7 +95,7 @@ public event EventHandler SendData2;
     {
         if (shipManager.Ships.Count > 0)
         {
-            playerManager.Player.Ship.ListenEnemyShipsCoords(this);
+            playerManager.ListenEnemyShipsCoords(this);
 
             shipManager.StartSendingDataFromEnemyShips();
 
