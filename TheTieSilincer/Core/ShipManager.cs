@@ -68,7 +68,11 @@ namespace TheTieSilincer.Core
         public event EventHandler SendData;
         public void StartSendingDataFromEnemyShips()
         {
-            this.SendData(this, EventArgs.Empty);
+            if(SendData != null)
+            {
+                this.SendData(this, EventArgs.Empty);
+            }
+            
         }
 
         public void UpdateShips()

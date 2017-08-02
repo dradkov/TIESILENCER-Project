@@ -8,61 +8,74 @@ namespace TheTieSilincer.Core
 
     public class Game
     {
-        private Satellite satellite;
+        static private Satellite satellite;
 
-        private ShipManager shipManager;
-        private PlayerManager playerManager;
+        static private ShipManager shipManager;
+        static private PlayerManager playerManager;
 
-        private BulletCollision bulletCollision;
-        private ShipCollision shipCollision;
+        static private BulletCollision bulletCollision;
+        static private ShipCollision shipCollision;
 
-
-        public Game()
+        static public void Init()
         {
-             
-            this.shipManager = new ShipManager();
-            this.playerManager = new PlayerManager();
-            this.bulletCollision = new BulletCollision(shipManager, playerManager);
-            this.shipCollision = new ShipCollision(shipManager);
-            this.shipManager.GenerateShips();
-            this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));
+
+            shipManager = new ShipManager();
+            playerManager = new PlayerManager();
+            bulletCollision = new BulletCollision(shipManager, playerManager);
+            shipCollision = new ShipCollision(shipManager);
+            shipManager.GenerateShips();
+            playerManager.CreatePlayer(shipManager.BuildPlayerShip("PlayerShip"));
             
 
-            this.satellite = new Satellite(playerManager, shipManager);
-            this.satellite.ReceiveDataByPlayer(playerManager);
-            this.satellite.ReceiveDataFromShips(shipManager);
+            satellite = new Satellite(playerManager, shipManager);
+            satellite.ReceiveDataByPlayer(playerManager);
+            satellite.ReceiveDataFromShips(shipManager);
+
+            satellite = new Satellite(playerManager, shipManager);
+            shipManager = new ShipManager();
+            playerManager = new PlayerManager();
+            bulletCollision = new BulletCollision(shipManager, playerManager);
+            shipCollision = new ShipCollision(shipManager);
+            shipManager.GenerateShips();
+            playerManager.CreatePlayer(shipManager.BuildPlayerShip("PlayerShip"));
+            satellite.ReceiveDataByPlayer(playerManager);
+
         }
 
 
 
-        public void Clear()
+        static public void Clear()
         {
-            this.playerManager.ClearPlayer();
-            this.shipManager.ClearShips();
+            playerManager.ClearPlayer();
+            shipManager.ClearShips();
         }
 
-        public void CheckForCollisions()
+        static public void CheckForCollisions()
         {
-            this.bulletCollision.CheckForCollisions();
+            bulletCollision.CheckForCollisions();
         }
 
-        public void Update()
+        static public void Update()
         {
-            this.playerManager.UpdatePlayer();
-            this.shipManager.UpdateShips();
+            playerManager.UpdatePlayer();
+            shipManager.UpdateShips();
 
-          
+
+            // satellite.TransmitMessages();
+
+            // satellite.TransmitMessages();
+
             satellite.TransmitMessagesFromPlayerToShips(playerManager, shipManager);
             satellite.TransmitMessagesFromShipsToPlayer(shipManager, playerManager);
         }
 
-        public void Draw()
+        static public void Draw()
         {
-            this.playerManager.DrawPlayer();
-            this.shipManager.DrawShips();
+            playerManager.DrawPlayer();
+            shipManager.DrawShips();
         }
 
-        public void InitialiseSettings()
+        static public void InitialiseSettings()
         {
             Console.Clear();
             Console.CursorVisible = false;
@@ -71,7 +84,7 @@ namespace TheTieSilincer.Core
             Console.BufferWidth = Console.WindowWidth;
             Console.BufferHeight = Console.WindowHeight;
 
-            this.playerManager.DrawPlayer();
+            playerManager.DrawPlayer();
         }
     }
 }
