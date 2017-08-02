@@ -18,32 +18,24 @@ namespace TheTieSilincer.Models.Ships
 
         }
 
-        public void ListenPlayerShipCoords(Satellite satellite)
-        {
-            satellite.SendData2 -= PlayerShipSendCoords;
-            satellite.SendData2 += PlayerShipSendCoords;
-        }
-        //public void ListenPlayerShipCoords(PlayerShip satellite)
-        //{
-        //    satellite.SendData -= PlayerShipSendCoords;
-        //    satellite.SendData += PlayerShipSendCoords;
-        //}
-        public  void PlayerShipSendCoords(object sender, EventArgs e)
-        {
-            var position = ((Satellite)sender).Position;
-
-            if (position.Y != this.Position.Y)
-            {
-
-                this.pos = position;
-
-            }
-        }
+         
 
         private Position pos = null;
         
         private double movementTime = 0;
 
+        public Position Pos
+        {
+            get
+            {
+                return pos;
+            }
+
+            set
+            {
+                pos = value;
+            }
+        }
 
         public override void ClearShip()
         {
@@ -87,14 +79,14 @@ namespace TheTieSilincer.Models.Ships
 
                 this.Position.X++;
 
-                if (this.pos != null)
+                if (this.Pos != null)
                 {
-                    if (this.pos.Y < this.Position.Y)
+                    if (this.Pos.Y < this.Position.Y)
                     {
                         this.Position.Y--;
                     }
 
-                    if (this.pos.Y > this.Position.Y)
+                    if (this.Pos.Y > this.Position.Y)
                     {
                         this.Position.Y++;
                     }

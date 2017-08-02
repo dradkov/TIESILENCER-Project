@@ -22,7 +22,7 @@ namespace TheTieSilincer.Core
 
         private List<string> enemySh;
 
-        private int shipAddNumber = 2;
+        private int shipAddNumber = 15;
 
         private double spawnTime;
 
@@ -47,6 +47,26 @@ namespace TheTieSilincer.Core
                 
             
   
+        }
+
+
+        public void ListenPlayerShipCoords(Satellite satellite)
+        {
+            satellite.SendData2 -= PlayerShipSendCoords;
+            satellite.SendData2 += PlayerShipSendCoords;
+        }
+
+        public void PlayerShipSendCoords(object sender, EventArgs e)
+        {
+            Position position = ((Satellite)sender).Position;
+
+            foreach (var ship in this.Ships)
+            {
+                if (ship.GetType() == typeof(KamikazeShip))
+                {
+                    (ship as KamikazeShip).Pos = position;
+                }
+            }
         }
 
         public void UpdateShips()
@@ -96,11 +116,11 @@ namespace TheTieSilincer.Core
             {
                 EnemyShip ship = BuildEnemyShip(this.enemySh[rnd.Next(0, enemySh.Count)]);
                
-                if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
+               // if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
                 {
-                    i--;
+                 //   i--;
                 }
-                else
+                //else
                 {
                     this.Ships.Add(ship);
                 }              

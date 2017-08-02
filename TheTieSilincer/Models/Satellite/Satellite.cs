@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using TheTieSilincer.Core;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
 
 public class Satellite
 {
-    private PlayerManager playerManager;
-    private ShipManager shipManager;
 
-    public Satellite(PlayerManager playerManager, ShipManager shipManager)
+    public Satellite()
     {
-        this.playerManager = playerManager;
-        this.shipManager = shipManager;
-        this.position = new Position(0,0);
+        this.position = new Position(0, 0);
     }
     public event EventHandler SendData2;
-
     public void StartSendingData()
     {
         this.SendData2(this, EventArgs.Empty);
@@ -40,34 +36,31 @@ public class Satellite
         }
     }
 
-    public void ReceiveDataByPlayer()
+    public void ReceiveDataByPlayer(PlayerManager playerManager)
     {
-        this.playerManager.Player.Ship.SendData -= PlayerShipSendCoords;
+        playerManager.Player.Ship.SendData -= PlayerShipSendCoords;
 
-        this.playerManager.Player.Ship.SendData += PlayerShipSendCoords;
+        playerManager.Player.Ship.SendData += PlayerShipSendCoords;
     }
 
     public void PlayerShipSendCoords(object sender, EventArgs e)
     {
         this.position = ((PlayerShip)sender).Position;
 
-       // this.StartSendingData();
     }
 
-    public void TransmitMessages()
+    public void TransmitMessages(PlayerManager playerManager, ShipManager shipManager)
     {
         if (shipManager.Ships.Count > 0)
         {
-            foreach (var ship in this.shipManager.Ships)
-            {
-                if (ship.GetType() == typeof(KamikazeShip))
-                    (ship as KamikazeShip).ListenPlayerShipCoords(this);
-            }
+            shipManager.ListenPlayerShipCoords(this);
 
-            this.playerManager.Player.Ship.StartSendingData();
-            StartSendingData();
+            playerManager.Player.Ship.StartSendingData();
 
+            this.StartSendingData();
         }
+
+
     }
 }
 
