@@ -54,8 +54,8 @@ namespace TheTieSilincer.Core
                     WelcomeMenu.CreateNewPlayer();
                     break;
 
-                case 1://LOAD CHARACTER SCREEN
-                    WelcomeMenu.LoadCharacters(0);
+                case 1://Credits SCREEN
+                    WelcomeMenu.Credits();
                     break;
 
                 case 2://HIGHSCORES SCREEN
