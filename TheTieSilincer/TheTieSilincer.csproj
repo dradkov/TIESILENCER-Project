@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collisions\BulletCollision.cs" />
+    <Compile Include="Collisions\Collision.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\PlayerManager.cs" />

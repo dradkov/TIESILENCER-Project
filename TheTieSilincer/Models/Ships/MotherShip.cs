@@ -21,11 +21,13 @@ namespace TheTieSilincer.Models.Ships
         public MotherShip(List<Weapon> weapons) : base(weapons)
         {
             this.Position = new Position(0, Console.WindowWidth / 3 + 2);
+            this.CollisionAOE = 7;
+            this.Armor = 25;
 
         }
 
 
-        public override void ClearShip()
+        public override void ClearShip(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -39,7 +41,18 @@ namespace TheTieSilincer.Models.Ships
                 Console.WriteLine("  ");
             }
 
-           // this.Weapon.ClearBullets();
+            if (destroyed)
+            {
+                Console.SetCursorPosition(this.Position.Y, this.Position.X);
+                Console.WriteLine("          ");
+                Console.SetCursorPosition(this.Position.Y - 2, this.Position.X + 1);
+                Console.WriteLine(@"              ");
+                Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 2);
+                Console.WriteLine(@"        ");
+                Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
+                Console.WriteLine("  ");
+            }
+
         }
 
         public override void DrawShip()
@@ -53,8 +66,6 @@ namespace TheTieSilincer.Models.Ships
             Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
             Console.WriteLine("WW");
 
-           // this.GenerateBullets();
-           // this.Weapon.DrawBullets();
         }
 
         public override void GenerateBullets()
@@ -115,8 +126,6 @@ namespace TheTieSilincer.Models.Ships
             }
 
             // MovementTime += 0.50;
-
-           // this.Weapon.UpdateBullets();
 
         }
     }

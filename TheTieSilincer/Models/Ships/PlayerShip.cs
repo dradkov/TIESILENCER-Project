@@ -22,7 +22,7 @@ namespace TheTieSilincer.Models
             this.SendData(this, EventArgs.Empty);
 
         }
-        public override void ClearShip()
+        public override void ClearShip(bool destroyed = false)
         {
             if (PreviousPosition != null)
             {

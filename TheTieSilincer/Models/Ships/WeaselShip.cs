@@ -12,10 +12,10 @@ namespace TheTieSilincer.Models.Ships
 
         public WeaselShip(List<Weapon> weapons) : base(weapons)
         {
-
+            this.CollisionAOE = 5;
         }
 
-        public override void ClearShip()
+        public override void ClearShip(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -23,6 +23,14 @@ namespace TheTieSilincer.Models.Ships
                 Console.WriteLine(@"       ");
                 Console.SetCursorPosition(this.PreviousPosition.Y + 3, this.PreviousPosition.X + 1);
                 Console.WriteLine(" ");                
+            }
+
+            if(destroyed)
+            {
+                Console.SetCursorPosition(this.Position.Y, this.Position.X);
+                Console.WriteLine(@"       ");
+                Console.SetCursorPosition(this.Position.Y + 3, this.Position.X + 1);
+                Console.WriteLine(" ");
             }
         }
 

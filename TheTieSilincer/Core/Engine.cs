@@ -36,7 +36,7 @@ namespace TheTieSilincer.Core
             {
 
                 game.Clear();
-                //game.CheckCollisions();
+                game.CheckForCollisions();
                 game.Draw();
                 game.Update();
 

@@ -10,7 +10,7 @@ namespace TheTieSilincer.Models.Ships
         //    V
         public KamikazeShip(List<Weapon> weapons) : base(weapons)
         {
-            
+            this.CollisionAOE = 3;
         }
 
         public KamikazeShip() : base() 
@@ -37,7 +37,7 @@ namespace TheTieSilincer.Models.Ships
             }
         }
 
-        public override void ClearShip()
+        public override void ClearShip(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -46,16 +46,14 @@ namespace TheTieSilincer.Models.Ships
                 Console.Write(@"    ");
                 Console.SetCursorPosition(this.PreviousPosition.Y + 1, this.PreviousPosition.X + 1);
                 Console.Write(@" ");
+            }
 
-
-
+            if(destroyed)
+            {
                 Console.SetCursorPosition(this.Position.Y, this.Position.X);
                 Console.Write(@"    ");
                 Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 1);
                 Console.Write(@" ");
-
-                
-
             }
         }
 

@@ -19,7 +19,9 @@ namespace TheTieSilincer.Models
 
         public Position PreviousPosition { get; protected set; }
 
-        public int Health { get; set; }
+        public int Armor { get; set; }
+
+        public int CollisionAOE { get; protected set; }
 
         public void SetPosition(Position pos)
         {
@@ -33,12 +35,21 @@ namespace TheTieSilincer.Models
 
         public void ClearBullets() => this.Weapons.ForEach(v=>v.ClearBullets());
 
+        public virtual bool IsAlive()
+        {
+            if(this.Armor > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public abstract void UpdateShip(Position nextDirection = null);
 
         public abstract void DrawShip();
 
-        public abstract void ClearShip();
+        public abstract void ClearShip(bool destroyed = false);
 
         public abstract bool InBounds(Position nextDirection = null);
     }

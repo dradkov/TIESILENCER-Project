@@ -24,7 +24,7 @@ namespace TheTieSilincer.Core
 
         private int shipAddNumber = 3;
 
-        private double spawnTime;
+        private double spawnTimeInterval;
 
         private Random rnd;
 
@@ -76,6 +76,8 @@ namespace TheTieSilincer.Core
                 ship.UpdateShip();
                 ship.Weapons.ForEach(a => a.UpdateBullets());
             }
+
+            SpawnMotherShip();
         }
 
         public void DrawShips()
@@ -110,8 +112,7 @@ namespace TheTieSilincer.Core
 
         public void GenerateShips()
         {
-            spawnTime += 0.20;
-
+           
             for (int i = 0; i < shipAddNumber; i++)
             {
                 EnemyShip ship = BuildEnemyShip(this.enemySh[rnd.Next(0, enemySh.Count)]);
@@ -125,13 +126,7 @@ namespace TheTieSilincer.Core
                     this.Ships.Add(ship);
                 }              
             }
-
-            if(spawnTime % 2 == 0)
-            {
-                this.Ships.Add(BuildEnemyShip("MotherShip"));
-            }
-
-        }
+       }
 
         public EnemyShip BuildEnemyShip(string shipType)
         {
@@ -189,5 +184,33 @@ namespace TheTieSilincer.Core
 
             return false;
         }
+
+        public void DestroyShip(EnemyShip ship)
+        {
+            ship.ClearShip(true);
+            this.Ships.Remove(ship);
+        }
+
+        private void SpawnMotherShip()
+        {
+            
+            if(!Ships.Any(v=> v.GetType().Name == "MotherShip"))
+            {
+                if (spawnTimeInterval == 50)
+                {
+                    this.Ships.Add(BuildEnemyShip("MotherShip"));
+                    spawnTimeInterval = 0;
+                }
+            }
+
+            spawnTimeInterval++;
+        }
+
+        public void DecreaseArmor(EnemyShip ship)
+        {
+            ship.Armor--;
+        }
+
+
     }
 }

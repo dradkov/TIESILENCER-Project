@@ -3,22 +3,27 @@ using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Core
 {
+    using TheTieSilincer.Collisions;
     using TheTieSilincer.Models.Ships;
 
     public class Game
     {
         private Satellite satellite;
+
         private ShipManager shipManager;
         private PlayerManager playerManager;
+
+        private BulletCollision bulletCollision;
 
 
         public Game()
         {
+            this.satellite = new Satellite();
             this.shipManager = new ShipManager();
             this.playerManager = new PlayerManager();
+            this.bulletCollision = new BulletCollision(shipManager, playerManager);
             this.shipManager.GenerateShips();
-            this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));
-            this.satellite = new Satellite();
+            this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));         
             this.satellite.ReceiveDataByPlayer(playerManager);
         }
 
@@ -30,16 +35,22 @@ namespace TheTieSilincer.Core
             this.shipManager.ClearShips();
         }
 
-    //   public void CheckCollisions()
-    //   {
-    //       for (int i = 0; i < this.shipManager.Ships.Count; i++)
-    //       {
-    //           var ship = this.shipManager.Ships[i];
-    //
-    //           for (int j = 0; j < this.player.Ship.Weapon.Bullets.Count; j++)
-    //           {
-    //               var bullet = this.player.Ship.Weapon.Bullets[j];
-    //               if (bullet.Position.X - 3 < ship.Position.X && bullet.Position.X + 2 > ship.Position.X && bullet.Position.Y + 4 > ship.Position.Y && bullet.Position.Y - 4 < ship.Position.Y)
+        public void CheckForCollisions()
+        {
+            this.bulletCollision.CheckPlayerBulletCollisions();
+        }
+
+        //   public void CheckCollisions()
+        //   {
+        //       for (int i = 0; i < this.shipManager.Ships.Count; i++)
+        //       {
+        //           var ship = this.shipManager.Ships[i];
+        //
+        //           for (int j = 0; j < this.player.Ship.Weapon.Bullets.Count; j++)
+        //           {
+        //               var bullet = this.player.Ship.Weapon.Bullets[j];
+        //               if (bullet.Position.X - 3 < ship.Position.X && bullet.Position.X + 2 >
+        //ship.Position.X && bullet.Position.Y + 4 > ship.Position.Y && bullet.Position.Y - 4 < ship.Position.Y)
     //               {
     //                   player.Ship.Weapon.Bullets.Remove(bullet);
     //                   ship.ClearShip();
