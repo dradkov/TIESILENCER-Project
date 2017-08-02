@@ -1,8 +1,15 @@
-﻿namespace TheTieSilincer.Models.Ships
+﻿using System.Collections.Generic;
+using TheTieSilincer.Models.Weapons;
+
+namespace TheTieSilincer.Models.Ships
 {
     public abstract class EnemyShip : Ship
     {
-        protected EnemyShip()
+        public EnemyShip()
+        {
+        }
+
+        protected EnemyShip(List<Weapon> weapons) : base(weapons)
         {       
 
         }

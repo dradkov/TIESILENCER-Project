@@ -4,6 +4,7 @@
     {
         PlayerShip,
         MotherShip,
-        WeaselShip
+        WeaselShip,
+        KamikazeShip
     }
 }

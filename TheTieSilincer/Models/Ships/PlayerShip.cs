@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using TheTieSilincer.Enums;
 using TheTieSilincer.Models.Weapons;
+using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Models
 {
     public class PlayerShip : Ship
     {
-        public PlayerShip()
+        private Position nextPosition;
+
+        public PlayerShip(List<Weapon> weapons) : base(weapons)
         {
-            this.Weapon = new PlayerWeapon();
-            this.Position = new Position(Console.WindowHeight - 8, Console.WindowWidth / 3 + 5);
+            this.Position = new Position(Constants.WindowHeight - 8, Constants.WindowWidth / 3 + 5);
+
         }
 
         public event EventHandler SendData;
@@ -51,8 +56,8 @@ namespace TheTieSilincer.Models
         public override bool InBounds(Position nextDirection)
         {
             Position currPosition = this.Position;
-
-            var nextPosition = new Position
+            if (nextDirection == null) return false;
+             nextPosition = new Position
                 (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y);
 
             if (nextPosition.X > Console.WindowHeight - 7 || nextPosition.Y > Console.WindowWidth - 9 ||
@@ -60,39 +65,19 @@ namespace TheTieSilincer.Models
             {
                 return false;
             }
-
-            this.PreviousPosition = this.Position;
-            this.Position = nextPosition;
-
+            
             return true;
         }
 
-        public void DrawBullets()
+
+        public override void UpdateShip(Position nextDirection)
         {
-            this.Weapon.DrawBullets();
+            if(InBounds(nextDirection))
+            {
+                this.PreviousPosition = this.Position;
+                this.Position = nextPosition;
+            }
         }
 
-        public void UpdateBullets()
-        {
-            this.Weapon.UpdateBullets();
-        }
-
-        public void ClearBullets()
-        {
-            this.Weapon.ClearBullets();
-        }
-
-        private bool CheckBulletPosition(int i)
-        {
-            //  return !(Bullets[i].Position.X >= Console.BufferHeight || Bullets[i].Position.Y >= Console.BufferHeight
-            //  || Bullets[i].Position.X < 0 || Bullets[i].Position.Y < 0);
-
-            return false;
-        }
-
-        public override void UpdateShip()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

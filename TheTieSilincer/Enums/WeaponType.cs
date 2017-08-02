@@ -1,6 +1,9 @@
 ﻿namespace TheTieSilincer.Enums
 {
-    public class WeaponType
+    public enum WeaponType
     {
+        MotherShipWeapon,
+        WeaselWeapon,
+        PlayerWeapon
     }
 }

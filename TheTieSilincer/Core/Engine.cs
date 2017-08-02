@@ -18,7 +18,7 @@ namespace TheTieSilincer.Core
         {
             game = new Game();
         }
-        
+
 
         public void Run()
         {
@@ -26,25 +26,24 @@ namespace TheTieSilincer.Core
             ShowWelcomeScreen();
             ScreenSelection(currentPossition);
             Console.Clear();
-           // TheTieSilincerContext context = new TheTieSilincerContext();
+            // TheTieSilincerContext context = new TheTieSilincerContext();
             //context.Database.Initialize(true);
             //PlayerDb textPlayer = new PlayerDb("ASDA", "AASA");
             //context.PlayerDbs.Add(textPlayer);
             //context.SaveChanges();
-            
+
             while (!GameOver)
             {
 
                 game.Clear();
-                game.CheckCollisions();
+                //game.CheckCollisions();
                 game.Draw();
                 game.Update();
-                 
-                //Field.LevelBuild();
-                 Thread.Sleep(100);
-              
+
+                Thread.Sleep(100);
+
             }
-            
+
         }
         private static void ScreenSelection(int currentPossition)
         {
@@ -97,7 +96,7 @@ namespace TheTieSilincer.Core
                 else if (pressedKey.Key == ConsoleKey.Enter)
                 {
                     isSelecting = false;
-                
+
                 }
 
 

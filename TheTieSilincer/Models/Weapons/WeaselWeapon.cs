@@ -6,11 +6,11 @@ namespace TheTieSilincer.Models.Weapons
     {
         public override void AddBullets(int x, int y)
         {
-            if (BulletTime % 2 == 0)
+            if (MovementSpeed % 2 == 0)
             {
                 this.Bullets.Add(new WeaselBullet(x, y));
             }
-            BulletTime += 0.25;
+            MovementSpeed += 0.25;
         }
     }
 }

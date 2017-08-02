@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
+using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Factories
 {
@@ -14,11 +16,11 @@ namespace TheTieSilincer.Factories
         {
             this.rndGen = new Random();
         }
-        public EnemyShip CreateShip(string type)
+        public EnemyShip CreateEnemyShip(Type typeOfShip, List<Weapon> weapons)
         {
-            Type typeOfShip = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(v => v.Name == type);
+           // Type typeOfShip = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(v => v.Name == type);
 
-            EnemyShip ship = (EnemyShip)Activator.CreateInstance(typeOfShip);
+            EnemyShip ship = (EnemyShip)Activator.CreateInstance(typeOfShip, weapons);
 
             if(ship.Position == null)
             {
@@ -27,6 +29,15 @@ namespace TheTieSilincer.Factories
            
             return ship;
         }
+
+        public PlayerShip CreatePlayerShip(Type typeOfShip, List<Weapon> weapons)
+        {
+
+            PlayerShip ship = (PlayerShip)Activator.CreateInstance(typeOfShip, weapons);
+
+            return ship;
+        }
+
 
         private Position GenerateRandomShipPosition()
         {

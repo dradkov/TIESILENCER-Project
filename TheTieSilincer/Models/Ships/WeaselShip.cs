@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models.Ships
@@ -7,11 +9,10 @@ namespace TheTieSilincer.Models.Ships
     {
         // \(|X|)/
         //    V
-       // private double movementTime = 0;
 
-        public WeaselShip()
+        public WeaselShip(List<Weapon> weapons) : base(weapons)
         {
-            this.Weapon = new WeaselWeapon();
+
         }
 
         public override void ClearShip()
@@ -23,8 +24,6 @@ namespace TheTieSilincer.Models.Ships
                 Console.SetCursorPosition(this.PreviousPosition.Y + 3, this.PreviousPosition.X + 1);
                 Console.WriteLine(" ");                
             }
-
-            this.Weapon.ClearBullets();
         }
 
         public override void DrawShip()
@@ -33,14 +32,10 @@ namespace TheTieSilincer.Models.Ships
             Console.WriteLine(@"\(|X|)/");
             Console.SetCursorPosition(this.Position.Y+3, this.Position.X+1);
             Console.WriteLine("V");
-
-            GenerateBullets();
-            this.Weapon.DrawBullets();
         }
 
-        public override void UpdateShip()
+        public override void UpdateShip(Position nextDirection)
         {
-            this.Weapon.UpdateBullets();
 
             if(this.MovementTime % 2 == 0)
             {
@@ -63,7 +58,8 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            this.Weapon.AddBullets(this.Position.X + 2, this.Position.Y + 3);
+            Weapon w = Weapons.First();
+            w.AddBullets(this.Position.X + 2, this.Position.Y + 3);
         }
     }
 }

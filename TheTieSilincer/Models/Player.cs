@@ -6,9 +6,9 @@ namespace TheTieSilincer.Models
 {
     public class Player
     {
-        public Player()
+        public Player(PlayerShip ship)
         {
-            this.Ship = new PlayerShip();
+            this.Ship = ship;
         }
 
         public PlayerShip Ship { get; private set; }

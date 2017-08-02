@@ -18,11 +18,12 @@ namespace TheTieSilincer.Models.Ships
         private bool goLeft = false;
         private int yInterval = 17;
 
-        public MotherShip()
+        public MotherShip(List<Weapon> weapons) : base(weapons)
         {
             this.Position = new Position(0, Console.WindowWidth / 3 + 2);
-            this.Weapon = new MSWeapon();
+
         }
+
 
         public override void ClearShip()
         {
@@ -38,7 +39,7 @@ namespace TheTieSilincer.Models.Ships
                 Console.WriteLine("  ");
             }
 
-            this.Weapon.ClearBullets();
+           // this.Weapon.ClearBullets();
         }
 
         public override void DrawShip()
@@ -52,18 +53,18 @@ namespace TheTieSilincer.Models.Ships
             Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
             Console.WriteLine("WW");
 
-            this.GenerateBullets();
-            this.Weapon.DrawBullets();
+           // this.GenerateBullets();
+           // this.Weapon.DrawBullets();
         }
 
         public override void GenerateBullets()
         {
             if(yInterval == 17 || yInterval == 27)
             {
-                this.Weapon.AddBullets(this.Position.X + 2, this.Position.Y - 1);
-                this.Weapon.AddBullets(this.Position.X + 2, this.Position.Y + 10);
-                this.Weapon.AddBullets(this.Position.X + 3, this.Position.Y + 2);
-                this.Weapon.AddBullets(this.Position.X + 3, this.Position.Y + 7);
+                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
+                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
+                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 3, this.Position.Y + 2));
+                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 7));
             }
 
         }
@@ -79,7 +80,7 @@ namespace TheTieSilincer.Models.Ships
             return false;
         }
 
-        public override void UpdateShip()
+        public override void UpdateShip(Position nextDirection)
         {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             if(MovementTime % 2 == 0)
@@ -115,7 +116,7 @@ namespace TheTieSilincer.Models.Ships
 
             // MovementTime += 0.50;
 
-            this.Weapon.UpdateBullets();
+           // this.Weapon.UpdateBullets();
 
         }
     }

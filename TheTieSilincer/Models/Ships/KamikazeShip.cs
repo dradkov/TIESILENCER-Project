@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models.Ships
@@ -7,6 +8,15 @@ namespace TheTieSilincer.Models.Ships
     {
         //   \^/
         //    V
+        public KamikazeShip(List<Weapon> weapons) : base(weapons)
+        {
+            
+        }
+
+        public KamikazeShip() : base() 
+        {
+
+        }
 
         public void ListenPlayerShipCoords(Satellite satellite)
         {
@@ -34,7 +44,6 @@ namespace TheTieSilincer.Models.Ships
         
         private double movementTime = 0;
 
-         
 
         public override void ClearShip()
         {
@@ -68,7 +77,7 @@ namespace TheTieSilincer.Models.Ships
              
         }
 
-        public override void UpdateShip()
+        public override void UpdateShip(Position nextDirection)
         {
              
 
@@ -111,7 +120,7 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TheTieSilincer.Core;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
 
 public class Satellite
 {
+    private PlayerManager playerManager;
+    private ShipManager shipManager;
 
-    public Satellite()
+    public Satellite(PlayerManager playerManager, ShipManager shipManager)
     {
+        this.playerManager = playerManager;
+        this.shipManager = shipManager;
         this.position = new Position(0,0);
     }
     public event EventHandler SendData2;
+
     public void StartSendingData()
     {
         this.SendData2(this, EventArgs.Empty);
@@ -35,11 +40,11 @@ public class Satellite
         }
     }
 
-    public void ReceiveDataByPlayer(PlayerShip playerShip)
+    public void ReceiveDataByPlayer()
     {
-        playerShip.SendData -= PlayerShipSendCoords;
+        this.playerManager.Player.Ship.SendData -= PlayerShipSendCoords;
 
-        playerShip.SendData += PlayerShipSendCoords;
+        this.playerManager.Player.Ship.SendData += PlayerShipSendCoords;
     }
 
     public void PlayerShipSendCoords(object sender, EventArgs e)
@@ -47,6 +52,22 @@ public class Satellite
         this.position = ((PlayerShip)sender).Position;
 
        // this.StartSendingData();
+    }
+
+    public void TransmitMessages()
+    {
+        if (shipManager.Ships.Count > 0)
+        {
+            foreach (var ship in this.shipManager.Ships)
+            {
+                if (ship.GetType() == typeof(KamikazeShip))
+                    (ship as KamikazeShip).ListenPlayerShipCoords(this);
+            }
+
+            this.playerManager.Player.Ship.StartSendingData();
+            StartSendingData();
+
+        }
     }
 }
 

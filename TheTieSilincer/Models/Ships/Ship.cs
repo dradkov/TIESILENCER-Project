@@ -1,10 +1,19 @@
-﻿using TheTieSilincer.Models.Weapons;
+﻿using System.Collections.Generic;
+using TheTieSilincer.Enums;
+using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
 {
     public abstract class Ship
     {
-        public Weapon Weapon { get; protected set; }
+        public Ship() { }
+
+        public Ship(List<Weapon> weapons = null)
+        {
+            this.Weapons = weapons;
+        }
+
+        public List<Weapon> Weapons { get; protected set; }
 
         public Position Position { get;  protected set; }
 
@@ -17,7 +26,15 @@ namespace TheTieSilincer.Models
             this.Position = pos;
         }
 
-        public abstract void UpdateShip();
+
+        public void DrawBullets() => this.Weapons.ForEach(v=> v.DrawBullets());
+
+        public void UpdateBullets() => this.Weapons.ForEach(v=> v.UpdateBullets());
+
+        public void ClearBullets() => this.Weapons.ForEach(v=>v.ClearBullets());
+
+
+        public abstract void UpdateShip(Position nextDirection = null);
 
         public abstract void DrawShip();
 

@@ -3,7 +3,7 @@ using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Models.Weapons
 {
-    public class MSWeapon : Weapon
+    public class MotherShipWeapon : Weapon
     {
         private int bulletCount = 4;
 
