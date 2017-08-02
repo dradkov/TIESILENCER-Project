@@ -11,28 +11,44 @@ using TheTieSilincer.Models.Ships;
 public class Satellite
 {
 
-    public Satellite()
+    private PlayerManager playerManager;
+    private ShipManager shipManager;
+    public Satellite(PlayerManager playerManager, ShipManager shipManager)
     {
-        this.position = new Position(0, 0);
+         this.PlayerManager = playerManager;
+         this.ShipManager = shipManager;
     }
-    public event EventHandler SendData2;
+
+public event EventHandler SendData2;
     public void StartSendingData()
     {
         this.SendData2(this, EventArgs.Empty);
     }
 
-    private Position position;
-
-    public Position Position
+   
+    public PlayerManager PlayerManager
     {
         get
         {
-            return position;
+            return playerManager;
         }
 
         set
         {
-            position = value;
+            playerManager = value;
+        }
+    }
+
+    public ShipManager ShipManager
+    {
+        get
+        {
+            return shipManager;
+        }
+
+        set
+        {
+            shipManager = value;
         }
     }
 
@@ -45,7 +61,20 @@ public class Satellite
 
     public void PlayerShipSendCoords(object sender, EventArgs e)
     {
-        this.position = ((PlayerShip)sender).Position;
+        
+
+    }
+
+    public void ReceiveDataFromShips(ShipManager shipManager)
+    {
+        shipManager.SendData -= ShipsSendedCoords;
+
+        shipManager.SendData += ShipsSendedCoords;
+    }
+
+    public void ShipsSendedCoords(object sender, EventArgs e)
+    {
+         
 
     }
 
@@ -66,9 +95,9 @@ public class Satellite
     {
         if (shipManager.Ships.Count > 0)
         {
-            shipManager.ListenPlayerShipCoords(this);
+            playerManager.Player.Ship.ListenEnemyShipsCoords(this);
 
-            playerManager.Player.Ship.StartSendingData();
+            shipManager.StartSendingDataFromEnemyShips();
 
             this.StartSendingData();
         }

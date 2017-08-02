@@ -20,24 +20,7 @@ namespace TheTieSilincer.Core
             this.AddDirections();
         }
 
-        //public void ListenEnemyShipsCoords(Satellite satellite)
-        //{
-        //    satellite.SendData2 -= EnemyShipsSendedCoords;
-        //    satellite.SendData2 += EnemyShipsSendedCoords;
-        //}
-
-        //public void EnemyShipsSendedCoords(object sender, EventArgs e)
-        //{
-        //    Position position = ((Satellite)sender).Position;
-
-        //    foreach (var ship in this.Ships)
-        //    {
-        //        if (ship.GetType() == typeof(KamikazeShip))
-        //        {
-        //            (ship as KamikazeShip).Pos = position;
-        //        }
-        //    }
-        //}
+        
 
         private void AddDirections()
         {

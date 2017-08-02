@@ -33,7 +33,7 @@ namespace TheTieSilincer.Models.Weapons
 
         public virtual void UpdateBullets()
         {
-            this.Bullets.ForEach(v => v.UpdatePosition());
+            this.Bullets.ForEach(v => v.UpdatePositionByX());
         }
     }
 }

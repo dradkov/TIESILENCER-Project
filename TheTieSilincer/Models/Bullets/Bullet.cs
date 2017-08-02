@@ -2,6 +2,8 @@
 
 namespace TheTieSilincer.Models.Bullets
 {
+    using System.Collections.Generic;
+
     public abstract class Bullet
     {
         protected Bullet(int x, int y)
@@ -13,7 +15,9 @@ namespace TheTieSilincer.Models.Bullets
 
         public Position PreviousPosition { get; protected set; }
 
-        public abstract void UpdatePosition();
+        public abstract void UpdatePositionByX();
+
+        public abstract void UpdatePositionByY(List<Position> positions);
 
         public abstract void DrawBullet();
 

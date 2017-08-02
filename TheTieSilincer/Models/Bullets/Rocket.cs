@@ -15,10 +15,15 @@ namespace TheTieSilincer.Models.Bullets
 
         }
 
-        public override void UpdatePosition()
+        public override void UpdatePositionByX()
         {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X--;
+        }
+
+        public override void UpdatePositionByY(List<Position> positions)
+        {
+            
         }
 
         public override void DrawBullet()

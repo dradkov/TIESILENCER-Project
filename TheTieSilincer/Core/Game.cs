@@ -19,14 +19,18 @@ namespace TheTieSilincer.Core
 
         public Game()
         {
-            this.satellite = new Satellite();
+             
             this.shipManager = new ShipManager();
             this.playerManager = new PlayerManager();
             this.bulletCollision = new BulletCollision(shipManager, playerManager);
             this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
             this.playerManager.CreatePlayer(this.shipManager.BuildPlayerShip("PlayerShip"));
+            
+
+            this.satellite = new Satellite(playerManager, shipManager);
             this.satellite.ReceiveDataByPlayer(playerManager);
+            this.satellite.ReceiveDataFromShips(shipManager);
         }
 
 
@@ -47,8 +51,9 @@ namespace TheTieSilincer.Core
             this.playerManager.UpdatePlayer();
             this.shipManager.UpdateShips();
 
-            // this.satellite.TransmitMessages();
+          
             satellite.TransmitMessagesFromPlayerToShips(playerManager, shipManager);
+            satellite.TransmitMessagesFromShipsToPlayer(shipManager, playerManager);
         }
 
         public void Draw()

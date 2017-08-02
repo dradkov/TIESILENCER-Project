@@ -2,6 +2,8 @@
 
 namespace TheTieSilincer.Models.Bullets
 {
+    using System.Collections.Generic;
+
     public class WeaselBullet : Bullet
     {
         private const char bulletType = '*';
@@ -9,6 +11,8 @@ namespace TheTieSilincer.Models.Bullets
         public WeaselBullet(int x, int y) : base(x, y)
         {
         }
+
+        
 
         public override void DrawBullet()
         {
@@ -26,10 +30,15 @@ namespace TheTieSilincer.Models.Bullets
             return true;
         }
 
-        public override void UpdatePosition()
+        public override void UpdatePositionByX()
         {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X++;
+        }
+
+        public override void UpdatePositionByY(List<Position> positions)
+        {
+             
         }
     }
 }

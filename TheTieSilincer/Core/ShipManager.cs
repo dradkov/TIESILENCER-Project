@@ -42,10 +42,6 @@ namespace TheTieSilincer.Core
 
             enemySh = Assembly.GetExecutingAssembly().GetTypes().Where(a => a != typeof(MotherShip) &&
             a.BaseType == typeof(EnemyShip)).Select(v => v.Name.ToString()).ToList();
-                
-            
-                
-            
   
         }
 
@@ -58,7 +54,7 @@ namespace TheTieSilincer.Core
 
         public void PlayerShipSendCoords(object sender, EventArgs e)
         {
-            Position position = ((Satellite)sender).Position;
+            Position position = ((Satellite)sender).PlayerManager.Player.Ship.Position;
 
             foreach (var ship in this.Ships)
             {
@@ -67,6 +63,12 @@ namespace TheTieSilincer.Core
                     (ship as KamikazeShip).Pos = position;
                 }
             }
+        }
+
+        public event EventHandler SendData;
+        public void StartSendingDataFromEnemyShips()
+        {
+            this.SendData(this, EventArgs.Empty);
         }
 
         public void UpdateShips()

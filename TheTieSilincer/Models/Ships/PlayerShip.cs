@@ -6,6 +6,8 @@ using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Models
 {
+    using System.Linq;
+
     public class PlayerShip : Ship
     {
         private Position nextPosition;
@@ -22,6 +24,29 @@ namespace TheTieSilincer.Models
         public void StartSendingData()
         {
             this.SendData(this, EventArgs.Empty);
+
+        }
+
+        public void ListenEnemyShipsCoords(Satellite satellite)
+        {
+            satellite.SendData2 -= EnemyShipsSendedCoords;
+            satellite.SendData2 += EnemyShipsSendedCoords;
+        }
+
+        public void EnemyShipsSendedCoords(object sender, EventArgs e)
+        {
+            List<Position> positions = ((Satellite)sender)
+                .ShipManager
+                .Ships
+                .Select(x => x.Position)
+                .OrderBy(pos => pos.X - this.Position.X)
+                .ToList();
+
+
+            foreach (var weapon in this.Weapons)
+            {
+                weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
+            }
 
         }
         public override void ClearShip(bool destroyed = false)
