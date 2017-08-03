@@ -15,13 +15,9 @@ namespace TheTieSilincer.Core
 
         public Engine()
         {
-            Game.Init();// yo i am back i smoke a cig show hacks, you have 2 pcs?
-            // mAd? should I do a BulletFactory => Game.BulletFactory.CreateBullet(?)?:X why? is it so hard?
-            // what do u mean? i am asking if it s right to do it, and will i save the bullets i add??? if there is not a list of them
-            // u suggested to remove List<Bullet> from ship classes
-            // no, just Game.AddObject()
+            Game.Init();          
         }
-
+        
 
         public void Run()
         {

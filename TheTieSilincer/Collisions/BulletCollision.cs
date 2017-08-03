@@ -35,8 +35,7 @@ namespace TheTieSilincer.Collisions
                             this.shipManager.DecreaseArmor(enemyShip);
                             bullet.ClearBullet();
                             weapon.Bullets.RemoveAt(y);
-                          //  y--;
-                                                       
+                          //  y--;                       
                         }
                     }
                 }

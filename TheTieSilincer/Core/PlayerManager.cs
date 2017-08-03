@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheTieSilincer.Enums;
 using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Core
@@ -14,6 +15,7 @@ namespace TheTieSilincer.Core
         bool shooting;
         private Position[] directions;
         private Position nextDirection;
+        private int w = 0;
 
         public PlayerManager()
         {
@@ -38,14 +40,14 @@ namespace TheTieSilincer.Core
             List<Position> positions = ((Satellite)sender)
                 .ShipManager
                 .Ships
-                .Select(x => x.Position)
-                .OrderBy(pos => pos.X - this.Player.Ship.Position.X)
-                .ToList();
+                .Select(x => x.Position).ToList();
+               // .OrderBy(pos => pos.X - this.Player.Ship.Position.X)
+               // .ToList();
 
-            foreach (var weapon in this.Player.Ship.Weapons)
-            {
-                weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
-            }
+              foreach (var weapon in this.Player.Ship.Weapons)
+              {
+                  weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
+              }
 
         }
 
@@ -117,6 +119,10 @@ namespace TheTieSilincer.Core
 
                     nextDirection = null;
                 }
+                if(userDirection.Key == ConsoleKey.V)
+                {
+                    w = w == 0 ? w = 1 : w = 0;
+                }
 
                 nextDirection = directions[movement];
 
@@ -124,10 +130,10 @@ namespace TheTieSilincer.Core
 
             if (shooting)
             {
-                this.Player.Ship.Weapons.ForEach(v => v.AddBullets(this.Player.Ship.Position.X + 2,
-                    this.Player.Ship.Position.Y + 1));
-                this.Player.Ship.Weapons.ForEach(v => v.AddBullets(this.Player.Ship.Position.X + 2,
-                    this.Player.Ship.Position.Y + 7));
+                this.Player.Ship.Weapons[w].AddBullets(this.Player.Ship.Position.X + 2,
+                    this.Player.Ship.Position.Y + 1);
+                this.Player.Ship.Weapons[w].AddBullets(this.Player.Ship.Position.X + 2,
+                    this.Player.Ship.Position.Y + 7);
             }
 
 

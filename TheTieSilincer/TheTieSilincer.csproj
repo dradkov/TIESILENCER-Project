@@ -71,6 +71,7 @@
     <Compile Include="Models\Ships\WeaselShip.cs" />
     <Compile Include="Models\Weapons\MotherShipWeapon.cs" />
     <Compile Include="Models\Weapons\PlayerWeapon.cs" />
+    <Compile Include="Models\Weapons\PlayerRocketLauncher.cs" />
     <Compile Include="Models\Weapons\Weapon.cs" />
     <Compile Include="Models\Weapons\WeaselWeapon.cs" />
     <Compile Include="Services\MenuService.cs" />

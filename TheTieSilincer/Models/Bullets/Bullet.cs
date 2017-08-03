@@ -17,7 +17,7 @@ namespace TheTieSilincer.Models.Bullets
 
         public abstract void UpdatePositionByX();
 
-        public abstract void UpdatePositionByY(List<Position> positions);
+        public abstract void UpdatePositionByY(List<Position> positions = null);
 
         public abstract void DrawBullet();
 

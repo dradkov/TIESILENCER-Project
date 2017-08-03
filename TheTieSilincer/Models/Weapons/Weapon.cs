@@ -15,7 +15,6 @@ namespace TheTieSilincer.Models.Weapons
        
         public List<Bullet> Bullets { get; protected set; }
         
-        // Game.SpawnObject(new Bullet(.... 
         public double ShootCooldown { get; protected set; }
 
         public abstract void AddBullets(int x, int y);
@@ -34,6 +33,7 @@ namespace TheTieSilincer.Models.Weapons
         public virtual void UpdateBullets()
         {
             this.Bullets.ForEach(v => v.UpdatePositionByX());
+           // this.Bullets.ForEach(v => v.UpdatePositionByY());
         }
     }
 }

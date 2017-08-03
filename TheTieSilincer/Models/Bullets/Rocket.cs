@@ -23,22 +23,37 @@ namespace TheTieSilincer.Models.Bullets
 
         public override void UpdatePositionByY(List<Position> positions)
         {
-            positions.Sort((x, y) => (x.X - this.Position.X) ^ 2 + (x.Y - this.Position.Y) ^ 2);
+            Position nearestPoint = null;
+            double dis = double.MaxValue;
 
-            Position nearestPoint = positions[0];
-
-            if (nearestPoint != null)
+            if(positions != null)
             {
-                if (nearestPoint.Y < this.Position.Y)
+                foreach (var pos in positions)
                 {
-                    this.Position.Y--;
+                    double d = Math.Sqrt((this.Position.X - pos.X) * (this.Position.X - pos.X)
+                        + (this.Position.Y - pos.Y) * (this.Position.Y - pos.Y));
+
+                    if (d < dis)
+                    {
+                        dis = d;
+                        nearestPoint = pos;
+                    }
                 }
 
-                if (nearestPoint.Y > this.Position.Y)
+                if (nearestPoint != null)
                 {
-                    this.Position.Y++;
+                    if (nearestPoint.Y < Position.Y)
+                    {
+                        this.Position.Y--;
+                    }
+                    else
+                    {
+                        this.Position.Y++;
+                    }
+
                 }
             }
+
         }
 
         public override void DrawBullet()

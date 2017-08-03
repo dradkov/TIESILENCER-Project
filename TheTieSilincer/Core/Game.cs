@@ -4,6 +4,7 @@ using TheTieSilincer.Models;
 namespace TheTieSilincer.Core
 {
     using TheTieSilincer.Collisions;
+    using TheTieSilincer.Enums;
     using TheTieSilincer.Models.Ships;
 
     public class Game
@@ -24,21 +25,12 @@ namespace TheTieSilincer.Core
             bulletCollision = new BulletCollision(shipManager, playerManager);
             shipCollision = new ShipCollision(shipManager);
             shipManager.GenerateShips();
-            playerManager.CreatePlayer(shipManager.BuildPlayerShip("PlayerShip"));
+            playerManager.CreatePlayer(shipManager.BuildPlayerShip(ShipType.PlayerShip));
             
 
             satellite = new Satellite(playerManager, shipManager);
             satellite.ReceiveDataByPlayer(playerManager);
             satellite.ReceiveDataFromShips(shipManager);
-
-            satellite = new Satellite(playerManager, shipManager);
-            shipManager = new ShipManager();
-            playerManager = new PlayerManager();
-            bulletCollision = new BulletCollision(shipManager, playerManager);
-            shipCollision = new ShipCollision(shipManager);
-            shipManager.GenerateShips();
-            playerManager.CreatePlayer(shipManager.BuildPlayerShip("PlayerShip"));
-            satellite.ReceiveDataByPlayer(playerManager);
 
         }
 
