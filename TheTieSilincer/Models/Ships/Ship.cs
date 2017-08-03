@@ -6,12 +6,13 @@ namespace TheTieSilincer.Models
 {
     public abstract class Ship
     {
-        public Ship() { }
 
         public Ship(List<Weapon> weapons = null)
         {
             this.Weapons = weapons;
         }
+
+        public ShipType ShipType { get; protected set; }
 
         public List<Weapon> Weapons { get; protected set; }
 

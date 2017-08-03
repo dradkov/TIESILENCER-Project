@@ -8,11 +8,12 @@ namespace TheTieSilincer.Core
     public class PlayerManager
     {
         public Player Player { get; private set; }
-        private int movement;
-        bool shooting;
         private Position[] directions;
         private Position nextDirection;
-        private int w = 0;
+        private ConsoleKeyInfo userDirection;
+        private int movement;
+        bool shooting;
+        private int currentWeapon = 0;
 
         public PlayerManager()
         {
@@ -82,12 +83,10 @@ namespace TheTieSilincer.Core
             this.Player.Ship.ClearBullets();
         }
 
-
-
         public void ReadPlayerInput()
-        {
-            ConsoleKeyInfo userDirection;
+        {          
             shooting = false;
+
             while (Console.KeyAvailable)
             {
                 userDirection = Console.ReadKey(true);
@@ -111,23 +110,20 @@ namespace TheTieSilincer.Core
                 if (userDirection.Key == ConsoleKey.Spacebar)
                 {
                     shooting = true;
-
-                    nextDirection = null;
                 }
                 if(userDirection.Key == ConsoleKey.V)
                 {
-                    w = w == 0 ? w = 1 : w = 0;
+                    currentWeapon = currentWeapon == 0 ? currentWeapon = 1 : currentWeapon = 0;
                 }
 
                 nextDirection = directions[movement];
-
             }
 
             if (shooting)
             {
-                this.Player.Ship.Weapons[w].AddBullets(this.Player.Ship.Position.X + 2,
+                this.Player.Ship.Weapons[currentWeapon].AddBullets(this.Player.Ship.Position.X + 2,
                     this.Player.Ship.Position.Y + 1);
-                this.Player.Ship.Weapons[w].AddBullets(this.Player.Ship.Position.X + 2,
+                this.Player.Ship.Weapons[currentWeapon].AddBullets(this.Player.Ship.Position.X + 2,
                     this.Player.Ship.Position.Y + 7);
             }
         }

@@ -14,6 +14,7 @@ namespace TheTieSilincer.Models
 
         public PlayerShip(List<Weapon> weapons) : base(weapons)
         {
+            this.ShipType = ShipType.PlayerShip;
             this.Position = new Position(Constants.WindowHeight - 8, Constants.WindowWidth / 3 + 5);
             this.CollisionAOE = 3;
             this.Armor = 999;
@@ -59,7 +60,7 @@ namespace TheTieSilincer.Models
             nextPosition = new Position
                (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y * 2);
 
-            if (nextPosition.X > Console.WindowHeight - 7 || nextPosition.Y > Console.WindowWidth - 9 ||
+            if (nextPosition.X > Constants.WindowHeight - 7 || nextPosition.Y > Constants.WindowWidth - 9 ||
                 nextPosition.X < 0 || nextPosition.Y < 0)
             {
                 return false;

@@ -5,9 +5,6 @@ namespace TheTieSilincer.Models.Ships
 {
     public abstract class EnemyShip : Ship
     {
-        public EnemyShip()
-        {
-        }
 
         protected EnemyShip(List<Weapon> weapons) : base(weapons)
         {       

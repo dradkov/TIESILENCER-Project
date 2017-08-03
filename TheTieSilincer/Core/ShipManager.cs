@@ -61,11 +61,11 @@ namespace TheTieSilincer.Core
 
         public void StartSendingDataFromEnemyShips()
         {
-            if(SendData != null)
+            if (SendData != null)
             {
                 this.SendData(this, EventArgs.Empty);
             }
-            
+
         }
 
         public void UpdateShips()
@@ -81,10 +81,10 @@ namespace TheTieSilincer.Core
 
         public void DrawShips()
         {
-             if (Ships.Count <= 1)
-             {
-                 GenerateShips();
-             }
+            if (Ships.Count <= 1)
+            {
+                GenerateShips();
+            }
 
             for (int i = 0; i < Ships.Count; i++)
             {
@@ -95,7 +95,7 @@ namespace TheTieSilincer.Core
                     i--;
                 }
                 else
-                {   
+                {
                     currentShip.DrawShip();
                     currentShip.GenerateBullets();
                     currentShip.Weapons.ForEach(v => v.DrawBullets());
@@ -117,7 +117,7 @@ namespace TheTieSilincer.Core
                 EnemyShip ship = null;
                 ShipType shipType = this.shipTypes[rnd.Next(0, shipTypes.Length)];
 
-                if(shipType != ShipType.MotherShip && shipType != ShipType.PlayerShip)
+                if (shipType != ShipType.MotherShip && shipType != ShipType.PlayerShip)
                 {
                     ship = BuildEnemyShip(shipType);
 
@@ -139,7 +139,7 @@ namespace TheTieSilincer.Core
                     i--;
                 }
             }
-       }
+        }
 
         public EnemyShip BuildEnemyShip(ShipType shipType)
         {
@@ -156,7 +156,7 @@ namespace TheTieSilincer.Core
         public PlayerShip BuildPlayerShip(ShipType shipType)
         {
             if (shipTypes.Contains(shipType))
-            {                
+            {
                 List<Weapon> weapons = GetShipWeapons(shipType);
 
                 return this.shipFactory.CreatePlayerShip(shipType, weapons);
@@ -169,11 +169,12 @@ namespace TheTieSilincer.Core
         {
             List<Weapon> weapons = new List<Weapon>();
 
-            foreach (var weapon in weaponTypes.Where(v=> v.ToString().Contains(shipType.ToString().Substring(0, 
-                shipType.ToString().Length - 4))))
-                
+            string s = shipType.ToString().Substring(0,
+                shipType.ToString().Length - 4);
+
+            foreach (var weapon in weaponTypes.Where(v => v.ToString().Contains(s)))
             {
-                  weapons.Add(weaponFactory.CreateWeapon(weapon));
+                weapons.Add(weaponFactory.CreateWeapon(weapon));
             }
 
             return weapons;
@@ -182,12 +183,10 @@ namespace TheTieSilincer.Core
 
         public bool CheckForOverlappingCoords(int x, int y)
         {
-           
-            if(Ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
+            if (Ships.Any(v => Math.Abs(v.Position.Y - y) < overlap))
             {
                 return true;
             }
-
 
             return false;
         }
@@ -200,14 +199,21 @@ namespace TheTieSilincer.Core
 
         private void SpawnMotherShip()
         {
-            
-            if(!Ships.Any(v=> v.GetType().Name == "MotherShip"))
+            if (!Ships.Any(v => v.ShipType == ShipType.MotherShip))
             {
-                if (spawnTimeInterval == 50)
+                if (spawnTimeInterval >= 50)
                 {
-                    this.Ships.Add(BuildEnemyShip(ShipType.MotherShip));
-                    spawnTimeInterval = 0;
+                    EnemyShip motherShip = BuildEnemyShip(ShipType.MotherShip);
+                    if (CheckForOverlappingCoords(motherShip.Position.X, motherShip.Position.Y))
+                    {
+                        this.Ships.Add(motherShip);
+                        spawnTimeInterval = 0;
+                    }
                 }
+            }
+            else
+            {
+                spawnTimeInterval = 0;
             }
 
             spawnTimeInterval++;
@@ -217,7 +223,5 @@ namespace TheTieSilincer.Core
         {
             ship.Armor--;
         }
-
-
     }
 }

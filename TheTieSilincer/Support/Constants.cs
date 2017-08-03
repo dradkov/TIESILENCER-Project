@@ -1,4 +1,6 @@
-﻿namespace TheTieSilincer.Support
+﻿using TheTieSilincer.Models;
+
+namespace TheTieSilincer.Support
 {
     public class Constants
     {

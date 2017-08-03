@@ -1,6 +1,7 @@
 ﻿using System;
 using TheTieSilincer.Core;
 using TheTieSilincer.Models;
+using TheTieSilincer.Enums;
 
 namespace TheTieSilincer.Collisions
 {
@@ -9,7 +10,6 @@ namespace TheTieSilincer.Collisions
         private int intersectionPoint = 7;
 
         public ShipCollision(ShipManager shipManager) : base(shipManager) { }
-
 
         public override void CheckForCollisions()
         {
@@ -22,14 +22,14 @@ namespace TheTieSilincer.Collisions
                     var secondShip = shipManager.Ships[y];
                     if (x != y)
                     {
-                        if(secondShip.GetType().Name == "MotherShip" ||
-                            currentShip.GetType().Name == "MotherShip")
+                        if(secondShip.ShipType == ShipType.MotherShip ||
+                            currentShip.ShipType == ShipType.MotherShip )
                         {
                             intersectionPoint = 14;
                         }
 
-                        if (secondShip.GetType().Name == "KamikazeShip" &&
-                            currentShip.GetType().Name == "KamikazeShip")
+                        if (secondShip.ShipType == ShipType.KamikazeShip &&
+                            currentShip.ShipType == ShipType.KamikazeShip )
                         {
                             intersectionPoint = 3;
                         }

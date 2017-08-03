@@ -10,7 +10,7 @@ namespace TheTieSilincer.Models
     {
         public PilotName(string name)
         {
-            this.Name = name;// i have to play around with this tool its nice yea
+            this.Name = name;
         }
 
 

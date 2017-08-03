@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using TheTieSilincer.Models.Weapons;
+using TheTieSilincer.Support;
+using TheTieSilincer.Enums;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -8,19 +10,14 @@ namespace TheTieSilincer.Models.Ships
     {
         //   \^/
         //    V
+
         public KamikazeShip(List<Weapon> weapons) : base(weapons)
         {
+            this.ShipType = ShipType.KamikazeShip;
             this.CollisionAOE = 3;
             this.Armor = 3;
         }
-
-        public KamikazeShip() : base() 
-        {
-
-        }
-
-         
-
+        
         private Position pos = null;
         
         private double movementTime = 0;
@@ -101,7 +98,7 @@ namespace TheTieSilincer.Models.Ships
 
         public override bool InBounds(Position nextDirection)
         {
-            if (Position.X == Console.WindowHeight - 2)
+            if (Position.X == Constants.WindowHeight - 2)
             {
                 return false;
             }

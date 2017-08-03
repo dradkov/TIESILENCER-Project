@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheTieSilincer.Models.Weapons;
+using TheTieSilincer.Support;
+using TheTieSilincer.Enums;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -12,6 +14,7 @@ namespace TheTieSilincer.Models.Ships
 
         public WeaselShip(List<Weapon> weapons) : base(weapons)
         {
+            this.ShipType = ShipType.WeaselShip;
             this.CollisionAOE = 5;
             this.Armor = 5;
         }
@@ -65,7 +68,7 @@ namespace TheTieSilincer.Models.Ships
 
         public override bool InBounds(Position nextDirection)
         {
-            if (Position.X == Console.WindowHeight - 2)
+            if (Position.X == Constants.WindowHeight - 2)
             {
                 return false;
             }

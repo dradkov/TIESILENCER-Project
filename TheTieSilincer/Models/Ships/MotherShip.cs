@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using TheTieSilincer.Models.Weapons;
 using TheTieSilincer.Support;
+using TheTieSilincer.Enums;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -20,6 +20,7 @@ namespace TheTieSilincer.Models.Ships
 
         public MotherShip(List<Weapon> weapons) : base(weapons)
         {
+            this.ShipType = ShipType.MotherShip;
             this.Position = new Position(0, Console.WindowWidth / 3 + 2);
             this.CollisionAOE = 7;
             this.Armor = 25;
@@ -70,14 +71,13 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            if (interval == 17 || interval == 27 || interval == 34 || interval == 10)
+            if (interval == 17 || interval == 27 || interval == 34 || interval == 10 || interval == 3)
             {
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 2));
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 7));
             }
-
         }
 
         public override bool InBounds(Position nextDirection = null)
