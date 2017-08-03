@@ -9,65 +9,57 @@ namespace TheTieSilincer.Core
 
     public class Game
     {
-        static private Satellite satellite;
+        private Satellite satellite;
 
-        static private ShipManager shipManager;
-        static private PlayerManager playerManager;
+        private ShipManager shipManager;
+        private PlayerManager playerManager;
 
-        static private BulletCollision bulletCollision;
-        static private ShipCollision shipCollision;
+        private BulletCollision bulletCollision;
+        private ShipCollision shipCollision;
 
-        static public void Init()
+        public Game()
         {
+            this.shipManager = new ShipManager();
+            this.playerManager = new PlayerManager();
+            this.bulletCollision = new BulletCollision(shipManager, playerManager);
+            this.shipCollision = new ShipCollision(shipManager);
+            this.shipManager.GenerateShips();
+            this.playerManager.CreatePlayer(shipManager.BuildPlayerShip(ShipType.PlayerShip));
 
-            shipManager = new ShipManager();
-            playerManager = new PlayerManager();
-            bulletCollision = new BulletCollision(shipManager, playerManager);
-            shipCollision = new ShipCollision(shipManager);
-            shipManager.GenerateShips();
-            playerManager.CreatePlayer(shipManager.BuildPlayerShip(ShipType.PlayerShip));
-            
-
-            satellite = new Satellite(playerManager, shipManager);
-            satellite.ReceiveDataByPlayer(playerManager);
-            satellite.ReceiveDataFromShips(shipManager);
-
+            this.satellite = new Satellite(playerManager, shipManager);
+            this.satellite.ReceiveDataByPlayer();
+            this.satellite.ReceiveDataFromShips();
         }
 
 
 
-        static public void Clear()
+         public void Clear()
         {
             playerManager.ClearPlayer();
             shipManager.ClearShips();
         }
 
-        static public void CheckForCollisions()
+        public void CheckForCollisions()
         {
             bulletCollision.CheckForCollisions();
         }
 
-        static public void Update()
+        public void Update()
         {
             playerManager.UpdatePlayer();
             shipManager.UpdateShips();
 
+             satellite.TransmitMessages();
 
-            // satellite.TransmitMessages();
-
-            // satellite.TransmitMessages();
-
-            satellite.TransmitMessagesFromPlayerToShips(playerManager, shipManager);
-            satellite.TransmitMessagesFromShipsToPlayer(shipManager, playerManager);
         }
 
-        static public void Draw()
+        public void Draw()
         {
             playerManager.DrawPlayer();
             shipManager.DrawShips();
         }
 
-        static public void InitialiseSettings()
+        public void InitialiseSettings()
         {
             Console.Clear();
             Console.CursorVisible = false;

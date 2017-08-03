@@ -13,19 +13,19 @@ public class Satellite
 
     private PlayerManager playerManager;
     private ShipManager shipManager;
+
     public Satellite(PlayerManager playerManager, ShipManager shipManager)
     {
-         this.PlayerManager = playerManager;
-         this.ShipManager = shipManager;
+        this.PlayerManager = playerManager;
+        this.ShipManager = shipManager;
     }
 
-public event EventHandler SendData;
+    public event EventHandler SendData;
     public void StartSendingData()
     {
         this.SendData(this, EventArgs.Empty);
     }
 
-   
     public PlayerManager PlayerManager
     {
         get
@@ -52,7 +52,7 @@ public event EventHandler SendData;
         }
     }
 
-    public void ReceiveDataByPlayer(PlayerManager playerManager)
+    public void ReceiveDataByPlayer()
     {
         playerManager.SendData -= PlayerShipSendCoords;
 
@@ -61,11 +61,11 @@ public event EventHandler SendData;
 
     public void PlayerShipSendCoords(object sender, EventArgs e)
     {
-        
+
 
     }
 
-    public void ReceiveDataFromShips(ShipManager shipManager)
+    public void ReceiveDataFromShips()
     {
         shipManager.SendData -= ShipsSendedCoords;
 
@@ -74,11 +74,11 @@ public event EventHandler SendData;
 
     public void ShipsSendedCoords(object sender, EventArgs e)
     {
-         
+
 
     }
 
-    public void TransmitMessagesFromPlayerToShips(PlayerManager playerManager, ShipManager shipManager)
+    private void TransmitMessagesFromPlayerToShips()
     {
         if (shipManager.Ships.Count > 0)
         {
@@ -90,8 +90,7 @@ public event EventHandler SendData;
         }
     }
 
-
-    public void TransmitMessagesFromShipsToPlayer(ShipManager shipManager, PlayerManager playerManager)
+    private void TransmitMessagesFromShipsToPlayer()
     {
         if (shipManager.Ships.Count > 0)
         {
@@ -101,6 +100,12 @@ public event EventHandler SendData;
 
             this.StartSendingData();
         }
+    }
+
+    public void TransmitMessages()
+    {
+        TransmitMessagesFromPlayerToShips();
+        TransmitMessagesFromShipsToPlayer();
     }
 
 

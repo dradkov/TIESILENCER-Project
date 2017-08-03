@@ -78,7 +78,7 @@
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\Constants.cs" />
-    <Compile Include="Support\GameService.cs" />
+    <Compile Include="Services\GameService.cs" />
     <Compile Include="Support\WelcomeMenu.cs" />
   </ItemGroup>
   <ItemGroup>

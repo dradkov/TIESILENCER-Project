@@ -48,6 +48,7 @@ namespace TheTieSilincer.Core
               {
                   weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
               }
+        
 
         }
 
