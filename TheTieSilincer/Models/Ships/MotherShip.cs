@@ -16,7 +16,7 @@ namespace TheTieSilincer.Models.Ships
         //
 
         private bool goLeft = false;
-        private int yInterval = 17;
+        private int interval = 17;
 
         public MotherShip(List<Weapon> weapons) : base(weapons)
         {
@@ -70,7 +70,7 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            if (yInterval == 17 || yInterval == 27 || yInterval == 34 || yInterval == 10)
+            if (interval == 17 || interval == 27 || interval == 34 || interval == 10)
             {
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
@@ -108,11 +108,11 @@ namespace TheTieSilincer.Models.Ships
                     else
                         this.Position.Y++;
 
-                    if (this.yInterval == 0)
-                        yInterval = 34;
+                    if (this.interval == 0)
+                        interval = 34;
 
 
-                    this.yInterval--;
+                    this.interval--;
                 }
             
             if (this.Position.Y <= 17 || this.Position.Y >= Constants.WindowWidth - 35)

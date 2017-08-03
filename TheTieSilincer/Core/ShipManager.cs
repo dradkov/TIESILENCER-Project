@@ -20,7 +20,7 @@ namespace TheTieSilincer.Core
 
         public List<EnemyShip> Ships { get; private set; }
 
-        private int shipAddNumber = 3;
+        private int shipAddNumber = 5;
         private int overlap = 10;
 
         private double spawnTimeInterval;

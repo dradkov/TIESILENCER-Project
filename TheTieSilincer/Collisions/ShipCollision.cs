@@ -8,10 +8,8 @@ namespace TheTieSilincer.Collisions
     {
         private int intersectionPoint = 7;
 
-        public ShipCollision(ShipManager shipManager) : base(shipManager)
-        {
-          
-        }
+        public ShipCollision(ShipManager shipManager) : base(shipManager) { }
+
 
         public override void CheckForCollisions()
         {
@@ -24,9 +22,16 @@ namespace TheTieSilincer.Collisions
                     var secondShip = shipManager.Ships[y];
                     if (x != y)
                     {
-                        if(secondShip.GetType().Name == "MotherShip" || currentShip.GetType().Name == "MotherShip")
+                        if(secondShip.GetType().Name == "MotherShip" ||
+                            currentShip.GetType().Name == "MotherShip")
                         {
                             intersectionPoint = 14;
+                        }
+
+                        if (secondShip.GetType().Name == "KamikazeShip" &&
+                            currentShip.GetType().Name == "KamikazeShip")
+                        {
+                            intersectionPoint = 3;
                         }
 
                         if (Intersect(currentShip.Position, secondShip.Position))
@@ -36,7 +41,7 @@ namespace TheTieSilincer.Collisions
                             currentShip.ClearShip();
                             secondShip.ClearShip();
 
-                            if (currentShip.Position.Y < shipManager.Ships[y].Position.Y)
+                            if (currentShip.Position.Y <= shipManager.Ships[y].Position.Y)
                             {                               
                                 currentShip.Position.Y--;
                              

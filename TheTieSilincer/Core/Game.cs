@@ -1,11 +1,9 @@
 ﻿using System;
-using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Core
 {
     using TheTieSilincer.Collisions;
     using TheTieSilincer.Enums;
-    using TheTieSilincer.Models.Ships;
 
     public class Game
     {

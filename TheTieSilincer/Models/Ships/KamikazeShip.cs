@@ -96,7 +96,7 @@ namespace TheTieSilincer.Models.Ships
 
             }
 
-            movementTime += 0.5;
+            movementTime += 1;
         }
 
         public override bool InBounds(Position nextDirection)

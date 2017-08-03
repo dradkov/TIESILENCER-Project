@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheTieSilincer.Enums;
 using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Core
@@ -41,15 +38,12 @@ namespace TheTieSilincer.Core
                 .ShipManager
                 .Ships
                 .Select(x => x.Position).ToList();
-               // .OrderBy(pos => pos.X - this.Player.Ship.Position.X)
-               // .ToList();
 
               foreach (var weapon in this.Player.Ship.Weapons)
               {
                   weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
               }
-        
-
+       
         }
 
         private void AddDirections()
@@ -136,9 +130,6 @@ namespace TheTieSilincer.Core
                 this.Player.Ship.Weapons[w].AddBullets(this.Player.Ship.Position.X + 2,
                     this.Player.Ship.Position.Y + 7);
             }
-
-
         }
-
     }
 }
