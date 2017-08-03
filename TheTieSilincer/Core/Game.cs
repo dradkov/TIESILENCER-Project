@@ -31,9 +31,7 @@ namespace TheTieSilincer.Core
             this.satellite.ReceiveDataFromShips();
         }
 
-
-
-         public void Clear()
+        public void Clear()
         {
             playerManager.ClearPlayer();
             shipManager.ClearShips();
@@ -49,7 +47,7 @@ namespace TheTieSilincer.Core
             playerManager.UpdatePlayer();
             shipManager.UpdateShips();
 
-             satellite.TransmitMessages();
+            satellite.TransmitMessages();
 
         }
 

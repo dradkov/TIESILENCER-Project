@@ -8,6 +8,8 @@ namespace TheTieSilincer.Collisions
     {
         protected ShipManager shipManager;
 
+        protected double distance;
+
         protected Collision(ShipManager shipManager)
         {
             this.shipManager = shipManager;
@@ -20,8 +22,6 @@ namespace TheTieSilincer.Collisions
 
             return distance;
         }
-
-        public abstract bool Intersect();
 
         public abstract void CheckForCollisions();
 

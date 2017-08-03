@@ -6,7 +6,6 @@ using TheTieSilincer.Support;
 namespace TheTieSilincer.Core
 {
     using System.Threading;
-    using TheTieSilincer.Models;
     using TheTieSilincer.Services;
 
     public class Engine

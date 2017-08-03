@@ -2,8 +2,8 @@
 {
     public enum WeaponType
     {
-        PlayerWeapon = 0,
-        PlayerRocketLauncher = 1,
+        PlayerWeapon,
+        PlayerRocketLauncher,
         MotherShipWeapon,
         WeaselWeapon,
         

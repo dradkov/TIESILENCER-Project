@@ -10,8 +10,6 @@ namespace TheTieSilincer.Collisions
     {
         private PlayerManager playerManager;
 
-        private double distance;
-
         public BulletCollision(ShipManager shipManager , PlayerManager playerManager) : base(shipManager)
         {
             this.playerManager = playerManager;
@@ -98,9 +96,5 @@ namespace TheTieSilincer.Collisions
             CheckPlayerBulletCollisions();
         }
 
-        public override bool Intersect()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
