@@ -39,13 +39,8 @@ namespace TheTieSilincer.Collisions
                 }
                 if (!enemyShip.IsAlive())
                 {
-
                     enemyShip.ClearShip(true); 
-
-
                     this.shipManager.Ships.RemoveAt(x);
-
-
                     x--;
                 }
             }

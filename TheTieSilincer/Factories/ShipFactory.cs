@@ -46,7 +46,7 @@ namespace TheTieSilincer.Factories
         private Position GenerateRandomShipPosition()
         {
             int y = 0;
-            int x = this.rndGen.Next(5, Console.WindowWidth - 20);
+            int x = this.rndGen.Next(5, Console.WindowWidth - 25);
 
             Position pos = new Position(y, x);
 

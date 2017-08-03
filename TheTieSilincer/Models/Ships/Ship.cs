@@ -28,6 +28,11 @@ namespace TheTieSilincer.Models
             this.Position = pos;
         }
 
+        public void SetPreviousPosition(Position pos)
+        {
+            this.PreviousPosition = pos;
+        }
+
 
         public void DrawBullets() => this.Weapons.ForEach(v=> v.DrawBullets());
 

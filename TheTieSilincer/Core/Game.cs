@@ -40,6 +40,7 @@ namespace TheTieSilincer.Core
         public void CheckForCollisions()
         {
             bulletCollision.CheckForCollisions();
+            shipCollision.CheckForCollisions();
         }
 
         public void Update()

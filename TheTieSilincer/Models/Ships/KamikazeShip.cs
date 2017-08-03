@@ -11,7 +11,7 @@ namespace TheTieSilincer.Models.Ships
         public KamikazeShip(List<Weapon> weapons) : base(weapons)
         {
             this.CollisionAOE = 3;
-            this.Armor = 2;
+            this.Armor = 3;
         }
 
         public KamikazeShip() : base() 

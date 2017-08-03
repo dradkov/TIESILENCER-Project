@@ -70,11 +70,11 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            if(yInterval == 17 || yInterval == 27)
+            if (yInterval == 17 || yInterval == 27 || yInterval == 34 || yInterval == 10)
             {
-                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
-                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
-                this.Weapons.ForEach(v=>v.AddBullets(this.Position.X + 3, this.Position.Y + 2));
+                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
+                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
+                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 2));
                 this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 7));
             }
 
@@ -85,46 +85,40 @@ namespace TheTieSilincer.Models.Ships
             if (Position.Y < Constants.WindowWidth - 2 && Position.Y > 0)
             {
                 return true;
-               
+
             }
-           
+
             return false;
         }
 
         public override void UpdateShip(Position nextDirection)
         {
+
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-            if(MovementTime % 2 == 0)
-            {
+      
+            
                 if (this.Position.X < 2)
                 {
                     this.Position.X++;
                 }
                 else
                 {
-                    if (!goLeft)
-                    {
+                    if (goLeft)
                         this.Position.Y--;
-                        this.yInterval--;
-                        if (this.yInterval == 0)
-                        {
-                            goLeft = !goLeft;
-                            yInterval = 34;
-                        }
-                    }
                     else
-                    {
                         this.Position.Y++;
-                        this.yInterval--;
-                        if (this.yInterval == 0)
-                        {
-                            goLeft = !goLeft;
-                            yInterval = 34;
-                        }
-                    }
-                }
-            }
 
+                    if (this.yInterval == 0)
+                        yInterval = 34;
+
+
+                    this.yInterval--;
+                }
+            
+            if (this.Position.Y <= 17 || this.Position.Y >= Constants.WindowWidth - 35)
+            {
+                goLeft = !goLeft;
+            }
         }
     }
 }

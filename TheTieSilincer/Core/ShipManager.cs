@@ -21,6 +21,7 @@ namespace TheTieSilincer.Core
         public List<EnemyShip> Ships { get; private set; }
 
         private int shipAddNumber = 3;
+        private int overlap = 10;
 
         private double spawnTimeInterval;
 
@@ -181,8 +182,7 @@ namespace TheTieSilincer.Core
 
         public bool CheckForOverlappingCoords(int x, int y)
         {
-            int overlap = 7;
-
+           
             if(Ships.Any(v=> Math.Abs(v.Position.Y - y) < overlap))
             {
                 return true;

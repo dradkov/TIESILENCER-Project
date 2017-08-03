@@ -13,7 +13,7 @@ namespace TheTieSilincer.Models.Ships
         public WeaselShip(List<Weapon> weapons) : base(weapons)
         {
             this.CollisionAOE = 5;
-            this.Armor = 2;
+            this.Armor = 5;
         }
 
         public override void ClearShip(bool destroyed = false)
@@ -45,10 +45,19 @@ namespace TheTieSilincer.Models.Ships
 
         public override void UpdateShip(Position nextDirection)
         {
+            if(nextDirection != null)
+            {
+                this.PreviousPosition = new Position(nextDirection.X, nextDirection.Y);
+                this.Position.X++;
+            }
+
             if(this.MovementTime % 2 == 0)
             {
-                this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-                this.Position.X++;           
+                if(nextDirection == null)
+                {
+                    this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
+                    this.Position.X++;
+                }        
             }
 
             this.MovementTime += 0.50;

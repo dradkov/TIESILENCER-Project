@@ -6,6 +6,8 @@ namespace TheTieSilincer.Collisions
 {
     public class ShipCollision : Collision
     {
+        private int intersectionPoint = 7;
+
         public ShipCollision(ShipManager shipManager) : base(shipManager)
         {
           
@@ -19,12 +21,36 @@ namespace TheTieSilincer.Collisions
 
                 for (int y = 0; y < shipManager.Ships.Count; y++)
                 {
-                    if(x != y)
+                    var secondShip = shipManager.Ships[y];
+                    if (x != y)
                     {
-                        if (Intersect(currentShip.Position, shipManager.Ships[y].Position))
+                        if(secondShip.GetType().Name == "MotherShip" || currentShip.GetType().Name == "MotherShip")
                         {
+                            intersectionPoint = 14;
+                        }
+
+                        if (Intersect(currentShip.Position, secondShip.Position))
+                        {
+                            currentShip.SetPreviousPosition(currentShip.Position);
+                            secondShip.SetPreviousPosition(secondShip.Position);
+                            currentShip.ClearShip();
+                            secondShip.ClearShip();
+
+                            if (currentShip.Position.Y < shipManager.Ships[y].Position.Y)
+                            {                               
+                                currentShip.Position.Y--;
+                             
+                               // secondShip.Position.Y++;
+                            }
+                            else
+                            {
+                                currentShip.Position.Y++;
+                              //  secondShip.Position.Y--;
+                            }
 
                         }
+
+                        intersectionPoint = 7;
                         
                     }
                 }
@@ -35,8 +61,12 @@ namespace TheTieSilincer.Collisions
         {
             distance = Distance(p1, p2);
 
-            // TO DO
-            return true;
+            if(distance < intersectionPoint)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
