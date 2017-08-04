@@ -4,14 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheTieSilincer.Models.Bullets;
+using TheTieSilincer.Enums;
+using TheTieSilincer.Core.Managers;
 
 namespace TheTieSilincer.Models.Weapons
 {
     public class PlayerRocketLauncher : Weapon
     {
-        public override void AddBullets(int x, int y)
+        private const WeaponType rocketLauncher = WeaponType.PlayerRocketLauncher;
+        private const BulletType rocketType = BulletType.PlayerRocket;
+
+        public PlayerRocketLauncher() : base(rocketLauncher, rocketType)
         {
-            this.Bullets.Add(new Rocket(x, y));
+        }
+
+        public override void AddBullets(Position position)
+        {
+            BulletManager.AddBullet(rocketType, position);
         }
     }
 }

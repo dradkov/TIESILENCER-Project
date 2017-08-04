@@ -3,27 +3,23 @@
 namespace TheTieSilincer.Models.Bullets
 {
     using System.Collections.Generic;
+    using TheTieSilincer.Enums;
 
-    public abstract class Bullet
+    public abstract class Bullet : GameObject
     {
-        protected Bullet(int x, int y)
+        protected Bullet(Position position, BulletType bulletType)
         {
-            this.Position = new Position(x, y);
+            this.Position = position;
+            this.BulletType = bulletType;
         }
-
-        public Position Position { get; protected set; }
-
-        public Position PreviousPosition { get; protected set; }
+        
+        public BulletType BulletType { get; private set; }
 
         public abstract void UpdatePositionByX();
 
         public abstract void UpdatePositionByY(List<Position> positions = null);
 
-        public abstract void DrawBullet();
-
-        public abstract bool InBounds();
-
-        public virtual void ClearBullet()
+        public override void Clear(bool destroyed = false)
         {
             if(this.PreviousPosition != null)
             {

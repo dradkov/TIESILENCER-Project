@@ -3,23 +3,25 @@
 namespace TheTieSilincer.Models.Bullets
 {
     using System.Collections.Generic;
+    using TheTieSilincer.Enums;
 
     public class MSBullet : Bullet
     {
         private const char bulletType = 'x';
 
-        public MSBullet(int x, int y) : base(x, y)
+        private const BulletType msBullet = BulletType.MSBullet;
+
+        public MSBullet(Position position) : base(position, msBullet)
         {
         }
 
-
-        public override void DrawBullet()
+        public override void Draw()
         {
             Console.SetCursorPosition(Position.Y, Position.X);
             Console.WriteLine(bulletType);
         }
 
-        public override bool InBounds()
+        public override bool InBounds(Position nextDirection = null)
         {
             if (Position.X == Console.WindowHeight - 2)
             {
@@ -37,6 +39,11 @@ namespace TheTieSilincer.Models.Bullets
         public override void UpdatePositionByY(List<Position> positions)
         {
 
+        }
+
+        public override void Update(Position nextDirection = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

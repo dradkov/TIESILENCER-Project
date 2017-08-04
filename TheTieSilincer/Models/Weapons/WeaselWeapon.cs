@@ -1,14 +1,24 @@
 ﻿using TheTieSilincer.Models.Bullets;
+using TheTieSilincer.Enums;
+using TheTieSilincer.Core.Managers;
 
 namespace TheTieSilincer.Models.Weapons
 {
     public class WeaselWeapon : Weapon
     {
-        public override void AddBullets(int x, int y)
+        private const WeaponType weaselWeapon = WeaponType.WeaselWeapon;
+        private const BulletType weaselBullet = BulletType.WeaselBullet;
+
+        public WeaselWeapon() : base(weaselWeapon, BulletType.WeaselBullet)
+        {
+            
+        }
+
+        public override void AddBullets(Position position)
         {
             if (ShootCooldown >= 2)
             {
-                this.Bullets.Add(new WeaselBullet(x, y));
+                BulletManager.AddBullet(weaselBullet, position);
                 ShootCooldown = 0;
             }
             ShootCooldown += 0.25;

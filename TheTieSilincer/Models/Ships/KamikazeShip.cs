@@ -35,7 +35,7 @@ namespace TheTieSilincer.Models.Ships
             }
         }
 
-        public override void ClearShip(bool destroyed = false)
+        public override void Clear(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -55,7 +55,7 @@ namespace TheTieSilincer.Models.Ships
             }
         }
 
-        public override void DrawShip()
+        public override void Draw()
         {
             Console.SetCursorPosition(this.Position.Y, this.Position.X);
             Console.WriteLine(@"\^/");
@@ -65,7 +65,7 @@ namespace TheTieSilincer.Models.Ships
              
         }
 
-        public override void UpdateShip(Position nextDirection)
+        public override void Update(Position nextDirection)
         {
              
 

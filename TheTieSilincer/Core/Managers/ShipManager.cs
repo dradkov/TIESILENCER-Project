@@ -7,9 +7,9 @@ using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
 using TheTieSilincer.Models.Weapons;
 
-namespace TheTieSilincer.Core
+namespace TheTieSilincer.Core.Managers
 {
-    public class ShipManager
+    public class ShipManager : Manager
     {
         public event EventHandler SendData;
 
@@ -68,18 +68,18 @@ namespace TheTieSilincer.Core
 
         }
 
-        public void UpdateShips()
+        public override void Update()
         {
             foreach (var ship in Ships)
             {
-                ship.UpdateShip();
-                ship.Weapons.ForEach(a => a.UpdateBullets());
+                ship.Update();
+               // ship.Weapons.ForEach(a => a.UpdateBullets());
             }
 
             SpawnMotherShip();
         }
 
-        public void DrawShips()
+        public override void Draw()
         {
             if (Ships.Count <= 1)
             {
@@ -96,16 +96,16 @@ namespace TheTieSilincer.Core
                 }
                 else
                 {
-                    currentShip.DrawShip();
-                    currentShip.Weapons.ForEach(v => v.DrawBullets());
+                    currentShip.Draw();
+                   // currentShip.Weapons.ForEach(v => v.DrawBullets());
                 }
             }
         }
 
-        public void ClearShips()
+        public override void Clear()
         {
-            this.Ships.ForEach(v => v.ClearShip());
-            this.Ships.ForEach(v => v.Weapons.ForEach(a => a.ClearBullets()));
+            this.Ships.ForEach(v => v.Clear());
+           // this.Ships.ForEach(v => v.Weapons.ForEach(a => a.ClearBullets()));
         }
 
         public void GenerateShips()
@@ -179,7 +179,7 @@ namespace TheTieSilincer.Core
 
         public void DestroyShip(Ship ship)
         {
-            ship.ClearShip(true);
+            ship.Clear(true);
             this.Ships.Remove(ship);
         }
 

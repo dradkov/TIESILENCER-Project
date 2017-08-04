@@ -5,6 +5,7 @@ namespace TheTieSilincer.Core
     using TheTieSilincer.Collisions;
     using TheTieSilincer.Enums;
     using TheTieSilincer.Support;
+    using TheTieSilincer.Core.Managers;
 
     public class Game
     {
@@ -13,6 +14,8 @@ namespace TheTieSilincer.Core
         private ShipManager shipManager;
         private PlayerManager playerManager;
 
+        private BulletManager bulletManager;
+
         private BulletCollision bulletCollision;
         private ShipCollision shipCollision;
 
@@ -20,6 +23,7 @@ namespace TheTieSilincer.Core
         {
             this.shipManager = new ShipManager();
             this.playerManager = new PlayerManager();
+            this.bulletManager = new BulletManager();
             this.bulletCollision = new BulletCollision(shipManager, playerManager);
             this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
@@ -32,20 +36,22 @@ namespace TheTieSilincer.Core
 
         public void Clear()
         {
-            playerManager.ClearPlayer();
-            shipManager.ClearShips();
+            playerManager.Clear();
+            shipManager.Clear();
+            bulletManager.Clear();
         }
 
         public void CheckForCollisions()
         {
-            bulletCollision.CheckForCollisions();
+            bulletCollision.CheckForCollisions(BulletManager.bullets);
             shipCollision.CheckForCollisions();
         }
 
         public void Update()
         {
-            playerManager.UpdatePlayer();
-            shipManager.UpdateShips();
+            playerManager.Update();
+            shipManager.Update();
+            bulletManager.Update();
 
             satellite.TransmitMessages();
 
@@ -53,8 +59,9 @@ namespace TheTieSilincer.Core
 
         public void Draw()
         {
-            playerManager.DrawPlayer();
-            shipManager.DrawShips();
+            playerManager.Draw();
+            shipManager.Draw();
+            bulletManager.Draw();
         }
 
         public void InitialiseSettings()
@@ -66,7 +73,7 @@ namespace TheTieSilincer.Core
             Console.BufferHeight = Constants.WindowHeight;
             Console.BufferWidth = Constants.WindowWidth;
 
-            playerManager.DrawPlayer();
+            playerManager.Draw();
         }
     }
 }

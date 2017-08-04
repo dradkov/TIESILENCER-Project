@@ -2,6 +2,9 @@
 using TheTieSilincer.Core;
 using TheTieSilincer.Models;
 using TheTieSilincer.Enums;
+using TheTieSilincer.Core.Managers;
+using TheTieSilincer.Models.Bullets;
+using System.Collections.Generic;
 
 namespace TheTieSilincer.Collisions
 {
@@ -11,7 +14,7 @@ namespace TheTieSilincer.Collisions
 
         public ShipCollision(ShipManager shipManager) : base(shipManager) { }
 
-        public override void CheckForCollisions()
+        public override void CheckForCollisions(List<Bullet> bullets = null)
         {
             for (int x = 0; x < this.shipManager.Ships.Count; x++)
             {
@@ -38,8 +41,8 @@ namespace TheTieSilincer.Collisions
                         {
                             currentShip.SetPreviousPosition(currentShip.Position);
                             secondShip.SetPreviousPosition(secondShip.Position);
-                            currentShip.ClearShip();
-                            secondShip.ClearShip();
+                            currentShip.Clear();
+                            secondShip.Clear();
 
                             if (currentShip.Position.Y <= shipManager.Ships[y].Position.Y)
                             {                               

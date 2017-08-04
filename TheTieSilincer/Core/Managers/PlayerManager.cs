@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheTieSilincer.Models;
+using TheTieSilincer.Enums;
 
-namespace TheTieSilincer.Core
+namespace TheTieSilincer.Core.Managers
 {
-    public class PlayerManager
+    public class PlayerManager : Manager
     {
         public Player Player { get; private set; }
         private Position[] directions;
@@ -40,10 +41,13 @@ namespace TheTieSilincer.Core
                 .Ships
                 .Select(x => x.Position).ToList();
 
-              foreach (var weapon in this.Player.Ship.Weapons)
-              {
-                  weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
-              }
+            //  foreach (var weapon in this.Player.Ship.Weapons)
+            //  {
+            //      weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
+            //  }
+
+            BulletManager.bullets.Where(v => v.BulletType == BulletType.PlayerRocket)
+                .ToList().ForEach(v => v.UpdatePositionByY(positions));
        
         }
 
@@ -64,23 +68,23 @@ namespace TheTieSilincer.Core
             this.Player = new Player(ship);
         }
 
-        public void UpdatePlayer()
+        public override void Update()
         {
-            this.Player.Ship.UpdateBullets();
+          //  this.Player.Ship.UpdateBullets();
             this.ReadPlayerInput();
-            this.Player.Ship.UpdateShip(nextDirection);
+            this.Player.Ship.Update(nextDirection);
         }
 
-        public void DrawPlayer()
+        public override void Draw()
         {
-            this.Player.Ship.DrawShip();
-            this.Player.Ship.DrawBullets();
+            this.Player.Ship.Draw();
+           // this.Player.Ship.DrawBullets();
         }
 
-        public void ClearPlayer()
+        public override void Clear()
         {
-            this.Player.Ship.ClearShip();
-            this.Player.Ship.ClearBullets();
+            this.Player.Ship.Clear();
+            //this.Player.Ship.ClearBullets();
         }
 
         public void ReadPlayerInput()
@@ -121,10 +125,18 @@ namespace TheTieSilincer.Core
 
             if (shooting)
             {
-                this.Player.Ship.Weapons[currentWeapon].AddBullets(this.Player.Ship.Position.X + 2,
-                    this.Player.Ship.Position.Y + 1);
-                this.Player.Ship.Weapons[currentWeapon].AddBullets(this.Player.Ship.Position.X + 2,
-                    this.Player.Ship.Position.Y + 7);
+                //this.Player.Ship.Weapons[currentWeapon].AddBullets(new Position(this.Player.Ship.Position.X + 2,
+                //    this.Player.Ship.Position.Y + 1));
+                //this.Player.Ship.Weapons[currentWeapon].AddBullets(new Position(this.Player.Ship.Position.X + 2,
+                //    this.Player.Ship.Position.Y + 7));
+
+                BulletManager.AddBullet(this.Player.Ship.Weapons[currentWeapon].BulletType,
+                    new Position(this.Player.Ship.Position.X + 2,
+                    this.Player.Ship.Position.Y + 1));
+
+                BulletManager.AddBullet(this.Player.Ship.Weapons[currentWeapon].BulletType,
+                    new Position(this.Player.Ship.Position.X + 2,
+                   this.Player.Ship.Position.Y + 7));
             }
         }
     }

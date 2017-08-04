@@ -3,12 +3,15 @@
 namespace TheTieSilincer.Models.Bullets
 {
     using System.Collections.Generic;
+    using TheTieSilincer.Enums;
 
     public class PlayerBullet : Bullet
     {
         private const char bulletType = '^';
 
-        public PlayerBullet(int x, int y) : base(x, y)
+        private const BulletType playerBullet = BulletType.PlayerBullet;
+
+        public PlayerBullet(Position position) : base(position, playerBullet)
         {
         }
 
@@ -23,13 +26,13 @@ namespace TheTieSilincer.Models.Bullets
 
         }
 
-        public override void DrawBullet()
+        public override void Draw()
         {
             Console.SetCursorPosition(Position.Y, Position.X);
             Console.WriteLine(bulletType);
         }
 
-        public override bool InBounds()
+        public override bool InBounds(Position nextDirection = null)
         {
             if(Position.X > 0)
             {
@@ -38,5 +41,11 @@ namespace TheTieSilincer.Models.Bullets
 
             return false;
         }
+
+        public override void Update(Position nextDirection = null)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

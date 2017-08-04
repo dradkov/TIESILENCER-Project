@@ -19,7 +19,7 @@ namespace TheTieSilincer.Models.Ships
             this.Armor = 5;
         }
 
-        public override void ClearShip(bool destroyed = false)
+        public override void Clear(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -38,7 +38,7 @@ namespace TheTieSilincer.Models.Ships
             }
         }
 
-        public override void DrawShip()
+        public override void Draw()
         {                               
             Console.SetCursorPosition(this.Position.Y, this.Position.X);
             Console.WriteLine(@"\(|X|)/");
@@ -48,7 +48,7 @@ namespace TheTieSilincer.Models.Ships
             GenerateBullets();
         }
 
-        public override void UpdateShip(Position nextDirection)
+        public override void Update(Position nextDirection)
         {
             if(nextDirection != null)
             {
@@ -81,7 +81,7 @@ namespace TheTieSilincer.Models.Ships
         public override void GenerateBullets()
         {
             Weapon w = Weapons.First();
-            w.AddBullets(this.Position.X + 2, this.Position.Y + 3);
+            w.AddBullets(new Position(this.Position.X + 2, this.Position.Y + 3));
         }
     }
 }

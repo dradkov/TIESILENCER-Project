@@ -4,7 +4,7 @@ using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Models
 {
-    public abstract class Ship
+    public abstract class Ship : GameObject
     {
 
         public Ship(List<Weapon> weapons = null)
@@ -16,30 +16,15 @@ namespace TheTieSilincer.Models
 
         public List<Weapon> Weapons { get; protected set; }
 
-        public Position Position { get;  protected set; }
-
-        public Position PreviousPosition { get; protected set; }
-
         public int Armor { get; set; }
 
         public int CollisionAOE { get; protected set; }
 
-        public void SetPosition(Position pos)
-        {
-            this.Position = pos;
-        }
-
-        public void SetPreviousPosition(Position pos)
-        {
-            this.PreviousPosition = pos;
-        }
-
-
-        public void DrawBullets() => this.Weapons.ForEach(v=> v.DrawBullets());
-
-        public void UpdateBullets() => this.Weapons.ForEach(v=> v.UpdateBullets());
-
-        public void ClearBullets() => this.Weapons.ForEach(v=>v.ClearBullets());
+      // public void DrawBullets() => this.Weapons.ForEach(v=> v.DrawBullets());
+      //
+      // public void UpdateBullets() => this.Weapons.ForEach(v=> v.UpdateBullets());
+      //
+      // public void ClearBullets() => this.Weapons.ForEach(v=>v.ClearBullets());
 
         public virtual bool IsAlive()
         {
@@ -51,12 +36,6 @@ namespace TheTieSilincer.Models
             return false;
         }
 
-        public abstract void UpdateShip(Position nextDirection = null);
 
-        public abstract void DrawShip();
-
-        public abstract void ClearShip(bool destroyed = false);
-
-        public abstract bool InBounds(Position nextDirection = null);
     }
 }

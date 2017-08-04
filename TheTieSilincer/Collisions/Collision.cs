@@ -1,6 +1,9 @@
 ﻿using System;
 using TheTieSilincer.Core;
 using TheTieSilincer.Models;
+using TheTieSilincer.Core.Managers;
+using TheTieSilincer.Models.Bullets;
+using System.Collections.Generic;
 
 namespace TheTieSilincer.Collisions
 {
@@ -23,7 +26,7 @@ namespace TheTieSilincer.Collisions
             return distance;
         }
 
-        public abstract void CheckForCollisions();
+        public abstract void CheckForCollisions(List<Bullet> bullets = null);
 
     }
 }

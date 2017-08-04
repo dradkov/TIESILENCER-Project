@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TheTieSilincer.Models.Weapons;
 using TheTieSilincer.Support;
 using TheTieSilincer.Enums;
+using TheTieSilincer.Core.Managers;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -28,7 +29,7 @@ namespace TheTieSilincer.Models.Ships
         }
 
 
-        public override void ClearShip(bool destroyed = false)
+        public override void Clear(bool destroyed = false)
         {
             if (this.PreviousPosition != null)
             {
@@ -56,7 +57,7 @@ namespace TheTieSilincer.Models.Ships
 
         }
 
-        public override void DrawShip()
+        public override void Draw()
         {
             Console.SetCursorPosition(this.Position.Y, this.Position.X);
             Console.WriteLine("((||||||))");
@@ -74,10 +75,11 @@ namespace TheTieSilincer.Models.Ships
         {
             if (interval == 17 || interval == 27 || interval == 34 || interval == 10 || interval == 3)
             {
-                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y - 1));
-                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 2, this.Position.Y + 10));
-                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 2));
-                this.Weapons.ForEach(v => v.AddBullets(this.Position.X + 3, this.Position.Y + 7));
+                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 2, this.Position.Y - 1)));
+                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 2, this.Position.Y + 10)));
+                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 3, this.Position.Y + 2)));
+                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 3, this.Position.Y + 7)));
+                
             }
         }
 
@@ -92,7 +94,7 @@ namespace TheTieSilincer.Models.Ships
             return false;
         }
 
-        public override void UpdateShip(Position nextDirection)
+        public override void Update(Position nextDirection)
         {
 
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);

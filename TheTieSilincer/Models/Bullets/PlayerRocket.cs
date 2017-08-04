@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheTieSilincer.Enums;
 
 namespace TheTieSilincer.Models.Bullets
 {
-    public class Rocket : Bullet
+    public class PlayerRocket : Bullet
     {
         private const char bulletType = '↑';
 
-        public Rocket(int x, int y) : base(x, y)
-        {
+        private const BulletType rocket = BulletType.PlayerRocket;
 
+        public PlayerRocket(Position position) : base(position, rocket)
+        {
         }
 
         public override void UpdatePositionByX()
@@ -56,13 +58,13 @@ namespace TheTieSilincer.Models.Bullets
 
         }
 
-        public override void DrawBullet()
+        public override void Draw()
         {
             Console.SetCursorPosition(Position.Y, Position.X);
             Console.WriteLine(bulletType);
         }
 
-        public override bool InBounds()
+        public override bool InBounds(Position nextDirection = null)
         {
             if (Position.X > 0)
             {
@@ -71,5 +73,11 @@ namespace TheTieSilincer.Models.Bullets
 
             return false;
         }
+
+        public override void Update(Position nextDirection = null)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

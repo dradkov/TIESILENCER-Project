@@ -1,12 +1,23 @@
 ﻿using TheTieSilincer.Models.Bullets;
+using TheTieSilincer.Enums;
+using TheTieSilincer.Core.Managers;
 
 namespace TheTieSilincer.Models.Weapons
 {
     public class PlayerWeapon : Weapon
     {
-        public override void AddBullets(int x, int y)
+        private const WeaponType playerWeapon = WeaponType.PlayerWeapon;
+        private const BulletType playerBullet = BulletType.PlayerBullet;
+
+        public PlayerWeapon() : base(playerWeapon, playerBullet)
         {
-            this.Bullets.Add(new PlayerBullet(x, y));
+           
+        }
+
+        public override void AddBullets(Position position)
+        {
+            BulletManager.AddBullet(playerBullet, position);
+          
         }
     }
 }

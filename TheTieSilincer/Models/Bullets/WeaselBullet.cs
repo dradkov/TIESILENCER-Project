@@ -3,24 +3,25 @@
 namespace TheTieSilincer.Models.Bullets
 {
     using System.Collections.Generic;
+    using TheTieSilincer.Enums;
 
     public class WeaselBullet : Bullet
     {
         private const char bulletType = '*';
 
-        public WeaselBullet(int x, int y) : base(x, y)
+        private const BulletType weaselBullet = BulletType.WeaselBullet;
+
+        public WeaselBullet(Position position) : base(position, weaselBullet)
         {
         }
 
-        
-
-        public override void DrawBullet()
+        public override void Draw()
         {
             Console.SetCursorPosition(Position.Y, Position.X);
             Console.WriteLine(bulletType);
         }
 
-        public override bool InBounds()
+        public override bool InBounds(Position nextDirection = null)
         {
             if (Position.X == Console.WindowHeight - 2)
             {
@@ -28,6 +29,11 @@ namespace TheTieSilincer.Models.Bullets
             }
 
             return true;
+        }
+
+        public override void Update(Position nextDirection = null)
+        {
+            throw new NotImplementedException();
         }
 
         public override void UpdatePositionByX()
