@@ -4,6 +4,7 @@ namespace TheTieSilincer.Core
 {
     using TheTieSilincer.Collisions;
     using TheTieSilincer.Enums;
+    using TheTieSilincer.Support;
 
     public class Game
     {
@@ -22,7 +23,7 @@ namespace TheTieSilincer.Core
             this.bulletCollision = new BulletCollision(shipManager, playerManager);
             this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
-            this.playerManager.CreatePlayer(shipManager.BuildPlayerShip(ShipType.PlayerShip));
+            this.playerManager.CreatePlayer(shipManager.BuildShip(ShipType.PlayerShip));
 
             this.satellite = new Satellite(playerManager, shipManager);
             this.satellite.ReceiveDataByPlayer();
@@ -60,10 +61,10 @@ namespace TheTieSilincer.Core
         {
             Console.Clear();
             Console.CursorVisible = false;
-            Console.WindowHeight = 30;
-            Console.WindowWidth = 100;
-            Console.BufferWidth = Console.WindowWidth;
-            Console.BufferHeight = Console.WindowHeight;
+            Console.WindowHeight = Constants.WindowHeight;
+            Console.WindowWidth = Constants.WindowWidth;
+            Console.BufferHeight = Constants.WindowHeight;
+            Console.BufferWidth = Constants.WindowWidth;
 
             playerManager.DrawPlayer();
         }

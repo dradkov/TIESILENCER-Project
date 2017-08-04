@@ -11,7 +11,7 @@ namespace TheTieSilincer.Models.Ships
 
         }
 
-        public double MovementTime { get; protected set;  }
+        public double MovementSpeed { get; protected set;  }
 
         public abstract void GenerateBullets();   
 

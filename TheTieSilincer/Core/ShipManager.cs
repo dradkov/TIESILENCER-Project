@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using TheTieSilincer.Enums;
 using TheTieSilincer.Factories;
 using TheTieSilincer.Models;
@@ -12,18 +11,20 @@ namespace TheTieSilincer.Core
 {
     public class ShipManager
     {
+        public event EventHandler SendData;
+
         private ShipFactory shipFactory;
         private WeaponFactory weaponFactory;
 
         private ShipType[] shipTypes;
         private WeaponType[] weaponTypes;
 
-        public List<EnemyShip> Ships { get; private set; }
+        public List<Ship> Ships { get; private set; }
 
         private int shipAddNumber = 5;
         private int overlap = 10;
 
-        private double spawnTimeInterval;
+        private double motherShipSpawnTime;
 
         private Random rnd;
 
@@ -31,7 +32,7 @@ namespace TheTieSilincer.Core
         {
             this.shipFactory = new ShipFactory();
             this.weaponFactory = new WeaponFactory();
-            this.Ships = new List<EnemyShip>();
+            this.Ships = new List<Ship>();
             this.shipTypes = (ShipType[])Enum.GetValues(typeof(ShipType));
             this.weaponTypes = (WeaponType[])Enum.GetValues(typeof(WeaponType));
             this.rnd = new Random();
@@ -57,8 +58,7 @@ namespace TheTieSilincer.Core
             }
         }
 
-        public event EventHandler SendData;
-
+        
         public void StartSendingDataFromEnemyShips()
         {
             if (SendData != null)
@@ -97,7 +97,6 @@ namespace TheTieSilincer.Core
                 else
                 {
                     currentShip.DrawShip();
-                    currentShip.GenerateBullets();
                     currentShip.Weapons.ForEach(v => v.DrawBullets());
                 }
             }
@@ -114,12 +113,12 @@ namespace TheTieSilincer.Core
             int a = 0;
             for (int i = 0; i < shipAddNumber; i++)
             {
-                EnemyShip ship = null;
+                Ship ship = null;
                 ShipType shipType = this.shipTypes[rnd.Next(0, shipTypes.Length)];
 
                 if (shipType != ShipType.MotherShip && shipType != ShipType.PlayerShip)
                 {
-                    ship = BuildEnemyShip(shipType);
+                    ship = BuildShip(shipType);
 
                     if (CheckForOverlappingCoords(ship.Position.X, ship.Position.Y))
                     {
@@ -141,25 +140,13 @@ namespace TheTieSilincer.Core
             }
         }
 
-        public EnemyShip BuildEnemyShip(ShipType shipType)
+        public Ship BuildShip(ShipType shipType)
         {
             if (shipTypes.Contains(shipType))
             {
                 List<Weapon> weapons = GetShipWeapons(shipType);
 
-                return this.shipFactory.CreateEnemyShip(shipType, weapons);
-            }
-
-            return null;
-        }
-
-        public PlayerShip BuildPlayerShip(ShipType shipType)
-        {
-            if (shipTypes.Contains(shipType))
-            {
-                List<Weapon> weapons = GetShipWeapons(shipType);
-
-                return this.shipFactory.CreatePlayerShip(shipType, weapons);
+                return this.shipFactory.CreateShip(shipType, weapons);
             }
 
             return null;
@@ -180,7 +167,6 @@ namespace TheTieSilincer.Core
             return weapons;
         }
 
-
         public bool CheckForOverlappingCoords(int x, int y)
         {
             if (Ships.Any(v => Math.Abs(v.Position.Y - y) < overlap))
@@ -191,7 +177,7 @@ namespace TheTieSilincer.Core
             return false;
         }
 
-        public void DestroyShip(EnemyShip ship)
+        public void DestroyShip(Ship ship)
         {
             ship.ClearShip(true);
             this.Ships.Remove(ship);
@@ -201,25 +187,25 @@ namespace TheTieSilincer.Core
         {
             if (!Ships.Any(v => v.ShipType == ShipType.MotherShip))
             {
-                if (spawnTimeInterval >= 50)
+                if (motherShipSpawnTime >= 50)
                 {
-                    EnemyShip motherShip = BuildEnemyShip(ShipType.MotherShip);
+                    Ship motherShip = BuildShip(ShipType.MotherShip);
                     if (CheckForOverlappingCoords(motherShip.Position.X, motherShip.Position.Y))
                     {
                         this.Ships.Add(motherShip);
-                        spawnTimeInterval = 0;
+                        motherShipSpawnTime = 0;
                     }
                 }
             }
             else
             {
-                spawnTimeInterval = 0;
+                motherShipSpawnTime = 0;
             }
 
-            spawnTimeInterval++;
+            motherShipSpawnTime++;
         }
 
-        public void DecreaseArmor(EnemyShip ship)
+        public void DecreaseArmor(Ship ship)
         {
             ship.Armor--;
         }

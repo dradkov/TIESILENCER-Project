@@ -44,6 +44,8 @@ namespace TheTieSilincer.Models.Ships
             Console.WriteLine(@"\(|X|)/");
             Console.SetCursorPosition(this.Position.Y+3, this.Position.X+1);
             Console.WriteLine("V");
+
+            GenerateBullets();
         }
 
         public override void UpdateShip(Position nextDirection)
@@ -54,7 +56,7 @@ namespace TheTieSilincer.Models.Ships
                 this.Position.X++;
             }
 
-            if(this.MovementTime % 2 == 0)
+            if(this.MovementSpeed % 2 == 0)
             {
                 if(nextDirection == null)
                 {
@@ -63,7 +65,7 @@ namespace TheTieSilincer.Models.Ships
                 }        
             }
 
-            this.MovementTime += 0.50;
+            this.MovementSpeed += 0.50;
         }
 
         public override bool InBounds(Position nextDirection)

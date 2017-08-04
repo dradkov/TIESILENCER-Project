@@ -6,12 +6,12 @@ namespace TheTieSilincer.Models
 {
     public class Player
     {
-        public Player(PlayerShip ship)
+        public Player(Ship ship)
         {
             this.Ship = ship;
         }
 
-        public PlayerShip Ship { get; private set; }
+        public Ship Ship { get; private set; }
 
     }
 }

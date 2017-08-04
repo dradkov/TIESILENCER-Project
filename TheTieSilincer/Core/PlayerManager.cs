@@ -59,7 +59,7 @@ namespace TheTieSilincer.Core
            };
         }
 
-        public void CreatePlayer(PlayerShip ship)
+        public void CreatePlayer(Ship ship)
         {
             this.Player = new Player(ship);
         }

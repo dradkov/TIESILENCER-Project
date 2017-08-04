@@ -67,6 +67,7 @@ namespace TheTieSilincer.Models.Ships
             Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
             Console.WriteLine("WW");
 
+            GenerateBullets();
         }
 
         public override void GenerateBullets()
