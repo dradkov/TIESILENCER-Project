@@ -55,6 +55,7 @@
     <Compile Include="Enums\BulletType.cs" />
     <Compile Include="Enums\ShipType.cs" />
     <Compile Include="Enums\WeaponType.cs" />
+    <Compile Include="EventArguments\BulletCoordsEventArgs.cs" />
     <Compile Include="EventArguments\EnemyShipsPositionChangeEventArgs.cs" />
     <Compile Include="EventArguments\PlayerPositionChangeEventArgs.cs" />
     <Compile Include="Factories\BulletFactory.cs" />

@@ -1,6 +1,7 @@
 ﻿using TheTieSilincer.Models.Bullets;
 using TheTieSilincer.Enums;
 using TheTieSilincer.Core.Managers;
+using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Models.Weapons
 {
@@ -16,7 +17,9 @@ namespace TheTieSilincer.Models.Weapons
 
         public override void AddBullets(Position position)
         {
-            BulletManager.AddBullet(playerBullet, position);
+            //BulletManager.AddBullet(playerBullet, position);
+
+            OnGenBullets(new BulletCoordsEventArgs(playerBullet, position));
           
         }
     }

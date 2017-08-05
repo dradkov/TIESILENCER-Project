@@ -35,7 +35,7 @@ namespace TheTieSilincer.Core.Managers
            };
         }
 
-        public void OnPositionChange(PlayerPositionChangeEventArgs args)
+        private void OnPositionChange(PlayerPositionChangeEventArgs args)
         {
             SendPlayerPosition?.Invoke(this, args);
         }
@@ -100,11 +100,13 @@ namespace TheTieSilincer.Core.Managers
 
             if (shooting)
             {
-                BulletManager.AddBullet(this.Player.Ship.Weapons[currentWeapon].BulletType,
+                var currWeapon = this.Player.Ship.Weapons[currentWeapon];
+
+                currWeapon.AddBullets(
                     new Position(this.Player.Ship.Position.X + 2,
                     this.Player.Ship.Position.Y + 1));
 
-                BulletManager.AddBullet(this.Player.Ship.Weapons[currentWeapon].BulletType,
+                currWeapon.AddBullets(
                     new Position(this.Player.Ship.Position.X + 2,
                    this.Player.Ship.Position.Y + 7));
             }

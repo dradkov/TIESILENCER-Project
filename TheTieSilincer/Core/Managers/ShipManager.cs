@@ -17,6 +17,8 @@ namespace TheTieSilincer.Core.Managers
     {
         public event EnemyShipsPositionChangeEventHandler SendShipsPositions;
 
+        private BulletManager bulletManager;
+
         private ShipFactory shipFactory;
         private WeaponFactory weaponFactory;
 
@@ -32,8 +34,9 @@ namespace TheTieSilincer.Core.Managers
 
         private Random rnd;
 
-        public ShipManager()
+        public ShipManager(BulletManager bulletManager)
         {
+            this.bulletManager = bulletManager;
             this.shipFactory = new ShipFactory();
             this.weaponFactory = new WeaponFactory();
             this.Ships = new List<Ship>();
@@ -42,7 +45,7 @@ namespace TheTieSilincer.Core.Managers
             this.rnd = new Random();
         }
 
-        public void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
+        private void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
         {
             SendShipsPositions?.Invoke(this, args);
         }
@@ -118,6 +121,7 @@ namespace TheTieSilincer.Core.Managers
                     }
                     else
                     {
+                        ship.Weapons.ForEach(v => v.GenBullets += bulletManager.GeneratingBullets);
                         this.Ships.Add(ship);
                     }
 
@@ -183,6 +187,7 @@ namespace TheTieSilincer.Core.Managers
                     Ship motherShip = BuildShip(ShipType.MotherShip);
                     if (CheckForOverlappingCoords(motherShip.Position.X, motherShip.Position.Y))
                     {
+                        motherShip.Weapons.ForEach(a => a.GenBullets += bulletManager.GeneratingBullets);
                         this.Ships.Add(motherShip);
                         motherShipSpawnTime = 0;
                     }

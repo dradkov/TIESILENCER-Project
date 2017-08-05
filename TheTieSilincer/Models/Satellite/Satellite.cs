@@ -11,12 +11,12 @@ namespace TheTieSilincer.Models.Satellite
         public event PlayerPositionChangedEventHandler SendPlayerPosition;
         public event EnemyShipsPositionChangedEventHandler SendShipsPositions;
 
-        public void OnPlayerPositionChange(PlayerPositionChangeEventArgs args)
+        private void OnPlayerPositionChange(PlayerPositionChangeEventArgs args)
         {
             SendPlayerPosition?.Invoke(this, args);
         }
 
-        public void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
+        private void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
         {
             SendShipsPositions?.Invoke(this, args);
         }

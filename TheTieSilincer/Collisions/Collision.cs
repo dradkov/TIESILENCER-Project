@@ -25,7 +25,7 @@ namespace TheTieSilincer.Collisions
             return distance;
         }
 
-        public abstract void CheckForCollisions(List<Bullet> bullets = null);
+        public abstract void CheckForCollisions();
 
     }
 }

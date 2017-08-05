@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Enums;
+﻿using TheTieSilincer.Enums;
 using TheTieSilincer.Core.Managers;
+using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Models.Weapons
 {
@@ -20,8 +15,8 @@ namespace TheTieSilincer.Models.Weapons
 
         public override void AddBullets(Position position)
         {
-
-            BulletManager.AddBullet(rocketType, position);
+            OnGenBullets(new BulletCoordsEventArgs(rocketType, position));
+           // BulletManager.AddBullet(rocketType, position);
 
         }
     }

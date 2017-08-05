@@ -10,9 +10,9 @@ namespace TheTieSilincer.Core.Managers
 {
     public class BulletManager : Manager
     {
-        private static BulletFactory bulletFactory;
+        private BulletFactory bulletFactory;
 
-        public static List<Bullet> bullets;
+        public  List<Bullet> bullets;
 
         public BulletManager()
         {
@@ -24,6 +24,11 @@ namespace TheTieSilincer.Core.Managers
         {          
             bullets.Where(v => v.BulletType == BulletType.PlayerRocket).Select(v=> (PlayerRocket)v)
                 .ToList().ForEach(v => v.UpdatePositionByY(args.enemyShipPositions));  
+        }
+
+        public void GeneratingBullets(object sender, BulletCoordsEventArgs args)
+        {
+            bullets.Add(bulletFactory.CreateBullet(args.BulletType, args.Position));
         }
 
         public override void Clear()
@@ -42,9 +47,5 @@ namespace TheTieSilincer.Core.Managers
             bullets.ForEach(v => v.Update());
         }
         
-        public static void AddBullet(BulletType bulletType, Position position)
-        {
-            bullets.Add(bulletFactory.CreateBullet(bulletType, position));  
-        }
     }
 }

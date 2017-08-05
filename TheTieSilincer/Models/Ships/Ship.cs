@@ -20,12 +20,6 @@ namespace TheTieSilincer.Models
 
         public int CollisionAOE { get; protected set; }
 
-      // public void DrawBullets() => this.Weapons.ForEach(v=> v.DrawBullets());
-      //
-      // public void UpdateBullets() => this.Weapons.ForEach(v=> v.UpdateBullets());
-      //
-      // public void ClearBullets() => this.Weapons.ForEach(v=>v.ClearBullets());
-
         public virtual bool IsAlive()
         {
             if(this.Armor > 0)

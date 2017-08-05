@@ -12,7 +12,7 @@ namespace TheTieSilincer.Collisions
 
         public ShipCollision(ShipManager shipManager) : base(shipManager) { }
 
-        public override void CheckForCollisions(List<Bullet> bullets = null)
+        public override void CheckForCollisions()
         {
             for (int x = 0; x < this.shipManager.Ships.Count; x++)
             {

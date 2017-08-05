@@ -7,6 +7,9 @@ namespace TheTieSilincer.Core
     using TheTieSilincer.Support;
     using TheTieSilincer.Core.Managers;
     using TheTieSilincer.Models.Satellite;
+    using TheTieSilincer.Models.Weapons;
+    using System.Linq;
+    using System.Collections.Generic;
 
     public class Game
     {
@@ -14,7 +17,6 @@ namespace TheTieSilincer.Core
 
         private ShipManager shipManager;
         private PlayerManager playerManager;
-
         private BulletManager bulletManager;
 
         private BulletCollision bulletCollision;
@@ -22,16 +24,21 @@ namespace TheTieSilincer.Core
 
         public Game()
         {
-            this.satellite = new Satellite();
-            this.shipManager = new ShipManager();
+            this.satellite = new Satellite();          
             this.playerManager = new PlayerManager();
             this.bulletManager = new BulletManager();
-            this.bulletCollision = new BulletCollision(shipManager, playerManager);
+            this.shipManager = new ShipManager(bulletManager);
+            this.bulletCollision = new BulletCollision(shipManager, playerManager, bulletManager);
             this.shipCollision = new ShipCollision(shipManager);
             this.shipManager.GenerateShips();
             this.playerManager.CreatePlayer(shipManager.BuildShip(ShipType.PlayerShip));
 
             this.satellite.StartTransmittingMessages(playerManager, shipManager, bulletManager);
+
+            this.playerManager.Player.Ship.Weapons.ForEach
+                (a => a.GenBullets += bulletManager.GeneratingBullets);
+     
+
         }
 
         public void Clear()
@@ -43,7 +50,7 @@ namespace TheTieSilincer.Core
 
         public void CheckForCollisions()
         {
-            bulletCollision.CheckForCollisions(BulletManager.bullets);
+            bulletCollision.CheckForCollisions();
             shipCollision.CheckForCollisions();
         }
 
