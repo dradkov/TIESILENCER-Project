@@ -1,6 +1,4 @@
-﻿using System;
-using TheTieSilincer.Core;
-using TheTieSilincer.Models;
+﻿using TheTieSilincer.Models;
 using TheTieSilincer.Enums;
 using TheTieSilincer.Core.Managers;
 using TheTieSilincer.Models.Bullets;
@@ -48,12 +46,10 @@ namespace TheTieSilincer.Collisions
                             {                               
                                 currentShip.Position.Y--;
                              
-                               // secondShip.Position.Y++;
                             }
                             else
                             {
                                 currentShip.Position.Y++;
-                              //  secondShip.Position.Y--;
                             }
 
                         }

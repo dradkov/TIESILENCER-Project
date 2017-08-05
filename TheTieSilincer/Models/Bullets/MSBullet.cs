@@ -31,19 +31,10 @@ namespace TheTieSilincer.Models.Bullets
             return true;
         }
 
-        public override void UpdatePositionByX()
+        public override void Update(Position nextDirection = null)
         {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X++;
-        }
-        public override void UpdatePositionByY(List<Position> positions)
-        {
-
-        }
-
-        public override void Update(Position nextDirection = null)
-        {
-            throw new NotImplementedException();
         }
     }
 }

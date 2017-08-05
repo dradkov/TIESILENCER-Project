@@ -33,18 +33,9 @@ namespace TheTieSilincer.Models.Bullets
 
         public override void Update(Position nextDirection = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void UpdatePositionByX()
-        {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X++;
         }
 
-        public override void UpdatePositionByY(List<Position> positions)
-        {
-             
-        }
     }
 }

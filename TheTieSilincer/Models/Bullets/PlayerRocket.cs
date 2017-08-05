@@ -17,13 +17,7 @@ namespace TheTieSilincer.Models.Bullets
         {
         }
 
-        public override void UpdatePositionByX()
-        {
-            this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-            this.Position.X--;
-        }
-
-        public override void UpdatePositionByY(List<Position> positions)
+        public void UpdatePositionByY(List<Position> positions)
         {
             Position nearestPoint = null;
             double dis = double.MaxValue;
@@ -46,10 +40,12 @@ namespace TheTieSilincer.Models.Bullets
                 {
                     if (nearestPoint.Y < Position.Y)
                     {
+                        this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                         this.Position.Y--;
                     }
                     else
                     {
+                        this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                         this.Position.Y++;
                     }
 
@@ -76,7 +72,7 @@ namespace TheTieSilincer.Models.Bullets
 
         public override void Update(Position nextDirection = null)
         {
-            throw new NotImplementedException();
+            this.Position.X--;
         }
 
     }

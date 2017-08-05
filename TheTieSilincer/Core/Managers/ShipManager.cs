@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TheTieSilincer.Enums;
+using TheTieSilincer.EventArguments;
 using TheTieSilincer.Factories;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Ships;
@@ -9,9 +10,12 @@ using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Core.Managers
 {
+    public delegate void EnemyShipsPositionChangeEventHandler
+        (object sender, EnemyShipsPositionChangeEventArgs args);
+
     public class ShipManager : Manager
     {
-        public event EventHandler SendData;
+        public event EnemyShipsPositionChangeEventHandler SendShipsPositions;
 
         private ShipFactory shipFactory;
         private WeaponFactory weaponFactory;
@@ -38,43 +42,32 @@ namespace TheTieSilincer.Core.Managers
             this.rnd = new Random();
         }
 
-
-        public void ListenPlayerShipCoords(Satellite satellite)
+        public void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
         {
-            satellite.SendData -= PlayerShipSendCoords;
-            satellite.SendData += PlayerShipSendCoords;
+            SendShipsPositions?.Invoke(this, args);
         }
 
-        public void PlayerShipSendCoords(object sender, EventArgs e)
+        public void ReceivePlayerPosition(object sender, PlayerPositionChangeEventArgs args)
         {
-            Position position = ((Satellite)sender).PlayerManager.Player.Ship.Position;
-
             foreach (var ship in this.Ships)
             {
                 if (ship.GetType() == typeof(KamikazeShip))
                 {
-                    (ship as KamikazeShip).Pos = position;
+                    (ship as KamikazeShip).Pos = args.Position;
                 }
             }
         }
 
-        
-        public void StartSendingDataFromEnemyShips()
-        {
-            if (SendData != null)
-            {
-                this.SendData(this, EventArgs.Empty);
-            }
-
-        }
-
         public override void Update()
         {
+            
             foreach (var ship in Ships)
             {
                 ship.Update();
-               // ship.Weapons.ForEach(a => a.UpdateBullets());
             }
+
+            List<Position> shipsPositions = this.Ships.Select(v => v.Position).ToList();
+            OnEnemyShipsPositionChange(new EnemyShipsPositionChangeEventArgs(shipsPositions));
 
             SpawnMotherShip();
         }
@@ -97,7 +90,6 @@ namespace TheTieSilincer.Core.Managers
                 else
                 {
                     currentShip.Draw();
-                   // currentShip.Weapons.ForEach(v => v.DrawBullets());
                 }
             }
         }
@@ -105,7 +97,6 @@ namespace TheTieSilincer.Core.Managers
         public override void Clear()
         {
             this.Ships.ForEach(v => v.Clear());
-           // this.Ships.ForEach(v => v.Weapons.ForEach(a => a.ClearBullets()));
         }
 
         public void GenerateShips()

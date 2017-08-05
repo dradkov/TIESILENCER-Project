@@ -4,6 +4,7 @@ using TheTieSilincer.Models.Weapons;
 using TheTieSilincer.Support;
 using TheTieSilincer.Enums;
 using TheTieSilincer.Core.Managers;
+using System.Linq;
 
 namespace TheTieSilincer.Models.Ships
 {
@@ -75,10 +76,10 @@ namespace TheTieSilincer.Models.Ships
         {
             if (interval == 17 || interval == 27 || interval == 34 || interval == 10 || interval == 3)
             {
-                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 2, this.Position.Y - 1)));
-                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 2, this.Position.Y + 10)));
-                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 3, this.Position.Y + 2)));
-                this.Weapons.ForEach(v => v.AddBullets(new Position(this.Position.X + 3, this.Position.Y + 7)));
+                this.Weapons.First().AddBullets(new Position(this.Position.X + 2, this.Position.Y - 1));
+                this.Weapons.First().AddBullets(new Position(this.Position.X + 2, this.Position.Y + 10));
+                this.Weapons.First().AddBullets(new Position(this.Position.X + 3, this.Position.Y + 2));
+                this.Weapons.First().AddBullets(new Position(this.Position.X + 3, this.Position.Y + 7));
                 
             }
         }

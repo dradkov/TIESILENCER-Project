@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TheTieSilincer.Enums;
+using TheTieSilincer.EventArguments;
 using TheTieSilincer.Factories;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Bullets;
@@ -20,6 +20,12 @@ namespace TheTieSilincer.Core.Managers
             bullets = new List<Bullet>();
         }
 
+        public void ReceiveShipsPositions(object sender, EnemyShipsPositionChangeEventArgs args)
+        {          
+            bullets.Where(v => v.BulletType == BulletType.PlayerRocket).Select(v=> (PlayerRocket)v)
+                .ToList().ForEach(v => v.UpdatePositionByY(args.enemyShipPositions));  
+        }
+
         public override void Clear()
         {
             bullets.Where(v => v.PreviousPosition != null).ToList().ForEach(v => v.Clear());            
@@ -33,7 +39,7 @@ namespace TheTieSilincer.Core.Managers
 
         public override void Update()
         {
-            bullets.ForEach(v => v.UpdatePositionByX());
+            bullets.ForEach(v => v.Update());
         }
         
         public static void AddBullet(BulletType bulletType, Position position)

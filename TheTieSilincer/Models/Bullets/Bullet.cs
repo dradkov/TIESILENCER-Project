@@ -15,10 +15,6 @@ namespace TheTieSilincer.Models.Bullets
         
         public BulletType BulletType { get; private set; }
 
-        public abstract void UpdatePositionByX();
-
-        public abstract void UpdatePositionByY(List<Position> positions = null);
-
         public override void Clear(bool destroyed = false)
         {
             if(this.PreviousPosition != null)
@@ -33,6 +29,5 @@ namespace TheTieSilincer.Models.Bullets
             }
 
         }
-
     }
 }

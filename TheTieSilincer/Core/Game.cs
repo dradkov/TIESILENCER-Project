@@ -6,6 +6,7 @@ namespace TheTieSilincer.Core
     using TheTieSilincer.Enums;
     using TheTieSilincer.Support;
     using TheTieSilincer.Core.Managers;
+    using TheTieSilincer.Models.Satellite;
 
     public class Game
     {
@@ -21,6 +22,7 @@ namespace TheTieSilincer.Core
 
         public Game()
         {
+            this.satellite = new Satellite();
             this.shipManager = new ShipManager();
             this.playerManager = new PlayerManager();
             this.bulletManager = new BulletManager();
@@ -29,9 +31,7 @@ namespace TheTieSilincer.Core
             this.shipManager.GenerateShips();
             this.playerManager.CreatePlayer(shipManager.BuildShip(ShipType.PlayerShip));
 
-            this.satellite = new Satellite(playerManager, shipManager);
-            this.satellite.ReceiveDataByPlayer();
-            this.satellite.ReceiveDataFromShips();
+            this.satellite.StartTransmittingMessages(playerManager, shipManager, bulletManager);
         }
 
         public void Clear()
@@ -52,9 +52,6 @@ namespace TheTieSilincer.Core
             playerManager.Update();
             shipManager.Update();
             bulletManager.Update();
-
-            satellite.TransmitMessages();
-
         }
 
         public void Draw()

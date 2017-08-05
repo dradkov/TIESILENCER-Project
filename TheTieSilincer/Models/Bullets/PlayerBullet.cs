@@ -15,17 +15,6 @@ namespace TheTieSilincer.Models.Bullets
         {
         }
 
-        public override void UpdatePositionByX()
-        {
-            this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-            this.Position.X--;
-        }
-
-        public override void UpdatePositionByY(List<Position> positions)
-        {
-
-        }
-
         public override void Draw()
         {
             Console.SetCursorPosition(Position.Y, Position.X);
@@ -44,7 +33,8 @@ namespace TheTieSilincer.Models.Bullets
 
         public override void Update(Position nextDirection = null)
         {
-            throw new NotImplementedException();
+            this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
+            this.Position.X--;
         }
 
     }

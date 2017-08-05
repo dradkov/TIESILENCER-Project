@@ -1,5 +1,4 @@
 ﻿using System;
-using TheTieSilincer.Core;
 using TheTieSilincer.Models;
 using TheTieSilincer.Core.Managers;
 using TheTieSilincer.Models.Bullets;

@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using TheTieSilincer.Models;
-using TheTieSilincer.Enums;
+using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Core.Managers
 {
+    public delegate void PlayerPositionChangeEventHandler(object sender, PlayerPositionChangeEventArgs args);
+
     public class PlayerManager : Manager
     {
+        public event PlayerPositionChangeEventHandler SendPlayerPosition;
+
         public Player Player { get; private set; }
         private Position[] directions;
         private Position nextDirection;
@@ -19,36 +21,6 @@ namespace TheTieSilincer.Core.Managers
         public PlayerManager()
         {
             this.AddDirections();
-        }
-
-        public event EventHandler SendData;
-        public void StartSendingData()
-        {
-            this.SendData(this, EventArgs.Empty);
-
-        }
-
-        public void ListenEnemyShipsCoords(Satellite satellite)
-        {
-            satellite.SendData -= EnemyShipsSendedCoords;
-            satellite.SendData += EnemyShipsSendedCoords;
-        }
-
-        public void EnemyShipsSendedCoords(object sender, EventArgs e)
-        {
-            List<Position> positions = ((Satellite)sender)
-                .ShipManager
-                .Ships
-                .Select(x => x.Position).ToList();
-
-            //  foreach (var weapon in this.Player.Ship.Weapons)
-            //  {
-            //      weapon.Bullets.ForEach(x => x.UpdatePositionByY(positions));
-            //  }
-
-            BulletManager.bullets.Where(v => v.BulletType == BulletType.PlayerRocket)
-                .ToList().ForEach(v => v.UpdatePositionByY(positions));
-       
         }
 
         private void AddDirections()
@@ -63,6 +35,11 @@ namespace TheTieSilincer.Core.Managers
            };
         }
 
+        public void OnPositionChange(PlayerPositionChangeEventArgs args)
+        {
+            SendPlayerPosition?.Invoke(this, args);
+        }
+
         public void CreatePlayer(Ship ship)
         {
             this.Player = new Player(ship);
@@ -70,21 +47,19 @@ namespace TheTieSilincer.Core.Managers
 
         public override void Update()
         {
-          //  this.Player.Ship.UpdateBullets();
             this.ReadPlayerInput();
             this.Player.Ship.Update(nextDirection);
+            this.OnPositionChange(new PlayerPositionChangeEventArgs(this.Player.Ship.Position));
         }
 
         public override void Draw()
         {
             this.Player.Ship.Draw();
-           // this.Player.Ship.DrawBullets();
         }
 
         public override void Clear()
         {
             this.Player.Ship.Clear();
-            //this.Player.Ship.ClearBullets();
         }
 
         public void ReadPlayerInput()
@@ -118,18 +93,13 @@ namespace TheTieSilincer.Core.Managers
                 if(userDirection.Key == ConsoleKey.V)
                 {
                     currentWeapon = currentWeapon == 0 ? currentWeapon = 1 : currentWeapon = 0;
-                }
+                }                
 
                 nextDirection = directions[movement];
             }
 
             if (shooting)
             {
-                //this.Player.Ship.Weapons[currentWeapon].AddBullets(new Position(this.Player.Ship.Position.X + 2,
-                //    this.Player.Ship.Position.Y + 1));
-                //this.Player.Ship.Weapons[currentWeapon].AddBullets(new Position(this.Player.Ship.Position.X + 2,
-                //    this.Player.Ship.Position.Y + 7));
-
                 BulletManager.AddBullet(this.Player.Ship.Weapons[currentWeapon].BulletType,
                     new Position(this.Player.Ship.Position.X + 2,
                     this.Player.Ship.Position.Y + 1));

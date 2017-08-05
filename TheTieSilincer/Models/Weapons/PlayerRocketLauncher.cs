@@ -20,7 +20,9 @@ namespace TheTieSilincer.Models.Weapons
 
         public override void AddBullets(Position position)
         {
+
             BulletManager.AddBullet(rocketType, position);
+
         }
     }
 }

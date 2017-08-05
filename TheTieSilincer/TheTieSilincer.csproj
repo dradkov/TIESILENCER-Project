@@ -55,9 +55,12 @@
     <Compile Include="Enums\BulletType.cs" />
     <Compile Include="Enums\ShipType.cs" />
     <Compile Include="Enums\WeaponType.cs" />
+    <Compile Include="EventArguments\EnemyShipsPositionChangeEventArgs.cs" />
+    <Compile Include="EventArguments\PlayerPositionChangeEventArgs.cs" />
     <Compile Include="Factories\BulletFactory.cs" />
     <Compile Include="Factories\ShipFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Models\Bullets\Bullet.cs" />
     <Compile Include="Models\Bullets\MSBullet.cs" />
     <Compile Include="Models\Bullets\PlayerBullet.cs" />
@@ -88,10 +91,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
