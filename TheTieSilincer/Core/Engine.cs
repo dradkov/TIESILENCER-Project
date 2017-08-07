@@ -6,9 +6,10 @@ using TheTieSilincer.Support;
 namespace TheTieSilincer.Core
 {
     using System.Threading;
+    using TheTieSilincer.Interfaces;
     using TheTieSilincer.Services;
 
-    public class Engine
+    public class Engine : IEngine
     {
         private Game game;
         private bool GameOver = false;

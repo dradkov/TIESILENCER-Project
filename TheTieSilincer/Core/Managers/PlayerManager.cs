@@ -3,9 +3,7 @@ using TheTieSilincer.Models;
 using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Core.Managers
-{
-    public delegate void PlayerPositionChangeEventHandler(object sender, PlayerPositionChangeEventArgs args);
-
+{    
     public class PlayerManager : Manager
     {
         public event PlayerPositionChangeEventHandler SendPlayerPosition;
@@ -38,6 +36,16 @@ namespace TheTieSilincer.Core.Managers
         private void OnPositionChange(PlayerPositionChangeEventArgs args)
         {
             SendPlayerPosition?.Invoke(this, args);
+        }
+
+        public void OnBulletCollision(object  sender, ShipCollisionEventArgs args)
+        {
+            if(args.Ship.ShipType == this.Player.Ship.ShipType)
+            {
+                this.Player.Ship.Armor--;
+
+                //TO DO
+            }
         }
 
         public void CreatePlayer(Ship ship)

@@ -3,8 +3,6 @@ using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Models.Weapons
 {
-    public delegate void GenerateBulletsEventHandler(object sender, BulletCoordsEventArgs args);
-
     public abstract class Weapon
     {
         public event GenerateBulletsEventHandler GenBullets;

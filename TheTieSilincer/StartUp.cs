@@ -1,12 +1,14 @@
 ﻿namespace TheTieSilincer
 {
     using TheTieSilincer.Core;
+    using TheTieSilincer.Interfaces;
 
     public class StartUp
     {
         public static void Main()
         {
-            var engine = new Engine();
+            IEngine engine = new Engine();
+
             engine.Run();
 
         }

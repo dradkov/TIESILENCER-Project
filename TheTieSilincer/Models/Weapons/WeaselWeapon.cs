@@ -20,7 +20,6 @@ namespace TheTieSilincer.Models.Weapons
             if (ShootCooldown >= 2)
             {
                 OnGenBullets(new EventArguments.BulletCoordsEventArgs(weaselBullet, position));
-              //  BulletManager.AddBullet(weaselBullet, position);
                 ShootCooldown = 0;
             }
             ShootCooldown += 0.25;

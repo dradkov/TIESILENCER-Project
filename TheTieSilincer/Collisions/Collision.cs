@@ -1,21 +1,11 @@
 ﻿using System;
 using TheTieSilincer.Models;
-using TheTieSilincer.Core.Managers;
-using TheTieSilincer.Models.Bullets;
-using System.Collections.Generic;
 
 namespace TheTieSilincer.Collisions
 {
     public abstract class Collision
     {
-        protected ShipManager shipManager;
-
         protected double distance;
-
-        protected Collision(ShipManager shipManager)
-        {
-            this.shipManager = shipManager;
-        }
 
         public double Distance(Position position1 , Position position2)
         {
@@ -24,8 +14,5 @@ namespace TheTieSilincer.Collisions
 
             return distance;
         }
-
-        public abstract void CheckForCollisions();
-
     }
 }

@@ -55,18 +55,26 @@
     <Compile Include="Enums\BulletType.cs" />
     <Compile Include="Enums\ShipType.cs" />
     <Compile Include="Enums\WeaponType.cs" />
+    <Compile Include="EventArguments\BulletCollisionEventArgs.cs" />
     <Compile Include="EventArguments\BulletCoordsEventArgs.cs" />
     <Compile Include="EventArguments\EnemyShipsPositionChangeEventArgs.cs" />
+    <Compile Include="EventArguments\NewWeaponsEventArgs.cs" />
     <Compile Include="EventArguments\PlayerPositionChangeEventArgs.cs" />
+    <Compile Include="EventArguments\ShipCollisionEventArgs.cs" />
     <Compile Include="Factories\BulletFactory.cs" />
     <Compile Include="Factories\ShipFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="Interfaces\IClearable.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IGame.cs" />
+    <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Models\Bullets\Bullet.cs" />
     <Compile Include="Models\Bullets\MSBullet.cs" />
     <Compile Include="Models\Bullets\PlayerBullet.cs" />
     <Compile Include="Models\Bullets\PlayerRocket.cs" />
     <Compile Include="Models\Bullets\WeaselBullet.cs" />
+    <Compile Include="Models\EventHandlers.cs" />
     <Compile Include="Models\GameObject.cs" />
     <Compile Include="Models\PilotName.cs" />
     <Compile Include="Models\Player.cs" />
@@ -93,6 +101,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

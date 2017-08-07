@@ -1,71 +1,74 @@
 ﻿using TheTieSilincer.Models;
 using TheTieSilincer.Enums;
-using TheTieSilincer.Core.Managers;
-using TheTieSilincer.Models.Bullets;
 using System.Collections.Generic;
+using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Collisions
 {
     public class ShipCollision : Collision
     {
-        private int intersectionPoint = 7;
+        public event ShipCollisionEventHandler shipCollidesWithAnotherShip;
 
-        public ShipCollision(ShipManager shipManager) : base(shipManager) { }
-
-        public override void CheckForCollisions()
+        private void OnShipCollision(ShipCollisionEventArgs args)
         {
-            for (int x = 0; x < this.shipManager.Ships.Count; x++)
-            {
-                var currentShip = shipManager.Ships[x];
+            shipCollidesWithAnotherShip?.Invoke(this, args);
+        }
 
-                for (int y = 0; y < shipManager.Ships.Count; y++)
+        private double intersectionPoint = 2;
+
+        public void CheckForCollisions(IList<Ship> ships, Ship playerShip)
+        {
+           
+            foreach (var ship in ships)
+            {
+                if(Intersect(ship.Position, playerShip.Position))
                 {
-                    var secondShip = shipManager.Ships[y];
+                    OnShipCollision(new ShipCollisionEventArgs(ship, true));
+                }
+            }
+
+            intersectionPoint = 7;
+
+            for (int x = 0; x < ships.Count; x++)
+            {
+                var currentShip = ships[x];
+
+                for (int y = 0; y < ships.Count; y++)
+                {
+                    var secondShip = ships[y];
                     if (x != y)
                     {
-                        if(secondShip.ShipType == ShipType.MotherShip ||
-                            currentShip.ShipType == ShipType.MotherShip )
+                        if (secondShip.ShipType == ShipType.MotherShip ||
+                            currentShip.ShipType == ShipType.MotherShip)
                         {
                             intersectionPoint = 14;
                         }
 
                         if (secondShip.ShipType == ShipType.KamikazeShip &&
-                            currentShip.ShipType == ShipType.KamikazeShip )
+                            currentShip.ShipType == ShipType.KamikazeShip)
                         {
                             intersectionPoint = 3;
                         }
 
                         if (Intersect(currentShip.Position, secondShip.Position))
                         {
-                            currentShip.SetPreviousPosition(currentShip.Position);
-                            secondShip.SetPreviousPosition(secondShip.Position);
-                            currentShip.Clear();
-                            secondShip.Clear();
-
-                            if (currentShip.Position.Y <= shipManager.Ships[y].Position.Y)
-                            {                               
-                                currentShip.Position.Y--;
-                             
-                            }
-                            else
-                            {
-                                currentShip.Position.Y++;
-                            }
-
+                            OnShipCollision(new ShipCollisionEventArgs(currentShip, false, secondShip));
                         }
 
                         intersectionPoint = 7;
-                        
+
                     }
                 }
             }
+
+            intersectionPoint = 2;
         }
 
         private bool Intersect(Position p1 , Position p2)
         {
             distance = Distance(p1, p2);
 
-            if(distance < intersectionPoint)
+            if(distance <= intersectionPoint)
             {
                 return true;
             }

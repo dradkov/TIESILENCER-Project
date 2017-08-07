@@ -12,18 +12,40 @@ namespace TheTieSilincer.Core.Managers
     {
         private BulletFactory bulletFactory;
 
-        public  List<Bullet> bullets;
-
+        private List<Bullet> bullets;
+      
         public BulletManager()
         {
             bulletFactory = new BulletFactory();
             bullets = new List<Bullet>();
         }
 
+        public IList<Bullet> Bullets
+        {
+            get
+            {
+                return new List<Bullet>(bullets);
+            }
+        }
+ 
+
         public void ReceiveShipsPositions(object sender, EnemyShipsPositionChangeEventArgs args)
-        {          
+        {
             bullets.Where(v => v.BulletType == BulletType.PlayerRocket).Select(v=> (PlayerRocket)v)
                 .ToList().ForEach(v => v.UpdatePositionByY(args.enemyShipPositions));  
+        }
+
+        public void SubscribeForNewWeapons(object sender, NewWeaponsEventArgs args)
+        {
+            args.Weapons.ForEach(v => v.GenBullets += this.GeneratingBullets);
+        }
+
+        public void OnBulletCollision(object sender, BulletCollisionEventArgs args)
+        {
+            Bullet bullet = args.Bullet;
+
+            bullet.Clear();
+            bullets.Remove(bullet);
         }
 
         public void GeneratingBullets(object sender, BulletCoordsEventArgs args)

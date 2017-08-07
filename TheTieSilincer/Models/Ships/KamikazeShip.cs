@@ -18,22 +18,9 @@ namespace TheTieSilincer.Models.Ships
             this.Armor = 3;
         }
         
-        private Position pos = null;
+        public Position Pos { get; set; }
         
         private double movementTime = 0;
-
-        public Position Pos
-        {
-            get
-            {
-                return pos;
-            }
-
-            set
-            {
-                pos = value;
-            }
-        }
 
         public override void Clear(bool destroyed = false)
         {

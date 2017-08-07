@@ -1,31 +1,34 @@
 ﻿using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Core.Managers;
 using System.Collections.Generic;
+using TheTieSilincer.Models;
+using TheTieSilincer.EventArguments;
 
 namespace TheTieSilincer.Collisions
 {
     public class BulletCollision : Collision
     {
-        private PlayerManager playerManager;
-        private BulletManager bulletManager;
+        public event BulletCollisionEventHandler bulletCollision;
+        public event ShipCollisionEventHandler bulletCollidesWithAShip;
 
-        public BulletCollision(ShipManager shipManager , PlayerManager playerManager
-            , BulletManager bulletManager) : base(shipManager)
+        private void OnBulletCollision(BulletCollisionEventArgs args)
         {
-            this.playerManager = playerManager;
-            this.bulletManager = bulletManager;
+            bulletCollision?.Invoke(this, args);
         }
 
-        public void CheckPlayerBulletCollisions()
+        private void OnBulletCollidesWithAShip(ShipCollisionEventArgs args)
         {
+            bulletCollidesWithAShip?.Invoke(this, args);
+        }
 
-            for (int y = 0; y < shipManager.Ships.Count; y++)
+        private void CheckPlayerBulletCollisions(IList<Bullet> bullets, IList<Ship> ships)
+        {
+            for (int y = 0; y < ships.Count; y++)
             {
-                var enemyShip = this.shipManager.Ships[y];
+                var enemyShip = ships[y];
 
-                for (int x = 0; x < bulletManager.bullets.Count; x++)
+                for (int x = 0; x < bullets.Count; x++)
                 {
-                    var currentBullet = bulletManager.bullets[x];
+                    var currentBullet = bullets[x];
 
                     if (!currentBullet.BulletType.ToString().StartsWith("Player")) continue;
 
@@ -33,29 +36,21 @@ namespace TheTieSilincer.Collisions
 
                     if (IsHit(distance, enemyShip.CollisionAOE))
                     {
-                        this.shipManager.DecreaseArmor(enemyShip);
-                        currentBullet.Clear();
-                        bulletManager.bullets.RemoveAt(x);
+                        OnBulletCollision(new BulletCollisionEventArgs(currentBullet));
+                        OnBulletCollidesWithAShip(new ShipCollisionEventArgs(enemyShip, false));
+                        bullets.RemoveAt(x);
                         x--;
                     }
-                }
-
-                if (!enemyShip.IsAlive())
-                {
-                    enemyShip.Clear(true);
-                    this.shipManager.Ships.RemoveAt(y);
-                    y--;
                 }
             }
         }
 
-        public void CheckEnemyBulletCollisions()
+        public void CheckEnemyBulletCollisions(IList<Bullet> bullets, Ship playerShip)
         {
-            var playerShip = this.playerManager.Player.Ship;
 
-            for (int y = 0; y < bulletManager.bullets.Count; y++)
+            for (int y = 0; y < bullets.Count; y++)
             {
-                var currentBullet = bulletManager.bullets[y];
+                var currentBullet = bullets[y];
 
                 if (currentBullet.BulletType.ToString().StartsWith("Player")) continue;
 
@@ -63,19 +58,19 @@ namespace TheTieSilincer.Collisions
 
                 if (IsHit(distance, playerShip.CollisionAOE))
                 {
-                    currentBullet.Clear();
-                    bulletManager.bullets.RemoveAt(y);
+                    OnBulletCollision(new BulletCollisionEventArgs(currentBullet));
+                    OnBulletCollidesWithAShip(new ShipCollisionEventArgs(playerShip, false));
+                    bullets.RemoveAt(y);
                     y--;
                 }
-
-
             }
+
         }
 
 
         private bool IsHit(double distance, int aoe)
         {
-            if(distance < aoe)
+            if (distance < aoe)
             {
                 return true;
             }
@@ -83,11 +78,10 @@ namespace TheTieSilincer.Collisions
             return false;
         }
 
-
-        public override void CheckForCollisions()
+        public void CheckForCollisions(IList<Bullet> bullets, IList<Ship> ships, Ship playerShip)
         {
-           CheckEnemyBulletCollisions();
-           CheckPlayerBulletCollisions();
+            CheckPlayerBulletCollisions(bullets, ships);
+            CheckEnemyBulletCollisions(bullets, playerShip);
         }
 
     }

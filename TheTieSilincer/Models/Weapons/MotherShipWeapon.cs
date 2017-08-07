@@ -19,7 +19,6 @@ namespace TheTieSilincer.Models.Weapons
         public override void AddBullets(Position position)
         {
             OnGenBullets(new BulletCoordsEventArgs(msBullet, position));
-            //BulletManager.AddBullet(msBullet, position);
         }
     }
 }

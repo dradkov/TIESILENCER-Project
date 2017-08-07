@@ -1,43 +1,21 @@
-﻿using TheTieSilincer.Core.Managers;
-using TheTieSilincer.EventArguments;
+﻿using TheTieSilincer.Collisions;
+using TheTieSilincer.Core.Managers;
 
 namespace TheTieSilincer.Models.Satellite
 {
-    public delegate void PlayerPositionChangedEventHandler(object sender, PlayerPositionChangeEventArgs args);
-    public delegate void EnemyShipsPositionChangedEventHandler(object sender, EnemyShipsPositionChangeEventArgs args);
-
     public class Satellite
     {
-        public event PlayerPositionChangedEventHandler SendPlayerPosition;
-        public event EnemyShipsPositionChangedEventHandler SendShipsPositions;
-
-        private void OnPlayerPositionChange(PlayerPositionChangeEventArgs args)
+        public void StartTransmittingData(PlayerManager playerManager, ShipManager shipManager
+            , BulletManager bulletManager, BulletCollision bulletCollision, ShipCollision shipCollision)
         {
-            SendPlayerPosition?.Invoke(this, args);
-        }
-
-        private void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
-        {
-            SendShipsPositions?.Invoke(this, args);
-        }
-
-        public void ReicevePlayerPosition(object sender, PlayerPositionChangeEventArgs args)
-        {
-            OnPlayerPositionChange(args);
-        }
-
-        public void ReceiveShipsPositions(object sender, EnemyShipsPositionChangeEventArgs args)
-        {
-            OnEnemyShipsPositionChange(args);
-        }
-
-        public void StartTransmittingMessages(PlayerManager playerManager, ShipManager shipManager
-            , BulletManager bulletManager)
-        {
-            playerManager.SendPlayerPosition += this.ReicevePlayerPosition;
-            this.SendPlayerPosition += shipManager.ReceivePlayerPosition;
-            shipManager.SendShipsPositions += this.ReceiveShipsPositions;
-            this.SendShipsPositions += bulletManager.ReceiveShipsPositions;
+            playerManager.SendPlayerPosition += shipManager.ReceivePlayerPosition;
+            shipManager.SendShipsPositions += bulletManager.ReceiveShipsPositions;
+            shipManager.SendNewWeapons += bulletManager.SubscribeForNewWeapons;
+            bulletCollision.bulletCollision += bulletManager.OnBulletCollision;
+            bulletCollision.bulletCollidesWithAShip += shipManager.OnBulletCollision;
+            bulletCollision.bulletCollidesWithAShip += playerManager.OnBulletCollision;
+            shipCollision.shipCollidesWithAnotherShip += shipManager.OnShipCollision;
+            
         }
     }
 }
