@@ -13,7 +13,7 @@ namespace TheTieSilincer.Models.Ships
 
         public double MovementSpeed { get; protected set;  }
 
-        public abstract void GenerateBullets();   
+        public abstract void GenerateBullets();
 
 
                

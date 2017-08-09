@@ -2,6 +2,7 @@
 using TheTieSilincer.Enums;
 using System.Collections.Generic;
 using TheTieSilincer.EventArguments;
+using TheTieSilincer.Interfaces;
 
 namespace TheTieSilincer.Collisions
 {
@@ -16,7 +17,7 @@ namespace TheTieSilincer.Collisions
 
         private double intersectionPoint = 2;
 
-        public void CheckForCollisions(IList<Ship> ships, Ship playerShip)
+        public void CheckForCollisions(IList<IShip> ships, IShip playerShip)
         {
            
             foreach (var ship in ships)

@@ -1,10 +1,11 @@
 ﻿using System;
 using TheTieSilincer.Models;
 using TheTieSilincer.EventArguments;
+using TheTieSilincer.Interfaces;
 
 namespace TheTieSilincer.Core.Managers
 {    
-    public class PlayerManager : Manager
+    public class PlayerManager : IGameObject
     {
         public event PlayerPositionChangeEventHandler SendPlayerPosition;
 
@@ -48,24 +49,25 @@ namespace TheTieSilincer.Core.Managers
             }
         }
 
-        public void CreatePlayer(Ship ship)
+        public void CreatePlayer(IShip ship)
         {
             this.Player = new Player(ship);
         }
 
-        public override void Update()
+        public void Update()
         {
             this.ReadPlayerInput();
-            this.Player.Ship.Update(nextDirection);
+            this.Player.Ship.NextDirection = nextDirection;
+            this.Player.Ship.Update();
             this.OnPositionChange(new PlayerPositionChangeEventArgs(this.Player.Ship.Position));
         }
 
-        public override void Draw()
+        public void Draw()
         {
             this.Player.Ship.Draw();
         }
 
-        public override void Clear()
+        public void Clear()
         {
             this.Player.Ship.Clear();
         }

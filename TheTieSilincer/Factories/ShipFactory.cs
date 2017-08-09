@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TheTieSilincer.Enums;
+using TheTieSilincer.Interfaces;
 using TheTieSilincer.Models;
 using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Factories
 {
-    public class ShipFactory
+    public class ShipFactory : IShipFactory
     {
         private Random rndGen;
 
@@ -17,16 +18,16 @@ namespace TheTieSilincer.Factories
             this.rndGen = new Random();
         }
 
-        public Ship CreateShip(ShipType shipType, List<Weapon> weapons)
+        public IShip CreateShip(ShipType shipType, IList<Weapon> weapons)
         {
             Type typeOfShip = Assembly.GetExecutingAssembly().GetTypes()
                 .FirstOrDefault(v => v.Name == shipType.ToString());
 
-            Ship ship = (Ship)Activator.CreateInstance(typeOfShip, weapons);
+            IShip ship = (Ship)Activator.CreateInstance(typeOfShip, weapons);
 
             if (ship.Position == null)
             {
-                ship.SetPosition(GenerateRandomShipPosition());
+                ship.Position = (GenerateRandomShipPosition());
             }
 
             return ship;

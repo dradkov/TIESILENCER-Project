@@ -64,10 +64,15 @@
     <Compile Include="Factories\BulletFactory.cs" />
     <Compile Include="Factories\ShipFactory.cs" />
     <Compile Include="Factories\WeaponFactory.cs" />
+    <Compile Include="Interfaces\IBulletFactory.cs" />
     <Compile Include="Interfaces\IClearable.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Interfaces\IGame.cs" />
+    <Compile Include="Interfaces\IGameObject.cs" />
+    <Compile Include="Interfaces\IPosition.cs" />
+    <Compile Include="Interfaces\IShip.cs" />
+    <Compile Include="Interfaces\IShipFactory.cs" />
     <Compile Include="Interfaces\IUpdatable.cs" />
     <Compile Include="Models\Bullets\Bullet.cs" />
     <Compile Include="Models\Bullets\MSBullet.cs" />
@@ -101,7 +106,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />

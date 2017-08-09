@@ -6,7 +6,7 @@
 
         public Position PreviousPosition { get; protected set; }
 
-        public abstract void Draw();
+        public abstract void Draw();    
 
         public abstract void Update(Position nextDirection = null);
 

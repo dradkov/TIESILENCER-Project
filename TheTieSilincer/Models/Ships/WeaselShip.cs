@@ -19,7 +19,7 @@ namespace TheTieSilincer.Models.Ships
             this.Armor = 5;
         }
 
-        public override void Clear(bool destroyed = false)
+        public override void Clear()
         {
             if (this.PreviousPosition != null)
             {
@@ -28,14 +28,14 @@ namespace TheTieSilincer.Models.Ships
                 Console.SetCursorPosition(this.PreviousPosition.Y + 3, this.PreviousPosition.X + 1);
                 Console.WriteLine(" ");                
             }
+        }
 
-            if(destroyed)
-            {
-                Console.SetCursorPosition(this.Position.Y, this.Position.X);
-                Console.WriteLine(@"       ");
-                Console.SetCursorPosition(this.Position.Y + 3, this.Position.X + 1);
-                Console.WriteLine(" ");
-            }
+        public override void ClearCurrentPosition()
+        {
+            Console.SetCursorPosition(this.Position.Y, this.Position.X);
+            Console.WriteLine(@"       ");
+            Console.SetCursorPosition(this.Position.Y + 3, this.Position.X + 1);
+            Console.WriteLine(" ");
         }
 
         public override void Draw()
@@ -48,17 +48,17 @@ namespace TheTieSilincer.Models.Ships
             GenerateBullets();
         }
 
-        public override void Update(Position nextDirection)
+        public override void Update()
         {
-            if(nextDirection != null)
+            if(NextDirection != null)
             {
-                this.PreviousPosition = new Position(nextDirection.X, nextDirection.Y);
+                this.PreviousPosition = new Position(NextDirection.X, NextDirection.Y);
                 this.Position.X++;
             }
 
             if(this.MovementSpeed % 2 == 0)
             {
-                if(nextDirection == null)
+                if(NextDirection == null)
                 {
                     this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                     this.Position.X++;
@@ -68,7 +68,7 @@ namespace TheTieSilincer.Models.Ships
             this.MovementSpeed += 0.50;
         }
 
-        public override bool InBounds(Position nextDirection)
+        public override bool InBounds()
         {
             if (Position.X == Constants.WindowHeight - 2)
             {

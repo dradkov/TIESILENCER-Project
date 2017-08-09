@@ -29,8 +29,7 @@ namespace TheTieSilincer.Models.Ships
 
         }
 
-
-        public override void Clear(bool destroyed = false)
+        public override void Clear()
         {
             if (this.PreviousPosition != null)
             {
@@ -43,19 +42,18 @@ namespace TheTieSilincer.Models.Ships
                 Console.SetCursorPosition(this.PreviousPosition.Y + 4, this.PreviousPosition.X + 3);
                 Console.WriteLine("  ");
             }
+        }
 
-            if (destroyed)
-            {
-                Console.SetCursorPosition(this.Position.Y, this.Position.X);
-                Console.WriteLine("          ");
-                Console.SetCursorPosition(this.Position.Y - 2, this.Position.X + 1);
-                Console.WriteLine(@"              ");
-                Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 2);
-                Console.WriteLine(@"        ");
-                Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
-                Console.WriteLine("  ");
-            }
-
+        public override void ClearCurrentPosition()
+        {
+            Console.SetCursorPosition(this.Position.Y, this.Position.X);
+            Console.WriteLine("          ");
+            Console.SetCursorPosition(this.Position.Y - 2, this.Position.X + 1);
+            Console.WriteLine(@"              ");
+            Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 2);
+            Console.WriteLine(@"        ");
+            Console.SetCursorPosition(this.Position.Y + 4, this.Position.X + 3);
+            Console.WriteLine("  ");
         }
 
         public override void Draw()
@@ -84,7 +82,7 @@ namespace TheTieSilincer.Models.Ships
             }
         }
 
-        public override bool InBounds(Position nextDirection = null)
+        public override bool InBounds()
         {
             if (Position.Y < Constants.WindowWidth - 2 && Position.Y > 0)
             {
@@ -95,7 +93,7 @@ namespace TheTieSilincer.Models.Ships
             return false;
         }
 
-        public override void Update(Position nextDirection)
+        public override void Update()
         {
 
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);

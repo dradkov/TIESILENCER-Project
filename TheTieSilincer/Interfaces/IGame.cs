@@ -1,7 +1,9 @@
 ﻿namespace TheTieSilincer.Interfaces
 {
-    public interface IGame
+    public interface IGame : IGameObject
     {
+        void InitialiseSettings();
 
+        void CheckForCollisions();
     }
 }

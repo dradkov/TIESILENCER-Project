@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TheTieSilincer.Models;
 using TheTieSilincer.EventArguments;
+using TheTieSilincer.Interfaces;
 
 namespace TheTieSilincer.Collisions
 {
@@ -20,7 +21,7 @@ namespace TheTieSilincer.Collisions
             bulletCollidesWithAShip?.Invoke(this, args);
         }
 
-        private void CheckPlayerBulletCollisions(IList<Bullet> bullets, IList<Ship> ships)
+        private void CheckPlayerBulletCollisions(IList<Bullet> bullets, IList<IShip> ships)
         {
             for (int y = 0; y < ships.Count; y++)
             {
@@ -45,7 +46,7 @@ namespace TheTieSilincer.Collisions
             }
         }
 
-        public void CheckEnemyBulletCollisions(IList<Bullet> bullets, Ship playerShip)
+        private void CheckEnemyBulletCollisions(IList<Bullet> bullets, IShip playerShip)
         {
 
             for (int y = 0; y < bullets.Count; y++)
@@ -78,7 +79,7 @@ namespace TheTieSilincer.Collisions
             return false;
         }
 
-        public void CheckForCollisions(IList<Bullet> bullets, IList<Ship> ships, Ship playerShip)
+        public void CheckForCollisions(IList<Bullet> bullets, IList<IShip> ships, IShip playerShip)
         {
             CheckPlayerBulletCollisions(bullets, ships);
             CheckEnemyBulletCollisions(bullets, playerShip);

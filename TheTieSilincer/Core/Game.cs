@@ -6,8 +6,9 @@
     using TheTieSilincer.Support;
     using TheTieSilincer.Core.Managers;
     using TheTieSilincer.Models.Satellite;
+    using TheTieSilincer.Interfaces;
 
-    public class Game
+    public class Game : IGame
     {
         private Satellite satellite;
 

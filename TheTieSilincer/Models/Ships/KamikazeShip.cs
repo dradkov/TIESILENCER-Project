@@ -22,7 +22,7 @@ namespace TheTieSilincer.Models.Ships
         
         private double movementTime = 0;
 
-        public override void Clear(bool destroyed = false)
+        public override void Clear()
         {
             if (this.PreviousPosition != null)
             {
@@ -32,14 +32,14 @@ namespace TheTieSilincer.Models.Ships
                 Console.SetCursorPosition(this.PreviousPosition.Y + 1, this.PreviousPosition.X + 1);
                 Console.Write(@" ");
             }
+        }
 
-            if(destroyed)
-            {
-                Console.SetCursorPosition(this.Position.Y, this.Position.X);
-                Console.Write(@"    ");
-                Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 1);
-                Console.Write(@" ");
-            }
+        public override void ClearCurrentPosition()
+        {
+            Console.SetCursorPosition(this.Position.Y, this.Position.X);
+            Console.Write(@"    ");
+            Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 1);
+            Console.Write(@" ");
         }
 
         public override void Draw()
@@ -52,7 +52,7 @@ namespace TheTieSilincer.Models.Ships
              
         }
 
-        public override void Update(Position nextDirection)
+        public override void Update()
         {
              
 
@@ -83,7 +83,7 @@ namespace TheTieSilincer.Models.Ships
             movementTime += 1;
         }
 
-        public override bool InBounds(Position nextDirection)
+        public override bool InBounds()
         {
             if (Position.X == Constants.WindowHeight - 2)
             {

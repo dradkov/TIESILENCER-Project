@@ -22,7 +22,7 @@ namespace TheTieSilincer.Models
         }
         
 
-        public override void Clear(bool destroyed = false)
+        public override void Clear()
         {
             if (PreviousPosition != null)
             {
@@ -39,6 +39,11 @@ namespace TheTieSilincer.Models
             }
         }
 
+        public override void ClearCurrentPosition()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Draw()
         {
             Console.SetCursorPosition(Position.Y + 4, Position.X);
@@ -53,12 +58,11 @@ namespace TheTieSilincer.Models
             Console.WriteLine(@"  </o\>  ");
         }
 
-        public override bool InBounds(Position nextDirection)
+        public override bool InBounds()
         {
-            Position currPosition = this.Position;
-            if (nextDirection == null) return false;
+            if (NextDirection == null) return false;
             nextPosition = new Position
-               (currPosition.X + nextDirection.X, currPosition.Y + nextDirection.Y * 2);
+               (Position.X + NextDirection.X, Position.Y + NextDirection.Y * 2);
 
             if (nextPosition.X > Constants.WindowHeight - 7 || nextPosition.Y > Constants.WindowWidth - 9 ||
                 nextPosition.X < 0 || nextPosition.Y < 0)
@@ -70,9 +74,9 @@ namespace TheTieSilincer.Models
         }
 
 
-        public override void Update(Position nextDirection)
+        public override void Update()
         {
-            if(InBounds(nextDirection))
+            if(InBounds())
             {
                 this.PreviousPosition = this.Position;
                 this.Position = nextPosition;
