@@ -6,7 +6,6 @@ using TheTieSilincer.Support;
 
 namespace TheTieSilincer.Models
 {
-    using System.Linq;
 
     public class PlayerShip : Ship
     {
@@ -21,7 +20,6 @@ namespace TheTieSilincer.Models
 
         }
         
-
         public override void Clear()
         {
             if (PreviousPosition != null)
@@ -41,7 +39,16 @@ namespace TheTieSilincer.Models
 
         public override void ClearCurrentPosition()
         {
-            throw new NotImplementedException();
+            Console.SetCursorPosition(Position.Y + 4, Position.X);
+            Console.WriteLine(" ");
+            Console.SetCursorPosition(Position.Y + 4, Position.X + 1);
+            Console.WriteLine(" ");
+            Console.SetCursorPosition(Position.Y + 3, Position.X + 2);
+            Console.WriteLine("   ");
+            Console.SetCursorPosition(Position.Y, Position.X + 3);
+            Console.WriteLine("         ");
+            Console.SetCursorPosition(Position.Y, Position.X + 4);
+            Console.WriteLine("         ");
         }
 
         public override void Draw()

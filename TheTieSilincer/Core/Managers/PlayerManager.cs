@@ -5,7 +5,7 @@ using TheTieSilincer.Interfaces;
 
 namespace TheTieSilincer.Core.Managers
 {    
-    public class PlayerManager : IGameObject
+    public class PlayerManager : IPlayerManager
     {
         public event PlayerPositionChangeEventHandler SendPlayerPosition;
 
@@ -14,7 +14,7 @@ namespace TheTieSilincer.Core.Managers
         private Position nextDirection;
         private ConsoleKeyInfo userDirection;
         private int movement;
-        bool shooting;
+        private bool shooting;
         private int currentWeapon = 0;
 
         public PlayerManager()
@@ -72,7 +72,7 @@ namespace TheTieSilincer.Core.Managers
             this.Player.Ship.Clear();
         }
 
-        public void ReadPlayerInput()
+        private void ReadPlayerInput()
         {          
             shooting = false;
 

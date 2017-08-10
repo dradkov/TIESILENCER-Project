@@ -5,16 +5,16 @@
     using TheTieSilincer.Enums;
     using TheTieSilincer.Support;
     using TheTieSilincer.Core.Managers;
-    using TheTieSilincer.Models.Satellite;
+    using TheTieSilincer.Models;
     using TheTieSilincer.Interfaces;
 
     public class Game : IGame
     {
         private Satellite satellite;
 
-        private ShipManager shipManager;
-        private PlayerManager playerManager;
-        private BulletManager bulletManager;
+        private IShipManager shipManager;
+        private IPlayerManager playerManager;
+        private IBulletManager bulletManager;
 
         private BulletCollision bulletCollision;
         private ShipCollision shipCollision;

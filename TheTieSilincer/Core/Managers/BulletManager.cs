@@ -3,46 +3,45 @@ using System.Linq;
 using TheTieSilincer.Enums;
 using TheTieSilincer.EventArguments;
 using TheTieSilincer.Factories;
-using TheTieSilincer.Models;
+using TheTieSilincer.Interfaces;
 using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.Core.Managers
 {
-    public class BulletManager : Manager
+    public class BulletManager : IBulletManager
     {
-        private BulletFactory bulletFactory;
+        private IBulletFactory bulletFactory;
 
-        private List<Bullet> bullets;
-      
+        private List<IBullet> bullets;
+
         public BulletManager()
         {
             bulletFactory = new BulletFactory();
-            bullets = new List<Bullet>();
+            bullets = new List<IBullet>();
         }
 
-        public IList<Bullet> Bullets
+        public IList<IBullet> Bullets
         {
             get
             {
-                return new List<Bullet>(bullets);
+                return new List<IBullet>(bullets);
             }
         }
- 
 
         public void ReceiveShipsPositions(object sender, EnemyShipsPositionChangeEventArgs args)
         {
-            bullets.Where(v => v.BulletType == BulletType.PlayerRocket).Select(v=> (PlayerRocket)v)
-                .ToList().ForEach(v => v.UpdatePositionByY(args.enemyShipPositions));  
+            bullets.Where(v => v.BulletType == BulletType.PlayerRocket).Select(v => (PlayerRocket)v)
+                .ToList().ForEach(v => v.UpdatePositionByY(args.enemyShipPositions));
         }
 
         public void SubscribeForNewWeapons(object sender, NewWeaponsEventArgs args)
         {
-            args.Weapons.ForEach(v => v.GenBullets += this.GeneratingBullets);
+            args.Weapons.ToList().ForEach(v => v.GenBullets += this.GeneratingBullets);
         }
 
         public void OnBulletCollision(object sender, BulletCollisionEventArgs args)
         {
-            Bullet bullet = args.Bullet;
+            IBullet bullet = args.Bullet;
 
             bullet.Clear();
             bullets.Remove(bullet);
@@ -53,21 +52,21 @@ namespace TheTieSilincer.Core.Managers
             bullets.Add(bulletFactory.CreateBullet(args.BulletType, args.Position));
         }
 
-        public override void Clear()
+        public void Clear()
         {
-            bullets.Where(v => v.PreviousPosition != null).ToList().ForEach(v => v.Clear());            
+            bullets.Where(v => v.PreviousPosition != null).ToList().ForEach(v => v.Clear());
         }
 
-        public override void Draw()
+        public void Draw()
         {
             bullets.RemoveAll(v => !v.InBounds());
             bullets.ForEach(v => v.Draw());
-        }   
+        }
 
-        public override void Update()
+        public void Update()
         {
             bullets.ForEach(v => v.Update());
         }
-        
+
     }
 }

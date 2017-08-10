@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TheTieSilincer.Enums;
 using TheTieSilincer.Interfaces;
 using TheTieSilincer.Models.Weapons;

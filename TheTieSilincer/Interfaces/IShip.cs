@@ -5,15 +5,13 @@ using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Interfaces
 {
-    public interface IShip : IGameObject, IPosition
+    public interface IShip : IGameObject, IPosition, IDestroyable
     {
         Position NextDirection { get; set; }
 
         ShipType ShipType { get; }
 
         IList<Weapon> Weapons { get; }
-
-        int Armor { get; set; }
 
         int CollisionAOE { get; }
 

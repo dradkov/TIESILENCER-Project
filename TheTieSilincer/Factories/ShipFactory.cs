@@ -23,7 +23,7 @@ namespace TheTieSilincer.Factories
             Type typeOfShip = Assembly.GetExecutingAssembly().GetTypes()
                 .FirstOrDefault(v => v.Name == shipType.ToString());
 
-            IShip ship = (Ship)Activator.CreateInstance(typeOfShip, weapons);
+            IShip ship = (IShip)Activator.CreateInstance(typeOfShip, weapons);
 
             if (ship.Position == null)
             {

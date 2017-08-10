@@ -1,15 +1,17 @@
-﻿using TheTieSilincer.Models;
+﻿using System;
+using TheTieSilincer.Interfaces;
+using TheTieSilincer.Models;
 using TheTieSilincer.Models.Bullets;
 
 namespace TheTieSilincer.EventArguments
 {
-    public class BulletCollisionEventArgs
+    public class BulletCollisionEventArgs : EventArgs
     {
-        public BulletCollisionEventArgs(Bullet bullet)
+        public BulletCollisionEventArgs(IBullet bullet)
         {
             this.Bullet = bullet;
         }
 
-        public Bullet Bullet { get; private set; }
+        public IBullet Bullet { get; private set; }
     }
 }

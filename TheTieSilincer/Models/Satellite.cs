@@ -1,12 +1,12 @@
 ﻿using TheTieSilincer.Collisions;
-using TheTieSilincer.Core.Managers;
+using TheTieSilincer.Interfaces;
 
-namespace TheTieSilincer.Models.Satellite
+namespace TheTieSilincer.Models
 {
     public class Satellite
     {
-        public void StartTransmittingData(PlayerManager playerManager, ShipManager shipManager
-            , BulletManager bulletManager, BulletCollision bulletCollision, ShipCollision shipCollision)
+        public void StartTransmittingData(IPlayerManager playerManager, IShipManager shipManager
+            , IBulletManager bulletManager, BulletCollision bulletCollision, ShipCollision shipCollision)
         {
             playerManager.SendPlayerPosition += shipManager.ReceivePlayerPosition;
             shipManager.SendShipsPositions += bulletManager.ReceiveShipsPositions;

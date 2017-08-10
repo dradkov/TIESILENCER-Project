@@ -11,7 +11,7 @@ using TheTieSilincer.Models.Weapons;
 
 namespace TheTieSilincer.Core.Managers
 {
-    public class ShipManager : Manager
+    public class ShipManager : IShipManager
     {
         public event EnemyShipsPositionChangeEventHandler SendShipsPositions;
         public event NewWeaponsEventHandler SendNewWeapons;
@@ -22,7 +22,7 @@ namespace TheTieSilincer.Core.Managers
         private ShipType[] shipTypes;
         private WeaponType[] weaponTypes;
 
-        private List<IShip> ships;        
+        private List<IShip> ships;
 
         private int shipAddNumber = 5;
         private int overlap = 10;
@@ -65,7 +65,7 @@ namespace TheTieSilincer.Core.Managers
             var f = ships.FirstOrDefault(v => v.Position.X == args.Ship.Position
             .X && v.Position.Y == args.Ship.Position.Y);
 
-            if(f != null)
+            if (f != null)
             {
                 if (args.ShipCollidesWithPlayerShip)
                 {
@@ -95,7 +95,7 @@ namespace TheTieSilincer.Core.Managers
         {
             IShip ship = args.Ship;
 
-            if(ship.GetType().BaseType == typeof(EnemyShip))
+            if (ship.GetType().BaseType == typeof(EnemyShip))
             {
                 if (!ship.IsAlive())
                 {
@@ -119,9 +119,9 @@ namespace TheTieSilincer.Core.Managers
             }
         }
 
-        public override void Update()
+        public  void Update()
         {
-            
+
             foreach (var IShip in ships)
             {
                 IShip.Update();
@@ -133,7 +133,7 @@ namespace TheTieSilincer.Core.Managers
             SpawnMotherShip();
         }
 
-        public override void Draw()
+        public void Draw()
         {
             if (ships.Count <= 1)
             {
@@ -155,7 +155,7 @@ namespace TheTieSilincer.Core.Managers
             }
         }
 
-        public override void Clear()
+        public void Clear()
         {
             this.ships.ForEach(v => v.Clear());
         }
@@ -178,7 +178,7 @@ namespace TheTieSilincer.Core.Managers
                         a++;
                     }
                     else
-                    {                     
+                    {
                         this.ships.Add(ship);
                     }
 
@@ -196,7 +196,7 @@ namespace TheTieSilincer.Core.Managers
         {
             if (shipTypes.Contains(shipType))
             {
-                List<Weapon> weapons = GetShipWeapons(shipType);
+                IList<Weapon> weapons = GetShipWeapons(shipType);
 
                 OnNewWeaponsCreated(new NewWeaponsEventArgs(weapons));
 
@@ -231,7 +231,7 @@ namespace TheTieSilincer.Core.Managers
             return false;
         }
 
-        public void DestroyShip(IShip ship)
+        private void DestroyShip(IShip ship)
         {
             ship.ClearCurrentPosition();
             this.ships.Remove(ship);
@@ -245,7 +245,7 @@ namespace TheTieSilincer.Core.Managers
                 {
                     IShip motherShip = BuildShip(ShipType.MotherShip);
                     if (CheckForOverlappingCoords(motherShip.Position.X, motherShip.Position.Y))
-                    {                      
+                    {
                         this.ships.Add(motherShip);
                         motherShipSpawnTime = 0;
                     }
@@ -259,7 +259,7 @@ namespace TheTieSilincer.Core.Managers
             motherShipSpawnTime++;
         }
 
-        public void DecreaseArmor(IShip ship)
+        private void DecreaseArmor(IShip ship)
         {
             ship.Armor--;
         }

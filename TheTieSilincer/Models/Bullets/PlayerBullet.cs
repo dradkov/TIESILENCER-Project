@@ -21,7 +21,7 @@ namespace TheTieSilincer.Models.Bullets
             Console.WriteLine(bulletType);
         }
 
-        public override bool InBounds(Position nextDirection = null)
+        public override bool InBounds()
         {
             if(Position.X > 0)
             {
@@ -31,7 +31,7 @@ namespace TheTieSilincer.Models.Bullets
             return false;
         }
 
-        public override void Update(Position nextDirection = null)
+        public override void Update()
         {
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X--;
