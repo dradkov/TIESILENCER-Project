@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using TheTieSilincer.Enums;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Factories;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models;
-using TheTieSilincer.Models.Ships;
-using TheTieSilincer.Models.Weapons;
-
-namespace TheTieSilincer.Core.Managers
+﻿namespace TheTieSilincer.Core.Managers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Factories;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+    using TheTieSilincer.Models.Ships;
+    using TheTieSilincer.Models.Weapons;
+
     public class ShipManager : IShipManager
     {
         public event EnemyShipsPositionChangeEventHandler SendShipsPositions;
+
         public event NewWeaponsEventHandler SendNewWeapons;
 
         private IShipFactory shipFactory;
@@ -49,7 +50,6 @@ namespace TheTieSilincer.Core.Managers
             }
         }
 
-
         private void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
         {
             SendShipsPositions?.Invoke(this, args);
@@ -71,7 +71,6 @@ namespace TheTieSilincer.Core.Managers
                 {
                     DestroyShip(f);
                 }
-
                 else
                 {
                     f.PreviousPosition = f.Position;
@@ -87,8 +86,6 @@ namespace TheTieSilincer.Core.Managers
                     }
                 }
             }
-
-
         }
 
         public void OnBulletCollision(object sender, ShipCollisionEventArgs args)
@@ -119,9 +116,8 @@ namespace TheTieSilincer.Core.Managers
             }
         }
 
-        public  void Update()
+        public void Update()
         {
-
             foreach (var IShip in ships)
             {
                 IShip.Update();

@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using TheTieSilincer.Models.Weapons;
-using TheTieSilincer.Support;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Core.Managers;
-using System.Linq;
-
-namespace TheTieSilincer.Models.Ships
+﻿namespace TheTieSilincer.Models.Ships
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models.Weapons;
+    using TheTieSilincer.Support;
+
     public class MotherShip : EnemyShip
     {
-        //         
+        //
         //       ((||||||))
         //     \|\xxxxxxxx/|/
         //        \\VVVV//
@@ -26,7 +25,6 @@ namespace TheTieSilincer.Models.Ships
             this.Position = new Position(0, Console.WindowWidth / 3 + 2);
             this.CollisionAOE = 7;
             this.Armor = 25;
-
         }
 
         public override void Clear()
@@ -78,7 +76,6 @@ namespace TheTieSilincer.Models.Ships
                 this.Weapons.First().AddBullets(new Position(this.Position.X + 2, this.Position.Y + 10));
                 this.Weapons.First().AddBullets(new Position(this.Position.X + 3, this.Position.Y + 2));
                 this.Weapons.First().AddBullets(new Position(this.Position.X + 3, this.Position.Y + 7));
-                
             }
         }
 
@@ -87,7 +84,6 @@ namespace TheTieSilincer.Models.Ships
             if (Position.Y < Constants.WindowWidth - 2 && Position.Y > 0)
             {
                 return true;
-
             }
 
             return false;
@@ -95,28 +91,25 @@ namespace TheTieSilincer.Models.Ships
 
         public override void Update()
         {
-
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
-      
-            
-                if (this.Position.X < 2)
-                {
-                    this.Position.X++;
-                }
+
+            if (this.Position.X < 2)
+            {
+                this.Position.X++;
+            }
+            else
+            {
+                if (goLeft)
+                    this.Position.Y--;
                 else
-                {
-                    if (goLeft)
-                        this.Position.Y--;
-                    else
-                        this.Position.Y++;
+                    this.Position.Y++;
 
-                    if (this.interval == 0)
-                        interval = 34;
+                if (this.interval == 0)
+                    interval = 34;
 
+                this.interval--;
+            }
 
-                    this.interval--;
-                }
-            
             if (this.Position.Y <= 17 || this.Position.Y >= Constants.WindowWidth - 35)
             {
                 goLeft = !goLeft;

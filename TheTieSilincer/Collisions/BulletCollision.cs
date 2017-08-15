@@ -1,14 +1,14 @@
-﻿using TheTieSilincer.Models.Bullets;
-using System.Collections.Generic;
-using TheTieSilincer.Models;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Interfaces;
-
-namespace TheTieSilincer.Collisions
+﻿namespace TheTieSilincer.Collisions
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+
     public class BulletCollision : Collision
     {
         public event BulletCollisionEventHandler bulletCollision;
+
         public event ShipCollisionEventHandler bulletCollidesWithAShip;
 
         private void OnBulletCollision(BulletCollisionEventArgs args)
@@ -48,7 +48,6 @@ namespace TheTieSilincer.Collisions
 
         private void CheckEnemyBulletCollisions(IList<IBullet> bullets, IShip playerShip)
         {
-
             for (int y = 0; y < bullets.Count; y++)
             {
                 var currentBullet = bullets[y];
@@ -65,9 +64,7 @@ namespace TheTieSilincer.Collisions
                     y--;
                 }
             }
-
         }
-
 
         private bool IsHit(double distance, int aoe)
         {
@@ -84,6 +81,5 @@ namespace TheTieSilincer.Collisions
             CheckPlayerBulletCollisions(bullets, ships);
             CheckEnemyBulletCollisions(bullets, playerShip);
         }
-
     }
 }

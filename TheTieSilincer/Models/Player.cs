@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TheTieSilincer.Interfaces;
-
-namespace TheTieSilincer.Models
+﻿namespace TheTieSilincer.Models
 {
+    using TheTieSilincer.Interfaces;
+
     public class Player
     {
         public Player(IShip ship)
@@ -13,6 +10,5 @@ namespace TheTieSilincer.Models
         }
 
         public IShip Ship { get; private set; }
-
     }
 }

@@ -1,7 +1,7 @@
-﻿using TheTieSilincer.EventArguments;
-
-namespace TheTieSilincer.Models
+﻿namespace TheTieSilincer.Models
 {
+    using TheTieSilincer.EventArguments;
+
     public delegate void PlayerPositionChangeEventHandler(object sender, PlayerPositionChangeEventArgs args);
 
     public delegate void EnemyShipsPositionChangeEventHandler(object sender, EnemyShipsPositionChangeEventArgs args);
@@ -13,5 +13,4 @@ namespace TheTieSilincer.Models
     public delegate void GenerateBulletsEventHandler(object sender, BulletCoordsEventArgs args);
 
     public delegate void ShipCollisionEventHandler(object sender, ShipCollisionEventArgs args);
-
 }

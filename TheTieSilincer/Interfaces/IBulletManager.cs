@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TheTieSilincer.EventArguments;
-
-namespace TheTieSilincer.Interfaces
+﻿namespace TheTieSilincer.Interfaces
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.EventArguments;
+
     public interface IBulletManager : IGameObject
     {
         IList<IBullet> Bullets { get; }

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace TheTieSilincer.Models.Bullets
+﻿namespace TheTieSilincer.Models.Bullets
 {
-    using System.Collections.Generic;
+    using System;
     using TheTieSilincer.Enums;
 
     public class MSBullet : Bullet

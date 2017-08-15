@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using TheTieSilincer.Models.Weapons;
-using TheTieSilincer.Support;
-using TheTieSilincer.Enums;
-
-namespace TheTieSilincer.Models.Ships
+﻿namespace TheTieSilincer.Models.Ships
 {
+    using System;
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models.Weapons;
+    using TheTieSilincer.Support;
+
     public class KamikazeShip : EnemyShip
     {
         //   \^/
@@ -17,16 +17,15 @@ namespace TheTieSilincer.Models.Ships
             this.CollisionAOE = 3;
             this.Armor = 3;
         }
-        
+
         public Position Pos { get; set; }
-        
+
         private double movementTime = 0;
 
         public override void Clear()
         {
             if (this.PreviousPosition != null)
             {
-
                 Console.SetCursorPosition(this.PreviousPosition.Y, this.PreviousPosition.X);
                 Console.Write(@"    ");
                 Console.SetCursorPosition(this.PreviousPosition.Y + 1, this.PreviousPosition.X + 1);
@@ -48,14 +47,10 @@ namespace TheTieSilincer.Models.Ships
             Console.WriteLine(@"\^/");
             Console.SetCursorPosition(this.Position.Y + 1, this.Position.X + 1);
             Console.WriteLine("V");
-          
-             
         }
 
         public override void Update()
         {
-             
-
             if (movementTime % 2 == 0)
             {
                 this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
@@ -74,10 +69,6 @@ namespace TheTieSilincer.Models.Ships
                         this.Position.Y++;
                     }
                 }
-
-
-
-
             }
 
             movementTime += 1;
@@ -95,7 +86,6 @@ namespace TheTieSilincer.Models.Ships
 
         public override void GenerateBullets()
         {
-            
         }
     }
 }

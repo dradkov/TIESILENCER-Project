@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TheTieSilincer.Enums;
-
-namespace TheTieSilincer.Models.Bullets
+﻿namespace TheTieSilincer.Models.Bullets
 {
+    using System;
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+
     public class PlayerRocket : Bullet
     {
         private const char bulletType = '↑';
@@ -22,7 +19,7 @@ namespace TheTieSilincer.Models.Bullets
             Position nearestPoint = null;
             double dis = double.MaxValue;
 
-            if(positions != null)
+            if (positions != null)
             {
                 foreach (var pos in positions)
                 {
@@ -48,10 +45,8 @@ namespace TheTieSilincer.Models.Bullets
                         this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
                         this.Position.Y++;
                     }
-
                 }
             }
-
         }
 
         public override void Draw()
@@ -74,6 +69,5 @@ namespace TheTieSilincer.Models.Bullets
         {
             this.Position.X--;
         }
-
     }
 }

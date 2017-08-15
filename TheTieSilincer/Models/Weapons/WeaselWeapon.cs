@@ -1,10 +1,7 @@
-﻿using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Core.Managers;
-using TheTieSilincer.EventArguments;
-
-namespace TheTieSilincer.Models.Weapons
+﻿namespace TheTieSilincer.Models.Weapons
 {
+    using TheTieSilincer.Enums;
+
     public class WeaselWeapon : Weapon
     {
         private const WeaponType weaselWeapon = WeaponType.WeaselWeapon;
@@ -12,7 +9,6 @@ namespace TheTieSilincer.Models.Weapons
 
         public WeaselWeapon() : base(weaselWeapon, BulletType.WeaselBullet)
         {
-            
         }
 
         public override void AddBullets(Position position)

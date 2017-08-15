@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Models.Weapons;
-
-namespace TheTieSilincer.Factories
+﻿namespace TheTieSilincer.Factories
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models.Weapons;
+
     public class WeaponFactory
     {
         public Weapon CreateWeapon(WeaponType weaponType)

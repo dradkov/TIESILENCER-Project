@@ -1,8 +1,8 @@
-﻿using TheTieSilincer.Collisions;
-using TheTieSilincer.Interfaces;
-
-namespace TheTieSilincer.Models
+﻿namespace TheTieSilincer.Models
 {
+    using TheTieSilincer.Collisions;
+    using TheTieSilincer.Interfaces;
+
     public class Satellite
     {
         public void StartTransmittingData(IPlayerManager playerManager, IShipManager shipManager
@@ -15,7 +15,6 @@ namespace TheTieSilincer.Models
             bulletCollision.bulletCollidesWithAShip += shipManager.OnBulletCollision;
             bulletCollision.bulletCollidesWithAShip += playerManager.OnBulletCollision;
             shipCollision.shipCollidesWithAnotherShip += shipManager.OnShipCollision;
-            
         }
     }
 }

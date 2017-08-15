@@ -1,10 +1,9 @@
-﻿using System;
-//using TheTieSilincer.Data;
-//using TheTieSilincer.Models.Models;
-using TheTieSilincer.Support;
-
-namespace TheTieSilincer.Core
+﻿namespace TheTieSilincer.Core
 {
+    using System;
+
+    //using TheTieSilincer.Data;
+    //using TheTieSilincer.Models.Models;
     using System.Threading;
     using TheTieSilincer.Interfaces;
     using TheTieSilincer.Services;
@@ -18,7 +17,6 @@ namespace TheTieSilincer.Core
         {
             this.game = new Game();
         }
-
 
         public void Run()
         {

@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Models.Weapons;
-using TheTieSilincer.Support;
-
-namespace TheTieSilincer.Models
+﻿namespace TheTieSilincer.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models.Weapons;
+    using TheTieSilincer.Support;
 
     public class PlayerShip : Ship
     {
@@ -17,9 +16,8 @@ namespace TheTieSilincer.Models
             this.Position = new Position(Constants.WindowHeight - 8, Constants.WindowWidth / 3 + 5);
             this.CollisionAOE = 3;
             this.Armor = 999;
-
         }
-        
+
         public override void Clear()
         {
             if (PreviousPosition != null)
@@ -76,19 +74,17 @@ namespace TheTieSilincer.Models
             {
                 return false;
             }
-            
+
             return true;
         }
 
-
         public override void Update()
         {
-            if(InBounds())
+            if (InBounds())
             {
                 this.PreviousPosition = this.Position;
                 this.Position = nextPosition;
             }
         }
-
     }
 }

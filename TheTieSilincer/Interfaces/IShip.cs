@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Models;
-using TheTieSilincer.Models.Weapons;
-
-namespace TheTieSilincer.Interfaces
+﻿namespace TheTieSilincer.Interfaces
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models;
+    using TheTieSilincer.Models.Weapons;
+
     public interface IShip : IGameObject, IPosition, IDestroyable
     {
         Position NextDirection { get; set; }

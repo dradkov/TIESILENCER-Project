@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models.Weapons;
-
-namespace TheTieSilincer.Models
+﻿namespace TheTieSilincer.Models
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models.Weapons;
+
     public abstract class Ship : IShip
     {
         public Ship(List<Weapon> weapons = null)
@@ -18,7 +18,7 @@ namespace TheTieSilincer.Models
 
         public int CollisionAOE { get; protected set; }
 
-        public Position NextDirection { get;  set; }
+        public Position NextDirection { get; set; }
 
         public Position Position { get; set; }
 
@@ -28,7 +28,7 @@ namespace TheTieSilincer.Models
 
         public bool IsAlive()
         {
-            if(this.Armor > 0)
+            if (this.Armor > 0)
             {
                 return true;
             }
@@ -45,6 +45,5 @@ namespace TheTieSilincer.Models
         public abstract void Update();
 
         public abstract void ClearCurrentPosition();
-
     }
 }

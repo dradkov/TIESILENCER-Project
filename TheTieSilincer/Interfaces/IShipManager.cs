@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using TheTieSilincer.Enums;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.Interfaces
+﻿namespace TheTieSilincer.Interfaces
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Models;
+
     public interface IShipManager : IGameObject
     {
         event EnemyShipsPositionChangeEventHandler SendShipsPositions;

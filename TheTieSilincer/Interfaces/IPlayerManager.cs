@@ -1,8 +1,8 @@
-﻿using TheTieSilincer.EventArguments;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.Interfaces
+﻿namespace TheTieSilincer.Interfaces
 {
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Models;
+
     public interface IPlayerManager : IGameObject
     {
         event PlayerPositionChangeEventHandler SendPlayerPosition;

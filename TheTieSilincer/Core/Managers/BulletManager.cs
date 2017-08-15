@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using TheTieSilincer.Enums;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Factories;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models.Bullets;
-
-namespace TheTieSilincer.Core.Managers
+﻿namespace TheTieSilincer.Core.Managers
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Factories;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models.Bullets;
+
     public class BulletManager : IBulletManager
     {
         private IBulletFactory bulletFactory;
@@ -67,6 +67,5 @@ namespace TheTieSilincer.Core.Managers
         {
             bullets.ForEach(v => v.Update());
         }
-
     }
 }

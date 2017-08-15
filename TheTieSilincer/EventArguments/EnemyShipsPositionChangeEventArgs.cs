@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.EventArguments
+﻿namespace TheTieSilincer.EventArguments
 {
+    using System;
+    using System.Collections.Generic;
+    using TheTieSilincer.Models;
+
     public class EnemyShipsPositionChangeEventArgs : EventArgs
     {
         public EnemyShipsPositionChangeEventArgs(List<Position> positions)
@@ -12,6 +12,5 @@ namespace TheTieSilincer.EventArguments
         }
 
         public List<Position> enemyShipPositions { get; private set; }
-
     }
 }

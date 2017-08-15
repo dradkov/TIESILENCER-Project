@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TheTieSilincer.Support
+﻿namespace TheTieSilincer.Support
 {
+    using System;
+
     public static class WelcomeMenu
     {
         public static void WelcomeScreen(int selectedButton = 0)
@@ -75,16 +71,13 @@ namespace TheTieSilincer.Support
             Console.SetCursorPosition(37, 14);
             var name = Console.ReadLine().Trim();
 
-
             Console.CursorVisible = false;
             GameService.CreateCharacter(name);
         }
 
         public static void Credits()
         {
-
-
-            Console.Clear();          
+            Console.Clear();
             Console.CursorVisible = false;
             Console.SetCursorPosition(45, 12);
             Console.Write("Jordan Karparov");
@@ -95,13 +88,10 @@ namespace TheTieSilincer.Support
             Console.SetCursorPosition(45, 18);
             Console.WriteLine("Dimitar Radkov");
             var test = Console.ReadLine().Trim();
-    
-
         }
 
         public static void ShowHighscores()
         {
-
         }
 
         private static void DrawBox(int col, int row, int width, int hight, char ch, ConsoleColor consolecolor = ConsoleColor.White)

@@ -1,10 +1,8 @@
-﻿using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Core.Managers;
-using TheTieSilincer.EventArguments;
-
-namespace TheTieSilincer.Models.Weapons
+﻿namespace TheTieSilincer.Models.Weapons
 {
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+
     public class PlayerWeapon : Weapon
     {
         private const WeaponType playerWeapon = WeaponType.PlayerWeapon;
@@ -12,12 +10,11 @@ namespace TheTieSilincer.Models.Weapons
 
         public PlayerWeapon() : base(playerWeapon, playerBullet)
         {
-           
         }
 
         public override void AddBullets(Position position)
         {
-            OnGenBullets(new BulletCoordsEventArgs(playerBullet, position));         
+            OnGenBullets(new BulletCoordsEventArgs(playerBullet, position));
         }
     }
 }

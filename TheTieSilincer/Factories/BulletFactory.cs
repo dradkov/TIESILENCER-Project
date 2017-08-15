@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models;
-using TheTieSilincer.Models.Bullets;
-
-namespace TheTieSilincer.Factories
+﻿namespace TheTieSilincer.Factories
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+
     public class BulletFactory : IBulletFactory
     {
         public IBullet CreateBullet(BulletType bulletType, Position position)
@@ -18,8 +17,6 @@ namespace TheTieSilincer.Factories
             IBullet bullet = (IBullet)Activator.CreateInstance(typeOfBullet, position);
 
             return bullet;
-
-
         }
     }
 }

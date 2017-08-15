@@ -1,10 +1,8 @@
-﻿using System;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models;
-using TheTieSilincer.Models.Bullets;
-
-namespace TheTieSilincer.EventArguments
+﻿namespace TheTieSilincer.EventArguments
 {
+    using System;
+    using TheTieSilincer.Interfaces;
+
     public class BulletCollisionEventArgs : EventArgs
     {
         public BulletCollisionEventArgs(IBullet bullet)

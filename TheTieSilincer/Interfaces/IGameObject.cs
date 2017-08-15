@@ -2,6 +2,5 @@
 {
     public interface IGameObject : IDrawable, IClearable, IUpdatable
     {
-
     }
 }

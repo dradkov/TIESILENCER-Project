@@ -1,11 +1,11 @@
-﻿using TheTieSilincer.Models;
-using TheTieSilincer.Enums;
-using System.Collections.Generic;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Interfaces;
-
-namespace TheTieSilincer.Collisions
+﻿namespace TheTieSilincer.Collisions
 {
+    using System.Collections.Generic;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+
     public class ShipCollision : Collision
     {
         public event ShipCollisionEventHandler shipCollidesWithAnotherShip;
@@ -19,10 +19,9 @@ namespace TheTieSilincer.Collisions
 
         public void CheckForCollisions(IList<IShip> ships, IShip playerShip)
         {
-           
             foreach (var ship in ships)
             {
-                if(Intersect(ship.Position, playerShip.Position))
+                if (Intersect(ship.Position, playerShip.Position))
                 {
                     OnShipCollision(new ShipCollisionEventArgs(ship, true));
                 }
@@ -57,7 +56,6 @@ namespace TheTieSilincer.Collisions
                         }
 
                         intersectionPoint = 7;
-
                     }
                 }
             }
@@ -65,11 +63,11 @@ namespace TheTieSilincer.Collisions
             intersectionPoint = 2;
         }
 
-        private bool Intersect(Position p1 , Position p2)
+        private bool Intersect(Position p1, Position p2)
         {
             distance = Distance(p1, p2);
 
-            if(distance <= intersectionPoint)
+            if (distance <= intersectionPoint)
             {
                 return true;
             }

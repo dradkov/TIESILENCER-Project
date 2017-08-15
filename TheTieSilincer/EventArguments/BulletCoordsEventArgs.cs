@@ -1,9 +1,9 @@
-﻿using System;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.EventArguments
+﻿namespace TheTieSilincer.EventArguments
 {
+    using System;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Models;
+
     public class BulletCoordsEventArgs : EventArgs
     {
         public BulletCoordsEventArgs(BulletType bulletType, Position position)

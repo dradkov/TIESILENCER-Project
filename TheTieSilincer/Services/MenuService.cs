@@ -1,8 +1,8 @@
-﻿using System;
-using TheTieSilincer.Support;
-
-namespace TheTieSilincer.Services
+﻿namespace TheTieSilincer.Services
 {
+    using System;
+    using TheTieSilincer.Support;
+
     public class MenuService
     {
         private static int currentPossition = 0;
@@ -29,6 +29,7 @@ namespace TheTieSilincer.Services
                     break;
             }
         }
+
         public static void ShowWelcomeScreen()
         {
             WelcomeMenu.WelcomeScreen(currentPossition);
@@ -58,16 +59,11 @@ namespace TheTieSilincer.Services
                 else if (pressedKey.Key == ConsoleKey.Enter)
                 {
                     isSelecting = false;
-
                 }
-
 
                 WelcomeMenu.WelcomeScreen(currentPossition);
                 //Console.Clear();
             }
         }
-
-
-
     }
 }

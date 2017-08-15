@@ -1,10 +1,10 @@
-﻿using System;
-using TheTieSilincer.Models;
-using TheTieSilincer.EventArguments;
-using TheTieSilincer.Interfaces;
+﻿namespace TheTieSilincer.Core.Managers
+{
+    using System;
+    using TheTieSilincer.EventArguments;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
 
-namespace TheTieSilincer.Core.Managers
-{    
     public class PlayerManager : IPlayerManager
     {
         public event PlayerPositionChangeEventHandler SendPlayerPosition;
@@ -30,7 +30,6 @@ namespace TheTieSilincer.Core.Managers
                 new Position( 0,-1), // moving left
                 new Position( 1,0), // moving down
                 new Position(-1,0), // moving up
-        
            };
         }
 
@@ -39,9 +38,9 @@ namespace TheTieSilincer.Core.Managers
             SendPlayerPosition?.Invoke(this, args);
         }
 
-        public void OnBulletCollision(object  sender, ShipCollisionEventArgs args)
+        public void OnBulletCollision(object sender, ShipCollisionEventArgs args)
         {
-            if(args.Ship.ShipType == this.Player.Ship.ShipType)
+            if (args.Ship.ShipType == this.Player.Ship.ShipType)
             {
                 this.Player.Ship.Armor--;
 
@@ -73,7 +72,7 @@ namespace TheTieSilincer.Core.Managers
         }
 
         private void ReadPlayerInput()
-        {          
+        {
             shooting = false;
 
             while (Console.KeyAvailable)
@@ -100,10 +99,10 @@ namespace TheTieSilincer.Core.Managers
                 {
                     shooting = true;
                 }
-                if(userDirection.Key == ConsoleKey.V)
+                if (userDirection.Key == ConsoleKey.V)
                 {
                     currentWeapon = currentWeapon == 0 ? currentWeapon = 1 : currentWeapon = 0;
-                }                
+                }
 
                 nextDirection = directions[movement];
             }

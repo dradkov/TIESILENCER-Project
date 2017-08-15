@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace TheTieSilincer.Models.Bullets
+﻿namespace TheTieSilincer.Models.Bullets
 {
-    using System.Collections.Generic;
+    using System;
     using TheTieSilincer.Enums;
 
     public class PlayerBullet : Bullet
@@ -23,7 +21,7 @@ namespace TheTieSilincer.Models.Bullets
 
         public override bool InBounds()
         {
-            if(Position.X > 0)
+            if (Position.X > 0)
             {
                 return true;
             }
@@ -36,6 +34,5 @@ namespace TheTieSilincer.Models.Bullets
             this.PreviousPosition = new Position(this.Position.X, this.Position.Y);
             this.Position.X--;
         }
-
     }
 }

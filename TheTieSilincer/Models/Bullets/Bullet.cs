@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace TheTieSilincer.Models.Bullets
+﻿namespace TheTieSilincer.Models.Bullets
 {
-    using System.Collections.Generic;
+    using System;
     using TheTieSilincer.Enums;
     using TheTieSilincer.Interfaces;
 
@@ -13,14 +11,14 @@ namespace TheTieSilincer.Models.Bullets
             this.Position = position;
             this.BulletType = bulletType;
         }
-        
+
         public BulletType BulletType { get; private set; }
         public Position Position { get; set; }
         public Position PreviousPosition { get; set; }
 
         public void Clear()
         {
-            if(this.PreviousPosition != null)
+            if (this.PreviousPosition != null)
             {
                 Console.SetCursorPosition(PreviousPosition.Y, PreviousPosition.X);
                 Console.WriteLine(" ");
@@ -32,6 +30,5 @@ namespace TheTieSilincer.Models.Bullets
         public abstract void Update();
 
         public abstract bool InBounds();
-
     }
 }

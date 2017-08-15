@@ -6,6 +6,5 @@
         PlayerRocketLauncher,
         MotherShipWeapon,
         WeaselWeapon,
-        
     }
 }

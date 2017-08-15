@@ -1,9 +1,8 @@
-﻿using System;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.EventArguments
+﻿namespace TheTieSilincer.EventArguments
 {
+    using System;
+    using TheTieSilincer.Interfaces;
+
     public class ShipCollisionEventArgs : EventArgs
     {
         public ShipCollisionEventArgs(IShip ship, bool shipCollidesWithPlayerShip, IShip ship2 = null)

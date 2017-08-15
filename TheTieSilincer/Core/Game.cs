@@ -2,11 +2,11 @@
 {
     using System;
     using TheTieSilincer.Collisions;
-    using TheTieSilincer.Enums;
-    using TheTieSilincer.Support;
     using TheTieSilincer.Core.Managers;
-    using TheTieSilincer.Models;
+    using TheTieSilincer.Enums;
     using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+    using TheTieSilincer.Support;
 
     public class Game : IGame
     {
@@ -21,7 +21,7 @@
 
         public Game()
         {
-            this.satellite = new Satellite();          
+            this.satellite = new Satellite();
             this.playerManager = new PlayerManager();
             this.bulletManager = new BulletManager();
             this.shipManager = new ShipManager();
@@ -29,12 +29,11 @@
             this.bulletCollision = new BulletCollision();
             this.shipCollision = new ShipCollision();
 
-            this.satellite.StartTransmittingData(playerManager, shipManager, 
+            this.satellite.StartTransmittingData(playerManager, shipManager,
                 bulletManager, bulletCollision, shipCollision);
 
             this.shipManager.GenerateShips();
             this.playerManager.CreatePlayer(shipManager.BuildShip(ShipType.PlayerShip));
-
         }
 
         public void Clear()
@@ -46,7 +45,7 @@
 
         public void CheckForCollisions()
         {
-            this.bulletCollision.CheckForCollisions(this.bulletManager.Bullets, 
+            this.bulletCollision.CheckForCollisions(this.bulletManager.Bullets,
                 this.shipManager.Ships, this.playerManager.Player.Ship);
             this.shipCollision.CheckForCollisions(this.shipManager.Ships, this.playerManager.Player.Ship);
         }

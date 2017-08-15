@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Interfaces;
-using TheTieSilincer.Models;
-using TheTieSilincer.Models.Weapons;
-
-namespace TheTieSilincer.Factories
+﻿namespace TheTieSilincer.Factories
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.Interfaces;
+    using TheTieSilincer.Models;
+    using TheTieSilincer.Models.Weapons;
+
     public class ShipFactory : IShipFactory
     {
         private Random rndGen;
@@ -43,5 +43,4 @@ namespace TheTieSilincer.Factories
             return pos;
         }
     }
-
 }

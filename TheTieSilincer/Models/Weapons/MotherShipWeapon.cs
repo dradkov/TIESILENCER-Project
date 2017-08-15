@@ -1,11 +1,8 @@
-﻿using System;
-using TheTieSilincer.Models.Bullets;
-using TheTieSilincer.Enums;
-using TheTieSilincer.Core.Managers;
-using TheTieSilincer.EventArguments;
-
-namespace TheTieSilincer.Models.Weapons
+﻿namespace TheTieSilincer.Models.Weapons
 {
+    using TheTieSilincer.Enums;
+    using TheTieSilincer.EventArguments;
+
     public class MotherShipWeapon : Weapon
     {
         private const WeaponType msWeapon = WeaponType.MotherShipWeapon;
@@ -13,7 +10,6 @@ namespace TheTieSilincer.Models.Weapons
 
         public MotherShipWeapon() : base(msWeapon, msBullet)
         {
-           
         }
 
         public override void AddBullets(Position position)

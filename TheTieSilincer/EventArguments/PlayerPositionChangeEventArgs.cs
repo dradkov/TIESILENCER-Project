@@ -1,8 +1,8 @@
-﻿using System;
-using TheTieSilincer.Models;
-
-namespace TheTieSilincer.EventArguments
+﻿namespace TheTieSilincer.EventArguments
 {
+    using System;
+    using TheTieSilincer.Models;
+
     public class PlayerPositionChangeEventArgs : EventArgs
     {
         public PlayerPositionChangeEventArgs(Position position)
