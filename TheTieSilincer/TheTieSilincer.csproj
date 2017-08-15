@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\PossitionAttribute.cs" />
     <Compile Include="Collisions\BulletCollision.cs" />
     <Compile Include="Collisions\Collision.cs" />
     <Compile Include="Collisions\ShipCollision.cs" />

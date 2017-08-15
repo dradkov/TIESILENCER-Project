@@ -1,4 +1,6 @@
-﻿namespace TheTieSilincer.Support
+﻿using TheTieSilincer.Attributes;
+
+namespace TheTieSilincer.Support
 {
     using System;
 
@@ -55,6 +57,7 @@
             Console.SetCursorPosition(0, 0);
         }
 
+        [Possition(0)]
         public static void CreateNewPlayer()
         {
             Console.Clear();
@@ -75,6 +78,7 @@
             GameService.CreateCharacter(name);
         }
 
+        [Possition(1)]
         public static void Credits()
         {
             Console.Clear();
@@ -90,6 +94,7 @@
             var test = Console.ReadLine().Trim();
         }
 
+        [Possition(2)]
         public static void ShowHighscores()
         {
         }
@@ -113,6 +118,13 @@
                 Console.Write(ch);
             }
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        [Possition(3)]
+        public static void Exit()
+        {
+            Console.Beep(4250, 300);
+            Environment.Exit(0);
         }
     }
 }
