@@ -1,4 +1,11 @@
-﻿namespace TheTieSilincer.Core
+﻿using System;
+using Data;
+using Models;
+//using TheTieSilincer.Data;
+//using TheTieSilincer.Models.Models;
+using TheTieSilincer.Support;
+
+namespace TheTieSilincer.Core
 {
     using System;
 
@@ -22,13 +29,11 @@
         {
             game.InitialiseSettings();
             MenuService.ShowWelcomeScreen();
-            MenuService.ScreenSelection();
+            MenuService.WelcomeMenuScreenSelection();
             Console.Clear();
-            // TheTieSilincerContext context = new TheTieSilincerContext();
-            //context.Database.Initialize(true);
-            //PlayerDb textPlayer = new PlayerDb("ASDA", "AASA");
-            //context.PlayerDbs.Add(textPlayer);
-            //context.SaveChanges();
+
+            
+             
 
             while (!GameOver)
             {

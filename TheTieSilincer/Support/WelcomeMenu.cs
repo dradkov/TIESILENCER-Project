@@ -55,8 +55,21 @@
             Console.SetCursorPosition(0, 0);
         }
 
-        public static void CreateNewPlayer()
+        public static void Scores()
         {
+            Console.Clear();
+            Console.CursorVisible = false;
+
+
+
+            GameService.GetNamesOfPlayers();
+
+            var test = Console.ReadLine().Trim();
+        }
+
+        public static void LogIn()
+        {
+
             Console.Clear();
             Console.CursorVisible = true;
             Console.Clear();
@@ -70,17 +83,20 @@
             Console.Write("Press enter to start!");
             Console.SetCursorPosition(37, 14);
             var name = Console.ReadLine().Trim();
+            var password = Console.ReadLine().Trim();
 
             Console.CursorVisible = false;
-            GameService.CreateCharacter(name);
+            GameService.CreateCharacter(name, "pass");
         }
 
+
+       
         public static void Credits()
         {
             Console.Clear();
             Console.CursorVisible = false;
             Console.SetCursorPosition(45, 12);
-            Console.Write("Jordan Karparov");
+            Console.Write("Yordan Karparov");
             Console.SetCursorPosition(45, 14);
             Console.Write("Valentin Parvanov");
             Console.SetCursorPosition(45, 16);
@@ -88,6 +104,8 @@
             Console.SetCursorPosition(45, 18);
             Console.WriteLine("Dimitar Radkov");
             var test = Console.ReadLine().Trim();
+
+
         }
 
         public static void ShowHighscores()
