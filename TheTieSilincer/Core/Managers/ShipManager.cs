@@ -17,6 +17,8 @@
 
         public event NewWeaponsEventHandler SendNewWeapons;
 
+        public event NewDestroyShipEventHandler SendMessageWhenShipDestroyed;
+
         private IShipFactory shipFactory;
         private WeaponFactory weaponFactory;
 
@@ -32,6 +34,7 @@
 
         private Random rnd;
 
+        
         public ShipManager()
         {
             this.shipFactory = new ShipFactory();
@@ -42,12 +45,18 @@
             this.rnd = new Random();
         }
 
+
         public IList<IShip> Ships
         {
             get
             {
                 return new List<IShip>(ships);
             }
+        }
+
+        private void OnSendMessageWhenShipDestroyed(NewDestroyShipEventArgs args)
+        {
+            SendMessageWhenShipDestroyed?.Invoke(this, args);
         }
 
         private void OnEnemyShipsPositionChange(EnemyShipsPositionChangeEventArgs args)
@@ -97,6 +106,9 @@
                 if (!ship.IsAlive())
                 {
                     DestroyShip(ship);
+
+                    OnSendMessageWhenShipDestroyed(new NewDestroyShipEventArgs(100));
+
                 }
                 else
                 {

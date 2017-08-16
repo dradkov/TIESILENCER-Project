@@ -13,4 +13,6 @@
     public delegate void GenerateBulletsEventHandler(object sender, BulletCoordsEventArgs args);
 
     public delegate void ShipCollisionEventHandler(object sender, ShipCollisionEventArgs args);
+
+    public delegate void NewDestroyShipEventHandler(object sender, NewDestroyShipEventArgs args);
 }

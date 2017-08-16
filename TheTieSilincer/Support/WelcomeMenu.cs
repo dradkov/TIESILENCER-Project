@@ -1,6 +1,8 @@
 ﻿namespace TheTieSilincer.Support
 {
     using System;
+    using System.Collections.Generic;
+    using global::Models;
 
     public static class WelcomeMenu
     {
@@ -62,9 +64,27 @@
 
 
 
-            GameService.GetNamesOfPlayers();
+            List<Score> scores=GameService.GetNamesOfTop10Players();
 
-            var test = Console.ReadLine().Trim();
+            
+            Console.SetCursorPosition(45, 2);
+            Console.Write("Top 10 Results");
+            Console.SetCursorPosition(36, 4);
+            Console.WriteLine(new string('_', 28));
+
+            int num = 1;
+
+            foreach (var score in scores)
+            {
+                Console.SetCursorPosition(36, 5 + num);
+                Console.WriteLine($"{num}. {score.Player.Name} {score.Points}");
+                num++;
+            
+
+            }
+            Console.ReadLine();
+
+
         }
 
         public static void LogIn()

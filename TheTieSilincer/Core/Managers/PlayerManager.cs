@@ -4,6 +4,7 @@
     using TheTieSilincer.EventArguments;
     using TheTieSilincer.Interfaces;
     using TheTieSilincer.Models;
+    using TheTieSilincer.Support;
 
     public class PlayerManager : IPlayerManager
     {
@@ -16,9 +17,25 @@
         private int movement;
         private bool shooting;
         private int currentWeapon = 0;
+        private int score;
+
+        public int Score
+        {
+            get
+            {
+                return this.score;
+            }
+            private set
+            {
+                this.score = value;
+            }
+        }
+       
 
         public PlayerManager()
         {
+            this.score = 0;
+
             this.AddDirections();
         }
 
@@ -33,6 +50,11 @@
            };
         }
 
+        public void UpdateScore(object sender, NewDestroyShipEventArgs args)
+        {
+            this.score += args.Points;
+        }
+
         private void OnPositionChange(PlayerPositionChangeEventArgs args)
         {
             SendPlayerPosition?.Invoke(this, args);
@@ -42,9 +64,19 @@
         {
             if (args.Ship.ShipType == this.Player.Ship.ShipType)
             {
-                this.Player.Ship.Armor--;
+                this.Player.Ship.Armor-=100;
 
-                //TO DO
+                if (this.Player.Ship.Armor < 0)
+                {
+
+                    Console.WriteLine("game Over!");
+
+                    Console.WriteLine(this.score);
+
+                    GameService.SaveResultToDb(this.Score);
+
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -64,6 +96,26 @@
         public void Draw()
         {
             this.Player.Ship.Draw();
+
+            this.DrawScore();
+        }
+
+        public void DrawScore()
+        {
+            Console.SetCursorPosition(Console.WindowWidth - 6, 0);
+            Console.Write("Health");
+            Console.SetCursorPosition(Console.WindowWidth - 6, 1);
+            Console.Write(this.Player.Ship.Armor);
+
+
+
+            Console.SetCursorPosition(Console.WindowWidth - 6, 2);
+            Console.Write("Score");
+            Console.SetCursorPosition(Console.WindowWidth - 6, 3);
+            Console.Write(this.score);
+
+
+
         }
 
         public void Clear()

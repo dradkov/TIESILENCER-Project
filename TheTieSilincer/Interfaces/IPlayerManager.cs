@@ -11,6 +11,8 @@
 
         void OnBulletCollision(object sender, ShipCollisionEventArgs args);
 
+        void UpdateScore(object sender, NewDestroyShipEventArgs args);
+
         Player Player { get; }
     }
 }

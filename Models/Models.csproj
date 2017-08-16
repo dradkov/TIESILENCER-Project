@@ -50,6 +50,7 @@
     <Compile Include="Exceptions\InvalidPasswordLengthException.cs" />
     <Compile Include="PlayerDbEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Score.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

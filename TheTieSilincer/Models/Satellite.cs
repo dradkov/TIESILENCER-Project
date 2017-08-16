@@ -15,6 +15,10 @@
             bulletCollision.bulletCollidesWithAShip += shipManager.OnBulletCollision;
             bulletCollision.bulletCollidesWithAShip += playerManager.OnBulletCollision;
             shipCollision.shipCollidesWithAnotherShip += shipManager.OnShipCollision;
+
+            shipManager.SendMessageWhenShipDestroyed += playerManager.UpdateScore;
+
+
         }
     }
 }

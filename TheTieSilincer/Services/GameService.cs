@@ -10,11 +10,12 @@ using TheTieSilincer.Models;
 
 namespace TheTieSilincer.Support
 {
+    using System.Data.Entity;
     using TheTieSilincer.Models;
 
     public class GameService
-   {
-       
+    {
+        public static PlayerDbEntity currentPlayer = new PlayerDbEntity();
 
         public static void CreateCharacter(string name,string password)
         {
@@ -25,7 +26,9 @@ namespace TheTieSilincer.Support
                     PlayerDbEntity newPlayer = new PlayerDbEntity(name, password);
                     DbContext.Players.Add(newPlayer);
 
-                    DbContext.SaveChanges();
+                    GameService.currentPlayer = newPlayer;
+
+                    //DbContext.SaveChanges();
                 }
                 catch (CustomRegisterException ex)
                 {
@@ -54,9 +57,10 @@ namespace TheTieSilincer.Support
                        throw new InvalidNameAndPasswordMatchException();
                    }
 
-                   PlayerDbEntity newPlayer = DbContext.Players.Where(x => x.Name == name && x.Password == password).First();
+                   PlayerDbEntity Player = players.First();
+                   GameService.currentPlayer = Player;
 
-                }
+               }
                 catch (CustomLogInException ex)
                {
 
@@ -68,24 +72,34 @@ namespace TheTieSilincer.Support
            }
         }
 
+        public static void SaveResultToDb(int points)
+        {
+            using (var DbContext = new TheTieSilincerContext())
+            {
+                currentPlayer.Scores.Add(new Score(points));
+
+                DbContext.Entry(currentPlayer).State= EntityState.Added;
+                
+                DbContext.SaveChanges();
+                
+            }
 
 
-        public static void GetNamesOfPlayers()
+        }
+
+
+
+        public static List<Score> GetNamesOfTop10Players()
        {
-           int num = 1;
+          
            using (var DbContext = new TheTieSilincerContext())
            {
-               Console.SetCursorPosition(5, 0);
-                foreach (var player in DbContext.Players
+               return DbContext
+                    .Scores
+                    .Include(x=>x.Player)
                     .OrderByDescending(x=>x.Points)
-                    .Take(10))
-               {
-                   Console.WriteLine($"{num}.{player.Name} - {player.Name}");
-                   Console.SetCursorPosition(5,num);
-                    num++;
-               }
-
-
+                    .Take(10)
+                    .ToList();
            }
 
        }

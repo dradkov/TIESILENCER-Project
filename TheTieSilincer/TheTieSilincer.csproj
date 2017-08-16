@@ -63,6 +63,7 @@
     <Compile Include="EventArguments\BulletCollisionEventArgs.cs" />
     <Compile Include="EventArguments\BulletCoordsEventArgs.cs" />
     <Compile Include="EventArguments\EnemyShipsPositionChangeEventArgs.cs" />
+    <Compile Include="EventArguments\NewDestroyShipEventArgs.cs" />
     <Compile Include="EventArguments\NewWeaponsEventArgs.cs" />
     <Compile Include="EventArguments\PlayerPositionChangeEventArgs.cs" />
     <Compile Include="EventArguments\ShipCollisionEventArgs.cs" />

@@ -16,7 +16,7 @@ namespace Models
 
         public PlayerDbEntity()
         {
-           
+            this.Scores = new List<Score>();
         }
         public PlayerDbEntity(string name , string password)
         {
@@ -24,7 +24,7 @@ namespace Models
            
             Password = password;
 
-            Points = 0;
+            this.Scores = new List<Score>();
         }
 
         [Key]
@@ -59,8 +59,8 @@ namespace Models
                 this.password = value;
             }
         }
-        
-        public int Points { get; set; }
+
+        public List<Score> Scores { get; set; }
 
 
 

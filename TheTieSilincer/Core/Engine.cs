@@ -18,6 +18,7 @@ namespace TheTieSilincer.Core
     public class Engine : IEngine
     {
         private IGame game;
+
         private bool GameOver = false;
 
         public Engine()
