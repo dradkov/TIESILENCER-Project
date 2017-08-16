@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheTieSilincer.Core.Engine" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAI=</HashCode>
+      <FileName>Core\Engine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Core.Game" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAgAAAAAAAEAAFBAAAAAAEAAQAABAAAI=</HashCode>
+      <FileName>Core\Game.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Core.Managers.BulletManager" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgCAAAICAAgAAAAAAAAgAAAAIAEAAAAAAAABAAAA=</HashCode>
+      <FileName>Core\Managers\BulletManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Core.Managers.PlayerManager" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAMAAAAEIoiAAAAIAAkgAAKEAEAAAAAAAQBAAAI=</HashCode>
+      <FileName>Core\Managers\PlayerManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Core.Managers.ShipManager" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggQUQCAAEKQQAgAMEAgQZAhAAAggAAEAABAAAABQAAI=</HashCode>
+      <FileName>Core\Managers\ShipManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Collisions.BulletCollision" Collapsed="true">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAACAYAAgAABAAAAAAAAACAAAAAAI=</HashCode>
+      <FileName>Collisions\BulletCollision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Collisions.Collision" Collapsed="true">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\Collision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Collisions.ShipCollision" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACIAAAAAAAAAEAAAAABgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Collisions\ShipCollision.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Models.Exceptions.CustomLogInException" Collapsed="true">
+    <Position X="12.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Models.Exceptions.CustomRegisterException" Collapsed="true">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Models.Exceptions.InvalidNameAndPasswordMatchException" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Models.Exceptions.InvalidPasswordDigitException" Collapsed="true">
+    <Position X="15.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Models.Exceptions.InvalidPasswordException" Collapsed="true">
+    <Position X="14.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Models.Exceptions.InvalidPasswordLengthException" Collapsed="true">
+    <Position X="13.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TheTieSilincer.Exceptions.InvalidNameLengthException" Collapsed="true">
+    <Position X="16.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="TheTieSilincer.Factories.BulletFactory" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\BulletFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Factories.ShipFactory" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAgAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\ShipFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Factories.WeaponFactory" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factories\WeaponFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Models.PilotName" Collapsed="true">
+    <Position X="2" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PilotName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Player" Collapsed="true">
+    <Position X="3.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Position" Collapsed="true">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Models\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Satellite" Collapsed="true">
+    <Position X="2" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Satellite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Weapons.Weapon" Collapsed="true">
+    <Position X="11" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAIAAAAAABAAAAAAAAAAAAAAAAAQAAAABAACAAAA=</HashCode>
+      <FileName>Models\Weapons\Weapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Weapons.WeaselWeapon" Collapsed="true">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAA=</HashCode>
+      <FileName>Models\Weapons\WeaselWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Weapons.PlayerWeapon" Collapsed="true">
+    <Position X="14.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAQAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Weapons\PlayerWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Weapons.PlayerRocketLauncher" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAQIAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Weapons\PlayerRocketLauncher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Weapons.MotherShipWeapon" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAIAAEA=</HashCode>
+      <FileName>Models\Weapons\MotherShipWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Ships.EnemyShip" Collapsed="true">
+    <Position X="12.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ships\EnemyShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Ships.KamikazeShip" Collapsed="true">
+    <Position X="12" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAEABAAAAgAAAAAACAAAAACAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Ships\KamikazeShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Ships.MotherShip" Collapsed="true">
+    <Position X="13.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAUAAAAABAAAAgAAAAAACACAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Ships\MotherShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Ships.WeaselShip" Collapsed="true">
+    <Position X="10.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAABAAAAgAAAAAACAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Ships\WeaselShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.PlayerShip" Collapsed="true">
+    <Position X="14.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAACAAAAgAAAAAACAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Models\Ships\PlayerShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Ship" Collapsed="true">
+    <Position X="13.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQUAAAAAAAAAAgBgAIAAiAAAAAAAAAAAEABAAABAABA=</HashCode>
+      <FileName>Models\Ships\Ship.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Models.Bullets.WeaselBullet" Collapsed="true">
+    <Position X="0.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAABAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Bullets\WeaselBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Bullets.PlayerRocket" Collapsed="true">
+    <Position X="5.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAgAAAAQAAAAAAACAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Bullets\PlayerRocket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Bullets.PlayerBullet" Collapsed="true">
+    <Position X="7.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAQgAAAAQAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Bullets\PlayerBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Bullets.MSBullet" Collapsed="true">
+    <Position X="3" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAAAgAAAAQAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\Bullets\MSBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Models.Bullets.Bullet" Collapsed="true">
+    <Position X="4" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAAAAAAAAABgAgAAAAAAAAAAAAAAAAAABAAABAAAA=</HashCode>
+      <FileName>Models\Bullets\Bullet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheTieSilincer.Support.GameService" Collapsed="true">
+    <Position X="19" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAACAgAAgCAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\GameService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Services.MenuService" Collapsed="true">
+    <Position X="21" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABgABAAAABAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Services\MenuService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.BulletCollisionEventArgs" Collapsed="true">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>EventArguments\BulletCollisionEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.BulletCoordsEventArgs" Collapsed="true">
+    <Position X="20.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\BulletCoordsEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.EnemyShipsPositionChangeEventArgs" Collapsed="true">
+    <Position X="22.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\EnemyShipsPositionChangeEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.NewDestroyShipEventArgs" Collapsed="true">
+    <Position X="18.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\NewDestroyShipEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.NewShipCollidesWithPlayerShipEventEventArgs" Collapsed="true">
+    <Position X="20.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\NewShipCollidesWithPlayerShipEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.NewWeaponsEventArgs" Collapsed="true">
+    <Position X="22.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>EventArguments\NewWeaponsEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.ShipCollisionEventArgs" Collapsed="true">
+    <Position X="20.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAgAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\ShipCollisionEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.EventArguments.PlayerPositionChangeEventArgs" Collapsed="true">
+    <Position X="18.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventArguments\PlayerPositionChangeEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Support.Constants" Collapsed="true">
+    <Position X="19" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Support\Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Support.RegisterMenu" Collapsed="true">
+    <Position X="20.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAEA=</HashCode>
+      <FileName>Support\RegisterMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheTieSilincer.Support.WelcomeMenu" Collapsed="true">
+    <Position X="19" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAAAAgAAgAAAAAAAAAAAAACBAAAAAAAAAAAAA=</HashCode>
+      <FileName>Support\WelcomeMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="TheTieSilincer.Enums.BulletType" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAABAAAAAAABgAAA=</HashCode>
+      <FileName>Enums\BulletType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TheTieSilincer.Enums.ShipType" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Enums\ShipType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TheTieSilincer.Enums.WeaponType" Collapsed="true">
+    <Position X="34.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAABgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\WeaponType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="TheTieSilincer.Models.PlayerPositionChangeEventHandler" Collapsed="true">
+    <Position X="2" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.EnemyShipsPositionChangeEventHandler" Collapsed="true">
+    <Position X="3.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.NewWeaponsEventHandler" Collapsed="true">
+    <Position X="5.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.BulletCollisionEventHandler" Collapsed="true">
+    <Position X="2" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.GenerateBulletsEventHandler" Collapsed="true">
+    <Position X="5.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.ShipCollisionEventHandler" Collapsed="true">
+    <Position X="3.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.NewDestroyShipEventHandler" Collapsed="true">
+    <Position X="2" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="TheTieSilincer.Models.NewShipCollidesWithPlayerShipEventEventHandler" Collapsed="true">
+    <Position X="3.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventHandlers.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

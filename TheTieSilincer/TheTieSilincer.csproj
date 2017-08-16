@@ -86,6 +86,7 @@
     <Compile Include="Interfaces\IShipFactory.cs" />
     <Compile Include="Interfaces\IShipManager.cs" />
     <Compile Include="Interfaces\IUpdatable.cs" />
+    <Compile Include="Interfaces\IWeaponFactory.cs" />
     <Compile Include="Models\Bullets\Bullet.cs" />
     <Compile Include="Models\Bullets\MSBullet.cs" />
     <Compile Include="Models\Bullets\PlayerBullet.cs" />
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="packages.config" />
   </ItemGroup>

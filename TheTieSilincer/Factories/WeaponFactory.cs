@@ -4,9 +4,10 @@
     using System.Linq;
     using System.Reflection;
     using TheTieSilincer.Enums;
+    using TheTieSilincer.Interfaces;
     using TheTieSilincer.Models.Weapons;
 
-    public class WeaponFactory
+    public class WeaponFactory:IWeaponFactory
     {
         public Weapon CreateWeapon(WeaponType weaponType)
         {
