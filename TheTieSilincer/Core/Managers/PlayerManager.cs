@@ -83,13 +83,17 @@
             {
 
                 Console.Clear();
-                    Console.SetCursorPosition(49, 15);                 
-                    Console.WriteLine("Game Over!");
-                    Console.SetCursorPosition(47, 16);
-                    Console.WriteLine($"Your Score is {this.score}");
+                Console.SetCursorPosition(49, 15);                 
+                Console.WriteLine("Game Over!");
+                Console.SetCursorPosition(47, 16);
+                Console.WriteLine($"Your Score is {this.score}");
                 GameService.SaveResultToDb(this.Score);
 
-                Environment.Exit(0);
+                Console.ReadLine();
+                IEngine engine = new Engine();
+
+                engine.Run();
+                //Environment.Exit(0);
             }
         }
 

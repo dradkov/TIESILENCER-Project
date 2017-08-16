@@ -32,9 +32,7 @@ namespace TheTieSilincer.Support
                 }
                 catch (CustomRegisterException ex)
                 {
-                    
                     RegisterMenu.RegisterNewPlayer(ex.Message);
-
                 }
 
 

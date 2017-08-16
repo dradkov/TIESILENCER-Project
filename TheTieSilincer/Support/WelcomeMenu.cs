@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using global::Models;
+    using TheTieSilincer.Services;
 
     public static class WelcomeMenu
     {
@@ -84,6 +85,11 @@
             }
             Console.ReadLine();
 
+            Console.Clear();
+            MenuService.ShowWelcomeScreen();
+            MenuService.WelcomeMenuScreenSelection();
+            Console.Clear();
+
 
         }
 
@@ -125,7 +131,10 @@
             Console.WriteLine("Dimitar Radkov");
             var test = Console.ReadLine().Trim();
 
-
+            Console.Clear();
+            MenuService.ShowWelcomeScreen();
+            MenuService.WelcomeMenuScreenSelection();
+            Console.Clear();
         }
 
         public static void ShowHighscores()
