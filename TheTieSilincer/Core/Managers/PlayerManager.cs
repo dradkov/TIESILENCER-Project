@@ -68,14 +68,16 @@
 
                 if (this.Player.Ship.Armor < 0)
                 {
-
-                    Console.WriteLine("game Over!");
-
-                    Console.WriteLine(this.score);
-
+                    Console.Clear();
+                    Console.SetCursorPosition(49, 15);                 
+                    Console.WriteLine("Game Over!");
+                    Console.SetCursorPosition(47, 16);
+                    Console.WriteLine($"Your Score is {this.score}");
+                    
                     GameService.SaveResultToDb(this.Score);
-
+                    var test = Console.ReadLine().Trim();
                     Environment.Exit(0);
+                 
                 }
             }
         }
