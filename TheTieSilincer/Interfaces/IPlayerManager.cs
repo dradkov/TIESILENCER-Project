@@ -13,6 +13,8 @@
 
         void UpdateScore(object sender, NewDestroyShipEventArgs args);
 
+        void UpdateHealth(object sender, NewShipCollidesWithPlayerShipEventEventArgs args);
+
         Player Player { get; }
     }
 }

@@ -19,6 +19,8 @@
 
         public event NewDestroyShipEventHandler SendMessageWhenShipDestroyed;
 
+        public event NewShipCollidesWithPlayerShipEventEventHandler ShipCollidesWithPlayer;
+
         private IShipFactory shipFactory;
         private WeaponFactory weaponFactory;
 
@@ -54,6 +56,11 @@
             }
         }
 
+        private void OnShipCollidesWithPlayer(NewShipCollidesWithPlayerShipEventEventArgs args)
+        {
+            ShipCollidesWithPlayer?.Invoke(this, args);
+        }
+
         private void OnSendMessageWhenShipDestroyed(NewDestroyShipEventArgs args)
         {
             SendMessageWhenShipDestroyed?.Invoke(this, args);
@@ -79,6 +86,9 @@
                 if (args.ShipCollidesWithPlayerShip)
                 {
                     DestroyShip(f);
+
+                    OnShipCollidesWithPlayer(new NewShipCollidesWithPlayerShipEventEventArgs(20));
+
                 }
                 else
                 {

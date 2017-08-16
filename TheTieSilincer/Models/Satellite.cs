@@ -18,7 +18,7 @@
 
             shipManager.SendMessageWhenShipDestroyed += playerManager.UpdateScore;
 
-
+            shipManager.ShipCollidesWithPlayer += playerManager.UpdateHealth;
         }
     }
 }

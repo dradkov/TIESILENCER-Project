@@ -50,6 +50,13 @@
            };
         }
 
+        public void UpdateHealth(object sender, NewShipCollidesWithPlayerShipEventEventArgs args)
+        {
+            this.Player.Ship.Armor -= args.Demage;
+
+            this.checkHealth();
+        }
+
         public void UpdateScore(object sender, NewDestroyShipEventArgs args)
         {
             this.score += args.Points;
@@ -66,17 +73,22 @@
             {
                 this.Player.Ship.Armor-=100;
 
-                if (this.Player.Ship.Armor < 0)
-                {
+                this.checkHealth();
+            }
+        }
 
-                    Console.WriteLine("game Over!");
+        private void checkHealth()
+        {
+            if (this.Player.Ship.Armor < 0)
+            {
 
-                    Console.WriteLine(this.score);
+                Console.WriteLine("game Over!");
 
-                    GameService.SaveResultToDb(this.Score);
+                Console.WriteLine(this.score);
 
-                    Environment.Exit(0);
-                }
+                GameService.SaveResultToDb(this.Score);
+
+                Environment.Exit(0);
             }
         }
 

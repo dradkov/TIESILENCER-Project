@@ -13,6 +13,9 @@
 
         event NewDestroyShipEventHandler SendMessageWhenShipDestroyed;
 
+        event NewShipCollidesWithPlayerShipEventEventHandler ShipCollidesWithPlayer;
+        
+
         void OnShipCollision(object sender, ShipCollisionEventArgs args);
 
         void OnBulletCollision(object sender, ShipCollisionEventArgs args);
