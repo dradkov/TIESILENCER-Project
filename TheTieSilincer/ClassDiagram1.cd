@@ -346,6 +346,10 @@
       <FileName>Support\WelcomeMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Models.Exceptions.InvalidPasswordSpecialSymbol" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
   <Enum Name="TheTieSilincer.Enums.BulletType" Collapsed="true">
     <Position X="19.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -361,7 +365,7 @@
     </TypeIdentifier>
   </Enum>
   <Enum Name="TheTieSilincer.Enums.WeaponType" Collapsed="true">
-    <Position X="34.75" Y="1" Width="1.5" />
+    <Position X="21.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAABgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Enums\WeaponType.cs</FileName>
