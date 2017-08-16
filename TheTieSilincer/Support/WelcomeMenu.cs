@@ -77,7 +77,7 @@
             foreach (var score in scores)
             {
                 Console.SetCursorPosition(36, 5 + num);
-                Console.WriteLine($"{num}. {score.Player.Name} {score.Points}");
+                Console.WriteLine($"{num}. {score.PlayerDb.Name} {score.Points}");
                 num++;
             
 

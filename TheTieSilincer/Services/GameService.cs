@@ -28,7 +28,7 @@ namespace TheTieSilincer.Support
 
                     GameService.currentPlayer = newPlayer;
 
-                    //DbContext.SaveChanges();
+                    DbContext.SaveChanges();
                 }
                 catch (CustomRegisterException ex)
                 {
@@ -76,10 +76,12 @@ namespace TheTieSilincer.Support
         {
             using (var DbContext = new TheTieSilincerContext())
             {
-                currentPlayer.Scores.Add(new Score(points));
-
-                DbContext.Entry(currentPlayer).State= EntityState.Added;
+                Score score = new Score(points);
                 
+                score.PlayerDbId =currentPlayer.PlayerId;
+
+                DbContext.Scores.Add(score);
+
                 DbContext.SaveChanges();
                 
             }
@@ -94,12 +96,13 @@ namespace TheTieSilincer.Support
           
            using (var DbContext = new TheTieSilincerContext())
            {
-               return DbContext
-                    .Scores
-                    .Include(x=>x.Player)
-                    .OrderByDescending(x=>x.Points)
-                    .Take(10)
-                    .ToList();
+              return DbContext
+                   .Scores
+               .Include(x => x.PlayerDb)
+               .OrderByDescending(x => x.Points)
+               .Take(10)
+               .ToList();
+               
            }
 
        }
